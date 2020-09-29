@@ -1,3 +1,6 @@
 [submodule "PHP-week02-FormHandling"]
 	path = PHP-week02-FormHandling
 	url = https://github.com/snowman07/PHP-week02-FormHandling
+[submodule "PHP-week03-RedirectFunctionSession"]
+	path = PHP-week03-RedirectFunctionSession
+	url = https://github.com/snowman07/PHP-week03-RedirectFunctionSession
