@@ -12,7 +12,7 @@
       rel="stylesheet"
       href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
       integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
-      crossorigin="anonymous"
+      crossorigin="anonymous" 
     />
     <title>Post</title>
 
@@ -29,92 +29,95 @@
 
         <?php
 
-        if(isset($_POST['username'])) {
-            //the "name" of the form element(Username) from formsend.html is what we access here!
-            echo "<p><b>Name: </b>" . $_POST['username'] . "</p>";
-        }
-        if(isset($_POST['phone'])) {
-            echo "</p><b>Phone: </b>" . $_POST['phone'] . "</p>";
-        }
-        if(isset($_POST['email'])) {
-            //the "name" of the form element(Password) from formsend.html is what we access here!
-            echo "</p><b>Email: </b>" . $_POST['email'] . "</p>";
-        }
-        if(isset($_POST['message'])) {
-            echo "</p><b>Message: </b>" . $_POST['message'] . "</p>";
-        }
+          // This is from formreceive.php
 
-
-        /*What are we doing here is only an academic exercise. Not to be used for real */
-
-        /*Here we will build "validation rules" that can stop the submission of this form until user has fixed errors*/
-        
-
-        // check for empty fields
-
-        if($username == ""){
-          echo "Please fill in your name:";
-          exit(); // leaves the current script. Very dangerous as when you forget about this, nothing else below will work
-        }
-        if(strlen($username) == ""){
-          echo "Please fill in your name:";
-          exit(); // leaves the current script. Very dangerous as when you forget about this, nothing else below will work
-        }
-
-        //max string Length
-        if(strlen($username) > 20) {
-          echo "Please fill in your name of less than 21 characters.<br>:";
-          exit(); // leaves the current script. Very dangerous as when you forget about this, nothing else below will work
-        }
-
-        // email format validatio
-
-        if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
-          echo "Please fill in a correct email.<br>";
-          exit(;)
-        }
-
-         /*SIMPLE WAY TO DO THIS:
-        
-          $username = $_POST['username'];
+          // if(isset($_POST['username'])) {
+          //     //the "name" of the form element(Username) from formsend.html is what we access here!
+          //     echo "<p><b>Name: </b>" . $_POST['username'] . "</p>";
+          // }
+          // if(isset($_POST['phone'])) {
+          //     echo "</p><b>Phone: </b>" . $_POST['phone'] . "</p>";
+          // }
+          // if(isset($_POST['email'])) {
+          //     //the "name" of the form element(Password) from formsend.html is what we access here!
+          //     echo "</p><b>Email: </b>" . $_POST['email'] . "</p>";
+          // }
+          // if(isset($_POST['message'])) {
+          //     echo "</p><b>Message: </b>" . $_POST['message'] . "</p>";
+          // }
+          // ================================================================
+          
+          
+          //SIMPLE WAY TO DO THIS
+          $username = trim($_POST['username']); //remove leading and trailing spaces
           $phone = $_POST['phone'];
           $email = $_POST['email'];
           $message = $_POST['message'];
 
-          echo "$username, $phone, $email, $message";
-        */
+          //echo "$username, $phone, $email, $message";
+        
+          /*What are we doing here is only an academic exercise. Not to be used for real 
+          
+          Here we will build "validation rules" that can stop the submission of this form until 
+          user has fixed errors*/
+          
+          // check for empty fields
 
-        // here we will build a custom phone number validator... just for fun(learning). Best to now use this for real as it assumes a North American format phone
+          if($username == ""){
+            echo "Please fill in your name: <br>";
+            exit(); // leaves the current script. Very dangerous as when you forget about this, 
+                    // nothing else below will work
+          }
+        
+          // min string length
+          if(strlen($username) < 3){  //strlen = string length
+            echo "Please fill in a name of more than 2 characters. <br>";
+            exit(); // leaves the current script. Very dangerous as when you forget about this, nothing else below will work
+          }
 
-        //lets modify the phone number, then check it for what we need
+          // max string length
+          if(strlen($username) > 20){  //strlen = string length
+            echo "Please fill in a name of less than 21 characters. <br>";
+            exit(); // leaves the current script. Very dangerous as when you forget about this, nothing else below will work
+          }
 
-        $phone = str_replace(" ", "", $phone); // removing spaces
-        $phone = str_replace("_", "", $phone) // removing spaces
-        $phone = str_replace("(", "", $phone) // removing spaces
-        $phone = str_replace(")", "", $phone) // removing spaces
-        $phone = str_replace(".", "", $phone) // removing spaces
+          // email format validation    // php email filter
+          if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
+            echo "Please fill in a correct email.<br>";
+            exit();
+          }
 
-        if(is_numeric($phone)) {
-          echo "That phone is not a number";
-          exit();
-        }
-        if(strlen($phone) != 10) { // 780 728 1234
-          echo "Please enter the 10 digit number";
-          exit();
-        }
+          // here we will build a custom phone number validator... just for fun(learning). Best to now use 
+          // this for real as it assumes a North American format phone
 
-        //echo $phone;
+          //lets modify the phone number, then check it for what we need
 
+          $phone = str_replace(" ", "", $phone); // removing spaces => find,replace,variable
+          $phone = str_replace("_", "", $phone); // removing spaces => find,replace,variable
+          $phone = str_replace("(", "", $phone);// removing spaces => find,replace,variable
+          $phone = str_replace(")", "", $phone); // removing spaces => find,replace,variable
+          $phone = str_replace(".", "", $phone); // removing spaces => find,replace,variable
 
-        // Message field. What val do we need?
-        if((strlen($message) < 10) || strlen($message) > 200) {
-          echo "Please enter a message between 10 and 200 characters";
-          exit();
-        }
-        $message = strip_tags($message); // removes unwanted HTML formatting.
-        echo $message;
+          if(!is_numeric($phone)) {
+            echo "That phone is not a number";
+            exit();
+          }
+          if(strlen($phone) != 10) { // 780 728 1234
+            echo "Please enter a correct 10 digit number";
+            exit();
+          }
 
+          //echo $phone;
 
+        
+
+          // Message field. What val do we need?
+          if((strlen($message) < 10) || (strlen($message)) > 200) {
+            echo "Please enter a message between 10 and 200 characters";
+            exit();
+          }
+          $message = strip_tags($message); // removes unwanted HTML formatting.
+          echo $message;
 
         ?>
 

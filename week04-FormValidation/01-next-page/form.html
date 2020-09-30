@@ -21,11 +21,29 @@
     </head>
     <body>
         <!--On oyur own .. build a basic form with
-    username
-phone
-email: do not type="email"
-message
-submit-->
+            username (type="text")
+            phone (type="text")
+            email: (type="text") do not use type="email"
+            message (textarea)
+            submit
+        -->
+        <form method="post" action="form2.php">
+            Name:
+            <input type="text" name="username">
+            <br>
+            Phone:
+            <input type="text" name="phone">
+            <br>
+            Email:
+            <input type="text" name="email">
+            <br>
+            Message:
+            <textarea name="message"></textarea>
+            <br>
+            <input type="submit" name="">
+            <br>
+        </form>
+        <!-- START OF BOOTSTRAP FROM
         <div class="container">
             <h1>Bootstrap Forms</h1>
             <form name="myform" method="post" action="form2.php">
@@ -44,7 +62,7 @@ submit-->
                         type="number"
                         class="form-control"
                         name="phone"
-                        placeholder="Enter age here"
+                        placeholder="Enter phone here"
                     >
                 </div>
                 <div class="form-group">
@@ -61,12 +79,13 @@ submit-->
                     <textarea class="form-control" name="message" rows="3"></textarea>
                 </div>
                 <div>&nbsp;</div>
-                <!-- space before button -->
+                
                 <button type="submit" name="mysubmit" class="btn btn-primary mb-2">
                     Submit
                 </button>
             </form>
         </div>
+        END OF BOOTSTRAP FORM -->
         <!--end of container class-->
         <!-- Optional JavaScript -->
         <!-- jQuery first, then Popper.js, then Bootstrap JS -->
