@@ -78,15 +78,15 @@
     
     <div class="form-group">
         <label for="gender">Gender</label>
-        <!--<div class="form-check">
+        <div class="form-check">
         <input class="form-check-input" type="radio" name="gender" />
         <label class="form-check-label" for="gender"> Male </label>
         </div>
         <div class="form-check">
         <input class="form-check-input" type="radio" name="gender" />
         <label class="form-check-label" for="gender"> Female </label>
-        </div>-->
-        Male:
+        </div>
+        <!--Male:
         <input
         type="radio"
         class="custom-control-label"
@@ -99,7 +99,7 @@
         class="custom-control-label"
         name="gender"
         value="Female"
-        />
+        />-->
     </div>
     <!--<div class="form-check">
         <input class="form-check-input" type="checkbox" name="newsletter" />
