@@ -35,7 +35,8 @@ if(isset($_POST['mysubmit'])){
 	<div class="container">
 
 		<h1>PHP Form Validation</h1>
-		<form name="myform" class="formstyle" method="post" action="#">
+		<form name="myform" class="formstyle" method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>">
+
 		
 		<div class="form-group">
 		    <label for="user">Name:</label>
