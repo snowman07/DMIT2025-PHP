@@ -42,61 +42,84 @@
         <h1>PHP Form Validation</h1>
 
         <form name="myform" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?> ">
+            <div class="row">
+                <div class="col-sm-6">
+                    <!-- Name: -->
+                    <div class="form-group">
+                        <label for="name">Name:</label>
+                        <input type="text" class="form-control" name="name" placeholder="Enter name here">
+                    </div>
+                    <!-- END of Name -->
 
-            <!-- Name: -->
-            <div class="form-group">
-                <label for="name">Name:</label>
-                <input type="text" class="form-control" name="name" placeholder="Enter name here">
-            </div>
-            <!-- END of Name -->
+                    <!-- Email address: -->
+                    <div class="form-group">
+                        <label for="email">Email address:</label>
+                        <input type="text" class="form-control" name="email" placeholder="Enter email address here"> 
+                    </div>
+                    <!-- END of Email address -->
 
-            <!-- Email address: -->
-            <div class="form-group">
-                <label for="email">Email address:</label>
-                <input type="text" class="form-control" name="email" placeholder="Enter email address here"> 
-            </div>
-            <!-- END of Email address -->
+                    <!-- Password: -->
+                    <div class="form-group">
+                        <label for="password">Password:</label>
+                        <input type="password" class="form-control" name="password" placeholder="Enter password here">
+                    </div>
+                    <!-- END of Password -->
+                    
+                    <!-- Address: -->
+                    <div class="form-group">
+                        <label for="address">Adress:</label>
+                        <input type="text" class="form-control" name="address" placeholder="Enter address here"> 
+                    </div>
+                    <!-- END of Address -->
 
-            <!-- Password: -->
-            <div class="form-group">
-                <label for="password">Password:</label>
-                <input type="password" class="form-control" name="password" placeholder="Enter password here">
-            </div>
-            <!-- END of Password -->
-            
-            <!-- Address: -->
-            <div class="form-group">
-                <label for="address">Adress:</label>
-                <input type="text" class="form-control" name="address" placeholder="Enter address here"> 
-            </div>
-            <!-- END of Address -->
+                    <!-- City: -->
+                    <div class="form-group">
+                        <label for="city">City:</label>
+                        <input type="text" class="form-control" name="city" placeholder="Enter city here"> 
+                    </div>
+                    <!-- END of City -->
+                </div> <!--end of col-sm-6-->
+                <div class="col-sm-6">
+                    <!-- Province: -->
+                    <div class="form-group">
+                        <label for="province">Province:</label>
+                        <select name="province" class="form-control">
+                            <option value="">---Select province---</option>
+                            <option value="AB" <?php if(isset($province) && $province == "AB") {echo "selected";} ?>>Alberta</option>
+                            <option value="BC" <?php if(isset($province) && $province == "BC") {echo "selected";} ?>>British Columbia</option>
+                            <option value="MB" <?php if(isset($province) && $province == "MB") {echo "selected";} ?>>Manitoba</option>
+                            <option value="NB" <?php if(isset($province) && $province == "NB") {echo "selected";} ?>>New Brunswick</option>
+                            <option value="NL" <?php if(isset($province) && $province == "NL") {echo "selected";} ?>>Newfoundland and Labrador</option>
+                            <option value="NS" <?php if(isset($province) && $province == "NS") {echo "selected";} ?>>Nova Scotia</option>
+                            <option value="ON" <?php if(isset($province) && $province == "ON") {echo "selected";} ?>>Ontario</option>
+                            <option value="PE" <?php if(isset($province) && $province == "PE") {echo "selected";} ?>>Prince Edward Island</option>
+                            <option value="QC" <?php if(isset($province) && $province == "QC") {echo "selected";} ?>>Quebec</option>
+                            <option value="SK" <?php if(isset($province) && $province == "SK") {echo "selected";} ?>>Saskatchewan</option>
+                            <option value="NT" <?php if(isset($province) && $province == "NT") {echo "selected";} ?>>Northwest Territories</option>
+                            <option value="NU" <?php if(isset($province) && $province == "NU") {echo "selected";} ?>>Nunavut</option>
+                            <option value="YT" <?php if(isset($province) && $province == "YT") {echo "selected";} ?>>Yukon</option>
+                            <!-- if(isset($province) && $province == "AB") {echo "selected";}  to prepop select options -->
+                        </select>
+                    </div>
+                    <!-- END of Province -->
 
-            <!-- City: -->
-            <div class="form-group">
-                <label for="city">City:</label>
-                <input type="text" class="form-control" name="city" placeholder="Enter city here"> 
-            </div>
-            <!-- END of City -->
+                    <!-- Country: -->
+                    <!-- END of Country -->
 
-            <!-- Province: -->
-            <!-- END of Province -->
+                    <!-- Comments -->
+                    <!-- END of Comments -->
+                    
+                    <!-- Website URL: -->
+                    <!-- END of Website URL -->
 
-            <!-- Country: -->
-            <!-- END of Country -->
+                    <!-- Gender: -->
+                    <!-- END of Gender -->
 
-            <!-- Comments -->
-            <!-- END of Comments -->
-            
-            <!-- Website URL: -->
-            <!-- END of Website URL -->
-
-            <!-- Gender: -->
-            <!-- END of Gender -->
-
-            <!-- Submit button -->
-            <button type="submit" class="btn btn-primary" name="mysubmit">Submit</button>
-            <!-- End of Submit button -->
-
+                    <!-- Submit button -->
+                    <button type="submit" class="btn btn-primary" name="mysubmit">Submit</button>
+                    <!-- End of Submit button -->
+                </div> <!--end of col-sm-6-->
+            </div> <!--end of row-->
         </form>
     </div> <!--end of "container"-->
 
