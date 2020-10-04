@@ -103,7 +103,7 @@
 				<label for="username">Name:</label>
 				<input type="text" class="form-control" name="username" placeholder="Enter name here" value="<?php echo $username; // prepopulate the value type text input?>">  
 				<?php
-					if($valUserMsg) { echo $msgPreError. $valUserMsg. $msgPost; }
+					if($valUserMsg) { echo $msgPreError. $valUserMsg. $msgPost; } // this is validation
 				?>
 			</div>
 			<!--end of Name-->
