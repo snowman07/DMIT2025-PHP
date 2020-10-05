@@ -13,7 +13,7 @@
         $gender = trim($_POST["gender"]);
         $newsletter = trim($_POST["newsletter"]);
 
-    echo "1$name, 2$email, 3$password, 4$address, 5$city , 6$province, 7$country, 8$comments, 9$website, 10$gender, 11$newsletter";
+        //echo "1$name, 2$email, 3$password, 4$address, 5$city , 6$province, 7$country, 8$comments, 9$website, 10$gender, 11$newsletter";
     } 
     // END of mysubmit
 
@@ -60,14 +60,14 @@
                     <!-- Name: -->
                     <div class="form-group">
                         <label for="name">Name:</label>
-                        <input type="text" class="form-control" name="name" placeholder="Enter name here">
+                        <input type="text" class="form-control" name="name" placeholder="Enter name here" value="<?php echo $name; // prepopulate the value type text input?>">
                     </div>
                     <!-- END of Name -->
 
                     <!-- Email address: -->
                     <div class="form-group">
                         <label for="email">Email address:</label>
-                        <input type="text" class="form-control" name="email" placeholder="Enter email address here"> 
+                        <input type="text" class="form-control" name="email" placeholder="Enter email address here" value="<?php echo $email; ?>"> 
                     </div>
                     <!-- END of Email address -->
 
@@ -81,14 +81,14 @@
                     <!-- Address: -->
                     <div class="form-group">
                         <label for="address">Adress:</label>
-                        <input type="text" class="form-control" name="address" placeholder="Enter address here"> 
+                        <input type="text" class="form-control" name="address" placeholder="Enter address here" value="<?php echo $address; ?>"> 
                     </div>
                     <!-- END of Address -->
 
                     <!-- City: -->
                     <div class="form-group">
                         <label for="city">City:</label>
-                        <input type="text" class="form-control" name="city" placeholder="Enter city here"> 
+                        <input type="text" class="form-control" name="city" placeholder="Enter city here" value="<?php echo $city; ?>"> 
                     </div>
                     <!-- END of City -->
                 </div> <!--end of col-sm-6-->
@@ -121,11 +121,11 @@
                         <label for="country">Country:</label>
                         <select name="country" class="form-control">
                             <option value="">---Select country---</option>
-                            <option value="CA" <?php if(isset($province) && $province == "AB") {echo "selected";} ?>>Canada</option>
-                            <option value="UK" <?php if(isset($province) && $province == "BC") {echo "selected";} ?>>United Kingdom</option>
-                            <option value="SG" <?php if(isset($province) && $province == "MB") {echo "selected";} ?>>Singapore</option>
-                            <option value="PH" <?php if(isset($province) && $province == "NB") {echo "selected";} ?>>Philippines</option>
-                            <option value="IN" <?php if(isset($province) && $province == "NL") {echo "selected";} ?>>India</option>
+                            <option value="CA" <?php if(isset($country) && $country == "CA") {echo "selected";} ?>>Canada</option>
+                            <option value="UK" <?php if(isset($country) && $country == "UK") {echo "selected";} ?>>United Kingdom</option>
+                            <option value="SG" <?php if(isset($country) && $country == "SG") {echo "selected";} ?>>Singapore</option>
+                            <option value="PH" <?php if(isset($country) && $country == "PH") {echo "selected";} ?>>Philippines</option>
+                            <option value="IN" <?php if(isset($country) && $country == "IN") {echo "selected";} ?>>India</option>
                             <!-- if(isset($province) && $province == "AB") {echo "selected";}  to prepop select options -->
                         </select>
                     </div>
@@ -134,14 +134,14 @@
                     <!-- Comments -->
                     <div class="form-group">
                         <label for="comments">Comments:</label>
-                        <textarea name="comments" class="form-control" rows="2"></textarea>
+                        <textarea name="comments" class="form-control" rows="2"><?php if($comments) {echo $comments;} ?></textarea>
                     </div>
                     <!-- END of Comments -->
                     
                     <!-- Website URL: -->
                     <div class="form-group">
                         <label for="website">Website URL:</label>
-                        <input type="text" class="form-control" name="website" placeholder="Enter url here">
+                        <input type="text" class="form-control" name="website" placeholder="Enter url here" value="<?php echo $website; ?>">
                     </div>
                     <!-- END of Website URL -->
 
@@ -150,12 +150,12 @@
                         <label for="gender">Gender:</label>
                         <div class="form-check">
                             <label class="form-check-label">
-                                <input type="radio" class="form-check-input" name="gender" value="male">Male
+                                <input type="radio" class="form-check-input" name="gender" value="male" <?php if(isset($gender) && $gender == "male") {echo "checked";} ?>>Male
                             </label>
                         </div>
                         <div class="form-check">
                             <label class="form-check-label">
-                                <input type="radio" class="form-check-input" name="gender" value="female">Female
+                                <input type="radio" class="form-check-input" name="gender" value="female" <?php if(isset($gender) && $gender == "female"){echo "checked";} ?>>Female
                             </label>
                         </div>
                     </div>
@@ -164,7 +164,7 @@
                     <!--Subscribe-->
                     <div class="form-check">
                         <label for="newsletter" class="form-check-label">
-                            <input type="checkbox" class="form-check-input" name="newsletter" value="1">Subscribe to Newsletter
+                            <input type="checkbox" class="form-check-input" name="newsletter" value="1" <?php if(isset($newsletter) && $newsletter == 1){echo "checked";} ?>>Subscribe to Newsletter
                         </label>
                     </div>
                     <!--END of Subscribe-->
