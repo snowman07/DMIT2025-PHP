@@ -6,8 +6,14 @@
         $password = trim($_POST["password"]);
         $address = trim($_POST["address"]);
         $city = trim($_POST["city"]);
+        $province = trim($_POST["province"]);
+        $country = trim($_POST["country"]);
+        $comments = trim($_POST["comments"]);
+        $website = trim($_POST["website"]);
+        $gender = trim($_POST["gender"]);
+        $newsletter = trim($_POST["newsletter"]);
 
-    echo "$name, $email, $password, $address, $city";
+    echo "1$name, 2$email, 3$password, 4$address, 5$city , 6$province, 7$country, 8$comments, 9$website, 10$gender, 11$newsletter";
     } 
     // END of mysubmit
 
@@ -28,12 +34,19 @@
     <title>Lab3 - Form Validation</title>
 
     <style>
+        body {
+            background-color: lightblue;
+        }
         .container {
+            margin-top: 50px;
             max-width: 650px;
-            padding: 50px;
+            padding: 30px;
+            border: 3px #0B8997;
+            background-color: #DBEAFA;
         }
         h1 {
             text-align: center;
+            padding-bottom: 30px;
         }
     </style>
   </head>
@@ -104,17 +117,58 @@
                     <!-- END of Province -->
 
                     <!-- Country: -->
+                    <div class="form-group">
+                        <label for="country">Country:</label>
+                        <select name="country" class="form-control">
+                            <option value="">---Select country---</option>
+                            <option value="CA" <?php if(isset($province) && $province == "AB") {echo "selected";} ?>>Canada</option>
+                            <option value="UK" <?php if(isset($province) && $province == "BC") {echo "selected";} ?>>United Kingdom</option>
+                            <option value="SG" <?php if(isset($province) && $province == "MB") {echo "selected";} ?>>Singapore</option>
+                            <option value="PH" <?php if(isset($province) && $province == "NB") {echo "selected";} ?>>Philippines</option>
+                            <option value="IN" <?php if(isset($province) && $province == "NL") {echo "selected";} ?>>India</option>
+                            <!-- if(isset($province) && $province == "AB") {echo "selected";}  to prepop select options -->
+                        </select>
+                    </div>
                     <!-- END of Country -->
 
                     <!-- Comments -->
+                    <div class="form-group">
+                        <label for="comments">Comments:</label>
+                        <textarea name="comments" class="form-control" rows="2"></textarea>
+                    </div>
                     <!-- END of Comments -->
                     
                     <!-- Website URL: -->
+                    <div class="form-group">
+                        <label for="website">Website URL:</label>
+                        <input type="text" class="form-control" name="website" placeholder="Enter url here">
+                    </div>
                     <!-- END of Website URL -->
 
                     <!-- Gender: -->
+                    <div class="form-group">
+                        <label for="gender">Gender:</label>
+                        <div class="form-check">
+                            <label class="form-check-label">
+                                <input type="radio" class="form-check-input" name="gender" value="male">Male
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <label class="form-check-label">
+                                <input type="radio" class="form-check-input" name="gender" value="female">Female
+                            </label>
+                        </div>
+                    </div>
                     <!-- END of Gender -->
 
+                    <!--Subscribe-->
+                    <div class="form-check">
+                        <label for="newsletter" class="form-check-label">
+                            <input type="checkbox" class="form-check-input" name="newsletter" value="1">Subscribe to Newsletter
+                        </label>
+                    </div>
+                    <!--END of Subscribe-->
+                    <br>
                     <!-- Submit button -->
                     <button type="submit" class="btn btn-primary" name="mysubmit">Submit</button>
                     <!-- End of Submit button -->
