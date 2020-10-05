@@ -14,11 +14,86 @@
         $newsletter = trim($_POST["newsletter"]);
 
         //echo "1$name, 2$email, 3$password, 4$address, 5$city , 6$province, 7$country, 8$comments, 9$website, 10$gender, 11$newsletter";
+        
+        //variables for bootstrap design for validation
+        $preErrorMsg = "\n<div class=\"alert alert-danger\" role=\"alert\">";
+        $preSuccessMsg = "\n<div class=\"alert alert-primary\" role=\"alert\">";
+        $postMsg = "\n</div>";
+
+        $valid = 1;
+
+        // name validation
+        if((strlen($name) < 2) || (strlen($name) > 20)) {
+            $valid = 0;
+            $valNameMsg = "\nName must be 2-20 characters";
+        }
+        //echo $valNameMsg;
+        // END of name validation
+
+        // email validation
+        $email = filter_var($email, FILTER_SANITIZE_EMAIL); // remove unwanted chars
+		if(!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            $valid = 0;
+            $valEmailMsg = "\nFill in a proper email address";
+		}
+        // END of email validation
+
+        // password validation
+        if((strlen($password) < 5) || (strlen($password) > 15)) {
+            $valid = 0;
+            $valPasswordMsg = "\nPassword must be 5-15 characters";
+        }
+        // END of password validation
+
+        // address validation
+        if($address != ""){
+            if((strlen($address) < 3) || (strlen($address) > 50)){
+                $valid = 0;
+                $valAddressMsg = "Comments must be 3-50 characters";
+            }
+        }
+        // END of address validation
+
+        // city validation
+        if($city != ""){
+            if((strlen($city) < 3) || (strlen($city) > 20)){
+                $valid = 0;
+                $valCityMsg = "Comments must be 3-20 characters";
+            }
+        }
+        // END of city validation
+
+        // province has no validation
+
+        // country has no validation
+
+        // comments validation
+        if($comments != "") {
+			if((strlen($comments) < 3) || (strlen($comments) > 100)) {
+				$valid = 0;
+				$valCommentsMsg = "Comments must be 3 to 100 characters";
+			}
+		}
+        // END of comments validation
+
+        // website validation
+        if (!filter_var($website, FILTER_VALIDATE_URL)) {
+            $valid = 0;
+            $valWebsiteMsg = "Please fill in proper website url";
+        } 
+        // END of website validation
+
+        // gender has no validation
+
+        // newsletter has no validation  
     } 
     // END of mysubmit
 
-    $successMsg = "Successfully submitted the form";
-    
+    // SUCCESS message
+    if($valid == 1) {
+        $successMsg = "Successfully submitted the form";
+    }
+
 ?>
 
 <!doctype html>
@@ -48,11 +123,25 @@
             text-align: center;
             padding-bottom: 30px;
         }
+        label[for="name"]:before,
+        label[for="email"]:before,
+        label[for="password"]:before,
+        label[for="country"]:before,
+        label[for="website"]:before {
+            content: "* ";
+            color: red;
+        }
     </style>
   </head>
   <body>
     <div class="container">
         <h1>PHP Form Validation</h1>
+
+        <?php
+            if($successMsg){
+                echo $preSuccessMsg. $successMsg. $postMsg;
+            }
+        ?>
 
         <form name="myform" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?> ">
             <div class="row">
@@ -61,6 +150,9 @@
                     <div class="form-group">
                         <label for="name">Name:</label>
                         <input type="text" class="form-control" name="name" placeholder="Enter name here" value="<?php echo $name; // prepopulate the value type text input?>">
+                        <?php
+                            if($valNameMsg) {echo $preErrorMsg. $valNameMsg. $postMsg;} // this will appear if validation fail
+                        ?>
                     </div>
                     <!-- END of Name -->
 
@@ -68,6 +160,9 @@
                     <div class="form-group">
                         <label for="email">Email address:</label>
                         <input type="text" class="form-control" name="email" placeholder="Enter email address here" value="<?php echo $email; ?>"> 
+                        <?php
+                            if($valEmailMsg){echo $preErrorMsg. $valEmailMsg. $postMsg;}
+                        ?>
                     </div>
                     <!-- END of Email address -->
 
@@ -75,6 +170,9 @@
                     <div class="form-group">
                         <label for="password">Password:</label>
                         <input type="password" class="form-control" name="password" placeholder="Enter password here">
+                        <?php
+                            if($valPasswordMsg) {echo $preErrorMsg. $valPasswordMsg. $postMsg;} // this will appear if validation fail
+                        ?>
                     </div>
                     <!-- END of Password -->
                     
@@ -82,6 +180,9 @@
                     <div class="form-group">
                         <label for="address">Adress:</label>
                         <input type="text" class="form-control" name="address" placeholder="Enter address here" value="<?php echo $address; ?>"> 
+                        <?php
+                            if($valAddressMsg) { echo $preErrorMsg. $valAddressMsg. $postMsg; }
+                        ?>
                     </div>
                     <!-- END of Address -->
 
@@ -89,6 +190,9 @@
                     <div class="form-group">
                         <label for="city">City:</label>
                         <input type="text" class="form-control" name="city" placeholder="Enter city here" value="<?php echo $city; ?>"> 
+                        <?php
+                            if($valCityMsg) { echo $preErrorMsg. $valCityMsg. $postMsg; }
+                        ?>
                     </div>
                     <!-- END of City -->
                 </div> <!--end of col-sm-6-->
@@ -135,6 +239,9 @@
                     <div class="form-group">
                         <label for="comments">Comments:</label>
                         <textarea name="comments" class="form-control" rows="2"><?php if($comments) {echo $comments;} ?></textarea>
+                        <?php
+                            if($valCommentsMsg) { echo $preErrorMsg. $valCommentsMsg. $postMsg; }
+                        ?>
                     </div>
                     <!-- END of Comments -->
                     
@@ -142,6 +249,9 @@
                     <div class="form-group">
                         <label for="website">Website URL:</label>
                         <input type="text" class="form-control" name="website" placeholder="Enter url here" value="<?php echo $website; ?>">
+                        <?php
+                            if($valWebsiteMsg){echo $preErrorMsg. $valWebsiteMsg. $postMsg;}
+                        ?>
                     </div>
                     <!-- END of Website URL -->
 
