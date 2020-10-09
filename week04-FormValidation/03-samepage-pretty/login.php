@@ -1,3 +1,5 @@
+<!--This is the complete form validation-->
+
 <?php 
 
 	if(isset($_POST['mysubmit'])){
@@ -12,7 +14,7 @@
 		//echo "$username, $email, $province, $gender, $newsletter, $comments";
 
 		// lets set some variables for later use
-		$valid = 1;
+		$valid = 1;	//assume everyting is OK, go ahead and process form data
 			// vars here are for bootstrap design
 		$msgPreError = "\n<div class=\"alert alert-danger\" role=\"alert\">";
 		$msgPreSuccess = "\n<div class=\"alert alert-primary\" role=\"alert\">";
