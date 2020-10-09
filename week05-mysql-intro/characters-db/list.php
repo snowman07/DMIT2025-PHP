@@ -1,15 +1,13 @@
 <?php
-    include ("../includes/header.php");
+    include ("includes/header.php");
 ?>
 
 <h1>List Characters</h1>
 
 <?php
-
-
     // Here, lets retrieve and list all our characters
 
-    $result = mysqli_query($con, "SELECT * FROM test");
+    $result = mysqli_query($con, "SELECT * FROM characters");
 
     // Now, we have to loop thru all records and display to the user
 
@@ -19,7 +17,7 @@
         // echo $row["occupation"] . "<br>";
         // echo "<hr>"; // hr = horizontal row
 
-        $first_name = $row['firstname'];
+        $first_name = $row['first_name'];
         $last_name = $row['last_name'];
         $occupation = $row['occupation'];
         $age = $row['age'];
@@ -32,13 +30,11 @@
 
         echo "\n<h2>$first_name $last_name</h2>";
         echo "\n<div><b>Age: </b>$age</div>";
+        echo "\n<div><b>Occupation: </b>$occupation</div>";
+        echo "\n<div><b>Description: </b><br><em>$description</em></div>";
     }
-
-
 ?>
 
-
-
 <?php
-    include ("../includes/footer.php");
+    include ("includes/footer.php");
 ?>
