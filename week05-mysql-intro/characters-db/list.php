@@ -32,6 +32,7 @@
         echo "\n<div><b>Age: </b>$age</div>";
         echo "\n<div><b>Occupation: </b>$occupation</div>";
         echo "\n<div><b>Description: </b><br><em>$description</em></div>";
+        echo "<br><br>";
     }
 ?>
 
