@@ -1,69 +1,86 @@
 <?php
-    include("../includes/header.php");
-    
-    /*
-    1. Get all existing items and create dynamic nav system
-    2. Prepop form fields with the selected item data
-    3. If user submit the form, UPDATE the item in the DB
-    */
+	include("../includes/header.php");
 
-    // Lets retrieve our "page setter" variable that will define the content, In this case, which item do we edit
-    $pageID = $_GET["id"];
-    //echo "<h1>$pageID</h1>";
+	$result = mysqli_query($con, "SELECT * FROM characters");
 
-    // but, what happens if we  just come to edit and havent yet selected an item to edit? Lets have a default item that is chosen as soon as we load the page
 
-    if(!isset($pageID)) {
-        $tmp = mysqli_query($con, "SELECT id FROM characters LIMIT 1");
-        while($row = mysqli_fetch_array($tmp)){
-            $pageID
+	$first_name = trim($_POST["first-name"]);
+	$last_name = trim($_POST["last-name"]);
+	$age = trim($_POST["age"]);
+	$occupation = trim($_POST["occupation"]);
+	$description = trim($_POST["description"]);
 
-    }
-
-    /*Step 1: Create dynamic nav system */
-
-    $result = mysqli_query($con, "SELECT * FROM characters");
-
-    // Now, we have to loop thru all records and display to the user
-
-    while($row = mysqli_fetch_array($result)){
-        $thisFname = $row['first_name'];
-        $thisLname = $row['last_name'];
-        $thisId = $row["id"];
-
-        // from this data, create some links which shows the character names to the user
-
-        $editLinks .= "\n<a href=\"edit.php?id=thisId\">$thisFname $thisLname</a><br>";
-
-        /* Query string syntax: pagename.php?var=value&var2=value2&var3=value3 */
-    
-    } // end of while
-
-    /* Step 2: Prepop form fields with existing values for selected item */
-    $result = mysqli_query($con, "SELECT * FROM characters WHERE id = '$pageID'");
-
-    while($row = mysqli_fetch_array($result)){
-
-        $first_name = trim($_POST["first-name"]);
-        $last_name = trim($_POST["last-name"]);
-        $age = trim($_POST["age"]);
-        $occupation = trim($_POST["occupation"]);
-        $description = trim($_POST["description"]);
-    }
 	//echo $first_name . " " . $last_name . " " . $age . " " . $occupation . " " . $description;
 
 	// if statement if the button has been pressed. Test that too!
 	if(isset($_POST["mysubmit"])) {
-		// validation here
+		
+		// VALIDATION HERE!!!
 
-	}
+		// lets set some variables for later use
+		$valid = 1;	//assume everyting is OK, go ahead and process form data
+			// vars here are for bootstrap design
+		$msgPreError = "\n<div class=\"alert alert-danger\" role=\"alert\">";
+		$msgPreSuccess = "\n<div class=\"alert alert-primary\" role=\"alert\">";
+		$msgPost = "\n</div>";
+
+		//Firstname validation
+		if((strlen($first_name) < 1) || (strlen($first_name) > 20)) {
+			$valid = 0;
+			$valFirstNameMsg = "\nPlease enter firstname from 1 to 20 characters";
+		}
+
+		//Lastname validation
+		if((strlen($last_name) < 1) || (strlen($last_name) > 20)) {
+			$valid = 0;
+			$valLastNameMsg = "\nPlease enter lastname from 1 to 20 characters";
+		}
+
+		//Age validation
+		if(strlen($age) == "")  {
+			$valid = 0;
+			$valAgeMsg = "\nPlease enter your age";
+		}
+
+		//Occupdation validation
+		if(strlen($occupation) == "")  {
+			$valid = 0;
+			$valOccupationMsg = "\nPlease enter your occupation";
+		}
+
+		//Description validation
+		if($description != "") {
+			if((strlen($description) < 3) || (strlen($description) > 100)) {
+				$valid = 0;
+				$valDescriptionMsg = "Description must be 3 to 100 characters";
+			}
+		}
+
+		//SUCCESS!!! If boolean ($valid) is still 1, then user form data is good, go ahead and process this form
+		if($valid == 1) {
+
+			// mysql INSERT
+			mysqli_query($con, "INSERT INTO characters(first_name, last_name, age, occupation, description) VALUES('$first_name', '$last_name', '$age', '$occupation', '$description')") or die(mysqli_error($con));
+
+			$msgSuccess = "New character inserted.";
+
+			// IF SUCCESS, form will be blank
+			$first_name = "";
+			$last_name = "";
+			$age = "";
+			$occupation = "";
+			$description = "";
+		}
+
+	} // END of if
 ?>
 
-<h2>Edit</h2>
+<h2>Insert</h2>
 
 <?php
-    // temp Location for our character select links. Might do this in a 2nd column later
-    echo $editLinks;
+	if($msgSuccess) {
+		echo $msgPreSuccess.$msgSuccess.$msgPost;
+	}
 ?>
 
 <form id="myform" name="myform" method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>">
@@ -75,7 +92,11 @@
 			class="form-control"
 			name="first-name"
 			placeholder="Enter firstname here"
+			value="<?php echo $first_name; // prepopulate the value type text input?>"
 		>
+		<?php
+			if($valFirstNameMsg) { echo $msgPreError. $valFirstNameMsg. $msgPost; } // this is validation
+		?>
 	</div>
 	<!--end of Firstname-->
 	<!--start of Lastname-->
@@ -86,7 +107,11 @@
 			class="form-control"
 			name="last-name"
 			placeholder="Enter lastname here"
+			value="<?php echo $last_name; // prepopulate the value type text input?>"
 		>
+		<?php
+			if($valLastNameMsg) { echo $msgPreError. $valLastNameMsg. $msgPost; } // this is validation
+		?>
 	</div>
 	<!--end of Lastname-->
 	<!--start of Age-->
@@ -97,7 +122,11 @@
 			class="form-control"
 			name="age"
 			placeholder="Enter age here"
+			value="<?php echo $age; // prepopulate the value type text input?>"
 		>
+		<?php
+			if($valAgeMsg) { echo $msgPreError. $valAgeMsg. $msgPost; } // this is validation
+		?>
 	</div>
 	<!--end of Age-->
 	<!--start of Occupation-->
@@ -108,13 +137,20 @@
 			class="form-control"
 			name="occupation"
 			placeholder="Enter occupation here"
+			value="<?php echo $occupation; // prepopulate the value type text input?>"
 		>
+		<?php
+			if($valOccupationMsg) { echo $msgPreError. $valOccupationMsg. $msgPost; } // this is validation
+		?>
 	</div>
 	<!--end of Occupation-->
 	<!--start of Description-->
 	<div class="form-group">
 		<label for="description">Description</label>
-		<textarea class="form-control" name="description" rows="3"></textarea>
+		<textarea class="form-control" name="description" rows="3"><?php if($description) {echo $description;} ?></textarea>
+		<?php
+			if($valDescriptionMsg) { echo $msgPreError. $valDescriptionMsg. $msgPost; }
+		?>
 	</div>
 	<!--end of Description-->
 	<div>&nbsp;</div>
