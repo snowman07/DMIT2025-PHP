@@ -21,48 +21,10 @@
 	}
 	//echo "<h1>$pageID</h1>";
 
-    /*Step 1: Create dynamic nav system */
-
-    $result = mysqli_query($con, "SELECT * FROM characters");
-
-    // Now, we have to loop thru all records and display to the user
-
-    while($row = mysqli_fetch_array($result)){
-        $thisFname = $row['first_name'];
-        $thisLname = $row['last_name'];
-        $thisId = $row["id"];
-
-        // from this data, create some links which shows the character names to the user
-
-        $editLinks .= "\n<a href=\"edit.php?id=$thisId\">$thisFname $thisLname</a><br>";
-
-        /* Query string syntax: pagename.php?var=value&var2=value2&var3=value3 */
-    
-    } // end of while
-
-    /* Step 2: Prepop form fields with existing values for selected item */
-    $result = mysqli_query($con, "SELECT * FROM characters WHERE id = '$pageID'");
-	
-	// Now, we have to loop thru all records and display to the user
-    while($row = mysqli_fetch_array($result)){
-        $first_name = $row['first_name'];
-        $last_name = $row['last_name'];
-        $occupation = $row['occupation'];
-        $age = $row['age'];
-        $description = $row['description'];
-    }
-	//echo $first_name . " " . $last_name . " " . $age . " " . $occupation . " " . $description;
 
 
 
-
-
-
-
-
-	
-
-	//echo $first_name . " " . $last_name . " " . $age . " " . $occupation . " " . $description;
+	// Step 3: If user submitted the form, then do UPDATE
 
 	// if statement if the button has been pressed. Test that too!
 	if(isset($_POST["mysubmit"])) {
@@ -117,10 +79,17 @@
 		//SUCCESS!!! If boolean ($valid) is still 1, then user form data is good, go ahead and process this form
 		if($valid == 1) {
 
-			// mysql INSERT
-			mysqli_query($con, "INSERT INTO characters(first_name, last_name, age, occupation, description) VALUES('$first_name', '$last_name', '$age', '$occupation', '$description')") or die(mysqli_error($con));
-
-			$msgSuccess = "New character inserted.";
+			// THIS IS TO UPDATE THE EDIT PAGE
+			// doNOT add a comma after the last item
+			mysqli_query($con, "UPDATE characters SET 
+				first_name = '$first_name', 
+				last_name = '$last_name',
+				age = '$age',
+				occupation = '$occupation',
+				description = '$description'	
+				WHERE id = '$pageID'") or die(mysqli_error($con));
+			
+			$msgSuccess = "Characters has been updated.";
 
 			// IF SUCCESS, form will be blank
 			// $first_name = "";
@@ -129,109 +98,159 @@
 			// $occupation = "";
 			// $description = "";
 		}
-
 	} // END of if
+
+	
+
+
+
+    /*Step 1: Create dynamic nav system */
+
+    $result = mysqli_query($con, "SELECT * FROM characters");
+
+    // Now, we have to loop thru all records and display to the user
+
+    while($row = mysqli_fetch_array($result)){
+        $thisFname = $row['first_name'];
+        $thisLname = $row['last_name'];
+        $thisId = $row["id"];
+
+        // from this data, create some links which shows the character names to the user
+
+        $editLinks .= "\n<a href=\"edit.php?id=$thisId\">$thisFname $thisLname</a><br>";
+
+        /* Query string syntax: pagename.php?var=value&var2=value2&var3=value3 */
+    
+    } // end of while
+
+    /* Step 2: Prepop form fields with existing values for selected item */
+    $result = mysqli_query($con, "SELECT * FROM characters WHERE id = '$pageID'");
+	
+	// Now, we have to loop thru all records and display to the user
+    while($row = mysqli_fetch_array($result)){
+        $first_name = $row['first_name'];
+        $last_name = $row['last_name'];
+        $occupation = $row['occupation'];
+        $age = $row['age'];
+        $description = $row['description'];
+    }
+	//echo $first_name . " " . $last_name . " " . $age . " " . $occupation . " " . $description;
+
+	
 ?>
 
 <h2>Edit</h2>
 
-<div>
-	<?php
-		// temp location for our character select links. Might do this in a second column later
-		echo $editLinks;
-	?>
-</div>
+<div class="row">
 
-<?php
-	if($msgSuccess) {
-		echo $msgPreSuccess.$msgSuccess.$msgPost;
-	}
-?>
+	<div class="col-sm-8">
+		<?php
+			if($msgSuccess) {
+				echo $msgPreSuccess.$msgSuccess.$msgPost;
+			}
+		?>
 
-<form id="myform" name="myform" method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>">
-	<!--start of Firstname-->
-	<div class="form-group">
-		<label for="first-name">Firstname:</label>
-		<input
-			type="text"
-			class="form-control"
-			name="first-name"
-			placeholder="Enter firstname here"
-			value="<?php echo $first_name; // prepopulate the value type text input?>"
-		>
 		<?php
-			if($valFirstNameMsg) { echo $msgPreError. $valFirstNameMsg. $msgPost; } // this is validation
+			/*
+			$_SERVER['REQUEST_URI'] will retain the necessary Query String (appended URL) info
+			$_SERVER['PHP_SELF'] will NOT retain the necessary Query String (appended URL) info
+			*/
 		?>
-	</div>
-	<!--end of Firstname-->
-	<!--start of Lastname-->
-	<div class="form-group">
-		<label for="last-name">Lastname:</label>
-		<input
-			type="text"
-			class="form-control"
-			name="last-name"
-			placeholder="Enter lastname here"
-			value="<?php echo $last_name; // prepopulate the value type text input?>"
-		>
-		<?php
-			if($valLastNameMsg) { echo $msgPreError. $valLastNameMsg. $msgPost; } // this is validation
-		?>
-	</div>
-	<!--end of Lastname-->
-	<!--start of Age-->
-	<div class="form-group">
-		<label for="age">Age:</label>
-		<input
-			type="number"
-			class="form-control"
-			name="age"
-			placeholder="Enter age here"
-			value="<?php echo $age; // prepopulate the value type text input?>"
-		>
-		<?php
-			if($valAgeMsg) { echo $msgPreError. $valAgeMsg. $msgPost; } // this is validation
-		?>
-	</div>
-	<!--end of Age-->
-	<!--start of Occupation-->
-	<div class="form-group">
-		<label for="occupation">Occupation:</label>
-		<input
-			type="text"
-			class="form-control"
-			name="occupation"
-			placeholder="Enter occupation here"
-			value="<?php echo $occupation; // prepopulate the value type text input?>"
-		>
-		<?php
-			if($valOccupationMsg) { echo $msgPreError. $valOccupationMsg. $msgPost; } // this is validation
-		?>
-	</div>
-	<!--end of Occupation-->
-	<!--start of Description-->
-	<div class="form-group">
-		<label for="description">Description</label>
-		<textarea class="form-control" name="description" rows="3"><?php if($description) {echo $description;} ?></textarea>
-		<?php
-			if($valDescriptionMsg) { echo $msgPreError. $valDescriptionMsg. $msgPost; }
-		?>
-	</div>
-	<!--end of Description-->
-	<div>&nbsp;</div>
-	<!-- space before button -->
-	<button type="submit" name="mysubmit" class="btn btn-primary mb-2">
-		Submit
-	</button>
-	
+
+		<form id="myform" name="myform" method="post" action="<?php echo htmlspecialchars($_SERVER['REQUEST_URI']); ?>"> <!--from PHP_SELF to REQUEST_URI-->
+			<!--start of Firstname-->
+			<div class="form-group">
+				<label for="first-name">Firstname:</label>
+				<input
+					type="text"
+					class="form-control"
+					name="first-name"
+					placeholder="Enter firstname here"
+					value="<?php echo $first_name; // prepopulate the value type text input?>"
+				>
+				<?php
+					if($valFirstNameMsg) { echo $msgPreError. $valFirstNameMsg. $msgPost; } // this is validation
+				?>
+			</div>
+			<!--end of Firstname-->
+			<!--start of Lastname-->
+			<div class="form-group">
+				<label for="last-name">Lastname:</label>
+				<input
+					type="text"
+					class="form-control"
+					name="last-name"
+					placeholder="Enter lastname here"
+					value="<?php echo $last_name; // prepopulate the value type text input?>"
+				>
+				<?php
+					if($valLastNameMsg) { echo $msgPreError. $valLastNameMsg. $msgPost; } // this is validation
+				?>
+			</div>
+			<!--end of Lastname-->
+			<!--start of Age-->
+			<div class="form-group">
+				<label for="age">Age:</label>
+				<input
+					type="number"
+					class="form-control"
+					name="age"
+					placeholder="Enter age here"
+					value="<?php echo $age; // prepopulate the value type text input?>"
+				>
+				<?php
+					if($valAgeMsg) { echo $msgPreError. $valAgeMsg. $msgPost; } // this is validation
+				?>
+			</div>
+			<!--end of Age-->
+			<!--start of Occupation-->
+			<div class="form-group">
+				<label for="occupation">Occupation:</label>
+				<input
+					type="text"
+					class="form-control"
+					name="occupation"
+					placeholder="Enter occupation here"
+					value="<?php echo $occupation; // prepopulate the value type text input?>"
+				>
+				<?php
+					if($valOccupationMsg) { echo $msgPreError. $valOccupationMsg. $msgPost; } // this is validation
+				?>
+			</div>
+			<!--end of Occupation-->
+			<!--start of Description-->
+			<div class="form-group">
+				<label for="description">Description</label>
+				<textarea class="form-control" name="description" rows="3"><?php if($description) {echo $description;} ?></textarea>
+				<?php
+					if($valDescriptionMsg) { echo $msgPreError. $valDescriptionMsg. $msgPost; }
+				?>
+			</div>
+			<!--end of Description-->
+			<div>&nbsp;</div>
+			<!-- space before button -->
+			<button type="submit" name="mysubmit" class="btn btn-primary mb-2">
+				Submit
+			</button>
+			
 
 
-	<!-- <div class="form-group">
-		<label for="submit">&nbsp;</label>
-		<input type="submit" name="submit" class="btn btn-info" value="Submit">
-	</div> -->
-</form>
+			<!-- <div class="form-group">
+				<label for="submit">&nbsp;</label>
+				<input type="submit" name="submit" class="btn btn-info" value="Submit">
+			</div> -->
+		</form>
+	</div> <!-- END OF col-sm-8-->
 
+	<div class="col-sm-4">
+		<?php
+			// temp location for our character select links. Might do this in a second column later
+			echo $editLinks;
+		?>
+	</div> <!-- END of col-sm-4 -->
+
+
+</div> <!--END of row-->
 <?php
 	include("../includes/footer.php");
 ?>
