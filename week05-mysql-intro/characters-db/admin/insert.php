@@ -1,7 +1,7 @@
 <?php
 	include("../includes/header.php");
 
-	$result = mysqli_query($con, "SELECT * FROM characters");
+	//$result = mysqli_query($con, "SELECT * FROM characters"); //this is only for list.php
 
 
 	$first_name = trim($_POST["first-name"]);
@@ -74,6 +74,18 @@
 
 	} // END of if
 ?>
+
+<!--Style for required field-->
+<style>
+	label[for="first-name"]:before,
+	label[for="last-name"]:before,
+	label[for="age"]:before,
+	label[for="occupation"]:before{
+		content: "* ";
+		color: red;
+	}
+</style>
+<!--END of Style for required field-->
 
 <h2>Insert</h2>
 

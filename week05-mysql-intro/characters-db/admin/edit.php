@@ -1,7 +1,7 @@
 <?php
 	include("../includes/header.php");
 
-	$result = mysqli_query($con, "SELECT * FROM characters");
+	//$result = mysqli_query($con, "SELECT * FROM characters"); //this is only for list.php
 
 
 	$first_name = trim($_POST["first-name"]);
@@ -75,7 +75,7 @@
 	} // END of if
 ?>
 
-<h2>Insert</h2>
+<h2>Edit</h2>
 
 <?php
 	if($msgSuccess) {
