@@ -1,19 +1,77 @@
 <?php
 	include("../includes/header.php");
 
-	//$result = mysqli_query($con, "SELECT * FROM characters"); //this is only for list.php
+	/*
+    1. Get all existing items and create dynamic nav system
+    2. Prepop form fields with the selected item data
+    3. If user submit the form, UPDATE the item in the DB
+    */
+
+    // Lets retrieve our "page setter" variable that will define the content, In this case, which item do we edit
+    $pageID = $_GET['id'];
+    //echo "<h1>$pageID</h1>";
+
+    // but, what happens if we  just come to edit and havent yet selected an item to edit? Lets have a default item that is chosen as soon as we load the page
+
+    if(!isset($pageID)) {
+        $tmp = mysqli_query($con, "SELECT id FROM characters LIMIT 1");
+        while($row = mysqli_fetch_array($tmp)){
+			$pageID = $row["id"];	// here is our default value
+		}
+	}
+	//echo "<h1>$pageID</h1>";
+
+    /*Step 1: Create dynamic nav system */
+
+    $result = mysqli_query($con, "SELECT * FROM characters");
+
+    // Now, we have to loop thru all records and display to the user
+
+    while($row = mysqli_fetch_array($result)){
+        $thisFname = $row['first_name'];
+        $thisLname = $row['last_name'];
+        $thisId = $row["id"];
+
+        // from this data, create some links which shows the character names to the user
+
+        $editLinks .= "\n<a href=\"edit.php?id=$thisId\">$thisFname $thisLname</a><br>";
+
+        /* Query string syntax: pagename.php?var=value&var2=value2&var3=value3 */
+    
+    } // end of while
+
+    /* Step 2: Prepop form fields with existing values for selected item */
+    $result = mysqli_query($con, "SELECT * FROM characters WHERE id = '$pageID'");
+	
+	// Now, we have to loop thru all records and display to the user
+    while($row = mysqli_fetch_array($result)){
+        $first_name = $row['first_name'];
+        $last_name = $row['last_name'];
+        $occupation = $row['occupation'];
+        $age = $row['age'];
+        $description = $row['description'];
+    }
+	//echo $first_name . " " . $last_name . " " . $age . " " . $occupation . " " . $description;
 
 
-	$first_name = trim($_POST["first-name"]);
-	$last_name = trim($_POST["last-name"]);
-	$age = trim($_POST["age"]);
-	$occupation = trim($_POST["occupation"]);
-	$description = trim($_POST["description"]);
+
+
+
+
+
+
+	
 
 	//echo $first_name . " " . $last_name . " " . $age . " " . $occupation . " " . $description;
 
 	// if statement if the button has been pressed. Test that too!
 	if(isset($_POST["mysubmit"])) {
+
+		$first_name = trim($_POST["first-name"]);
+		$last_name = trim($_POST["last-name"]);
+		$age = trim($_POST["age"]);
+		$occupation = trim($_POST["occupation"]);
+		$description = trim($_POST["description"]);
 		
 		// VALIDATION HERE!!!
 
@@ -65,17 +123,24 @@
 			$msgSuccess = "New character inserted.";
 
 			// IF SUCCESS, form will be blank
-			$first_name = "";
-			$last_name = "";
-			$age = "";
-			$occupation = "";
-			$description = "";
+			// $first_name = "";
+			// $last_name = "";
+			// $age = "";
+			// $occupation = "";
+			// $description = "";
 		}
 
 	} // END of if
 ?>
 
 <h2>Edit</h2>
+
+<div>
+	<?php
+		// temp location for our character select links. Might do this in a second column later
+		echo $editLinks;
+	?>
+</div>
 
 <?php
 	if($msgSuccess) {
