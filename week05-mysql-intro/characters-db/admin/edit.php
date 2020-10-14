@@ -240,6 +240,16 @@
 				<input type="submit" name="submit" class="btn btn-info" value="Submit">
 			</div> -->
 		</form>
+
+
+		<!--Here we will put our Delete links-->
+		<!-- <button type="submit" name="mysubmit" class="btn btn-primary mb-2">
+		Submit
+		</button> -->
+		<button class="btn btn-danger">
+			<a href="delete.php?id=<?php echo $pageID ?>">Delete Character</a>
+		</button>
+
 	</div> <!-- END OF col-sm-8-->
 
 	<div class="col-sm-4">
