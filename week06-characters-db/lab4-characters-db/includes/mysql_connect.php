@@ -22,7 +22,7 @@ if (mysqli_connect_errno()) {
   // Make sure the path starts with http:// and ends with the trailing slash
   // If you copy/paste this script into other projects and fail to change this, then you may have links going back to the former project. Copy/Paste/FAIL !
   //define("BASE_URL", "http://username.dmitstudent.ca/path-to-project/");
-  define("BASE_URL", "http://adomingo4.dmitstudent.ca/dmit2025/week05/characters-db/");
+  define("BASE_URL", "http://adomingo4.dmitstudent.ca/dmit2025/week06/lab4-characters-db/");
   
 
 
