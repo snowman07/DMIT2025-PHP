@@ -1,3 +1,15 @@
+
+October 17, 2020
+----------------
+This is the code for lab4 Characetrs Database. 
+The base code of this is from week05-mysql-intro/characters-db (which is located in this repo as well)
+ENJOY CODING!!!!!
+
+
+
+=========================================================================================================
+=========================================================================================================
+
 Setup of the Basic Application Template
 ------------------------------------------
 
