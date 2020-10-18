@@ -4,9 +4,6 @@
     $searchterm = trim($_POST["term"]);
     //echo $term;
 
-
-    
-
 ?>
 
 <div class="container">
@@ -25,10 +22,9 @@
 
     if(isset($_POST['mysubmit']) && $searchterm != "") {
 
-        $sql = "SELECT * FROM characters WHERE
+        $sql = "SELECT * FROM harry_potter WHERE
                 first_name LIKE '$searchterm'
                 OR last_name LIKE '$searchterm'
-                OR occupation LIKE '$searchterm'
                 OR description LIKE '%$searchterm%'"; // % - wildcard
 
 
@@ -48,8 +44,6 @@
 
                 $first_name = $row['first_name'];
                 $last_name = $row['last_name'];
-                $occupation = $row['occupation'];
-                $age = $row['age'];
                 $description = $row['description'];
 
                 //echo $first_name;
@@ -58,8 +52,6 @@
                 // (ternary operators, etc.), for more HTML and less ECHO
 
                 echo "\n<h2>$first_name $last_name</h2>";
-                echo "\n<div><b>Age: </b>$age</div>";
-                echo "\n<div><b>Occupation: </b>$occupation</div>";
                 echo "\n<div><b>Description: </b><br><em>$description</em></div>";
                 echo "<br><br>";
             } // end of while 

@@ -24,7 +24,14 @@
   </div>
 
   <div class="row">
-    <img src="img/harry.jpg" alt="Hogwarts">
+    <div class="col-4">
+      <img src="img/hogwarts.jpg" class="img-fluid" alt="Hogwarts">
+    </div>
+    <div class="col-8">
+      <p>
+      <b>Gryffindor</b> values courage, bravery, nerve, and chivalry. Gryffindor's mascot is the lion, and its colours are scarlet red and gold (maroon and gold on the ties and scarves). <b>Hufflepuff</b> values hard work, patience, justice, and loyalty. The house mascot is the badger, and canary yellow and black (or golden yellow and graphite in the Fantastic Beasts films) are its colours. <b>Ravenclaw</b> values intelligence, learning, wisdom and wit. The house mascot is an eagle and the house colours are blue and bronze. <b>Slytherin</b> values ambition, cunning, leadership, and resourcefulness; the Sorting Hat said in Harry Potter and the Philosopher's Stone that Slytherins will do anything to get their way. The house mascot of Slytherin is the serpent, and the house colours are green and silver.
+      </p>
+    </div>
   </div>
 
 

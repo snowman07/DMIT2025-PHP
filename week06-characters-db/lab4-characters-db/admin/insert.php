@@ -3,11 +3,8 @@
 
 	//$result = mysqli_query($con, "SELECT * FROM characters"); //this is only for list.php
 
-
 	$first_name = trim($_POST["first-name"]);
 	$last_name = trim($_POST["last-name"]);
-	$age = trim($_POST["age"]);
-	$occupation = trim($_POST["occupation"]);
 	$description = trim($_POST["description"]);
 
 	//echo $first_name . " " . $last_name . " " . $age . " " . $occupation . " " . $description;
@@ -36,39 +33,30 @@
 			$valLastNameMsg = "\nPlease enter lastname from 1 to 20 characters";
 		}
 
-		//Age validation
-		if(strlen($age) == "")  {
-			$valid = 0;
-			$valAgeMsg = "\nPlease enter your age";
-		}
-
-		//Occupdation validation
-		if(strlen($occupation) == "")  {
-			$valid = 0;
-			$valOccupationMsg = "\nPlease enter your occupation";
-		}
-
 		//Description validation
-		if($description != "") {
-			if((strlen($description) < 3) || (strlen($description) > 100)) {
-				$valid = 0;
-				$valDescriptionMsg = "Description must be 3 to 100 characters";
-			}
+		// if($description != "") {
+		// 	if((strlen($description) < 3) || (strlen($description) > 100)) {
+		// 		$valid = 0;
+		// 		$valDescriptionMsg = "Description must be 3 to 100 characters";
+		// 	}
+		// }
+
+		if((strlen($description) < 3) || (strlen($description) > 1000)) {
+			$valid = 0;
+			$valDescriptionMsg = "Description must be 3 to 1000 characters";
 		}
 
 		//SUCCESS!!! If boolean ($valid) is still 1, then user form data is good, go ahead and process this form
 		if($valid == 1) {
 
 			// mysql INSERT
-			mysqli_query($con, "INSERT INTO characters(first_name, last_name, age, occupation, description) VALUES('$first_name', '$last_name', '$age', '$occupation', '$description')") or die(mysqli_error($con));
+			mysqli_query($con, "INSERT INTO harry_potter(first_name, last_name, description) VALUES('$first_name', '$last_name', '$description')") or die(mysqli_error($con));
 
 			$msgSuccess = "New character inserted.";
 
 			// IF SUCCESS, form will be blank
 			$first_name = "";
 			$last_name = "";
-			$age = "";
-			$occupation = "";
 			$description = "";
 		}
 
@@ -79,8 +67,7 @@
 <style>
 	label[for="first-name"]:before,
 	label[for="last-name"]:before,
-	label[for="age"]:before,
-	label[for="occupation"]:before{
+	label[for="description"]:before{
 		content: "* ";
 		color: red;
 	}
@@ -131,36 +118,6 @@
 		?>
 	</div>
 	<!--end of Lastname-->
-	<!--start of Age-->
-	<div class="form-group">
-		<label for="age">Age:</label>
-		<input
-			type="number"
-			class="form-control"
-			name="age"
-			placeholder="Enter age here"
-			value="<?php echo $age; // prepopulate the value type text input?>"
-		>
-		<?php
-			if($valAgeMsg) { echo $msgPreError. $valAgeMsg. $msgPost; } // this is validation
-		?>
-	</div>
-	<!--end of Age-->
-	<!--start of Occupation-->
-	<div class="form-group">
-		<label for="occupation">Occupation:</label>
-		<input
-			type="text"
-			class="form-control"
-			name="occupation"
-			placeholder="Enter occupation here"
-			value="<?php echo $occupation; // prepopulate the value type text input?>"
-		>
-		<?php
-			if($valOccupationMsg) { echo $msgPreError. $valOccupationMsg. $msgPost; } // this is validation
-		?>
-	</div>
-	<!--end of Occupation-->
 	<!--start of Description-->
 	<div class="form-group">
 		<label for="description">Description</label>
@@ -175,8 +132,6 @@
 	<button type="submit" name="mysubmit" class="btn btn-primary mb-2">
 		Submit
 	</button>
-	
-
 
 	<!-- <div class="form-group">
 		<label for="submit">&nbsp;</label>

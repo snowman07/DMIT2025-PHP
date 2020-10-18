@@ -14,7 +14,7 @@
     // but, what happens if we  just come to edit and havent yet selected an item to edit? Lets have a default item that is chosen as soon as we load the page
 
     if(!isset($pageID)) {
-        $tmp = mysqli_query($con, "SELECT id FROM characters LIMIT 1");
+        $tmp = mysqli_query($con, "SELECT id FROM harry_potter LIMIT 1");
         while($row = mysqli_fetch_array($tmp)){
 			$pageID = $row["id"];	// here is our default value
 		}
@@ -31,8 +31,6 @@
 
 		$first_name = trim($_POST["first-name"]);
 		$last_name = trim($_POST["last-name"]);
-		$age = trim($_POST["age"]);
-		$occupation = trim($_POST["occupation"]);
 		$description = trim($_POST["description"]);
 		
 		// VALIDATION HERE!!!
@@ -56,24 +54,17 @@
 			$valLastNameMsg = "\nPlease enter lastname from 1 to 20 characters";
 		}
 
-		//Age validation
-		if(strlen($age) == "")  {
-			$valid = 0;
-			$valAgeMsg = "\nPlease enter your age";
-		}
-
-		//Occupdation validation
-		if(strlen($occupation) == "")  {
-			$valid = 0;
-			$valOccupationMsg = "\nPlease enter your occupation";
-		}
-
 		//Description validation
-		if($description != "") {
-			if((strlen($description) < 3) || (strlen($description) > 100)) {
-				$valid = 0;
-				$valDescriptionMsg = "Description must be 3 to 100 characters";
-			}
+		// if($description != "") {
+		// 	if((strlen($description) < 3) || (strlen($description) > 1000)) {
+		// 		$valid = 0;
+		// 		$valDescriptionMsg = "Description must be 3 to 1000 characters";
+		// 	}
+		// }
+
+		if((strlen($description) < 3) || (strlen($description) > 1000)) {
+			$valid = 0;
+			$valDescriptionMsg = "Description must be 3 to 1000 characters";
 		}
 
 		//SUCCESS!!! If boolean ($valid) is still 1, then user form data is good, go ahead and process this form
@@ -81,11 +72,9 @@
 
 			// THIS IS TO UPDATE THE EDIT PAGE
 			// doNOT add a comma after the last item
-			mysqli_query($con, "UPDATE characters SET 
+			mysqli_query($con, "UPDATE harry_potter SET 
 				first_name = '$first_name', 
 				last_name = '$last_name',
-				age = '$age',
-				occupation = '$occupation',
 				description = '$description'	
 				WHERE id = '$pageID'") or die(mysqli_error($con));
 			
@@ -102,11 +91,9 @@
 
 	
 
-
-
     /*Step 1: Create dynamic nav system */
 
-    $result = mysqli_query($con, "SELECT * FROM characters");
+    $result = mysqli_query($con, "SELECT * FROM harry_potter");
 
     // Now, we have to loop thru all records and display to the user
 
@@ -124,19 +111,15 @@
     } // end of while
 
     /* Step 2: Prepop form fields with existing values for selected item */
-    $result = mysqli_query($con, "SELECT * FROM characters WHERE id = '$pageID'");
+    $result = mysqli_query($con, "SELECT * FROM harry_potter WHERE id = '$pageID'");
 	
 	// Now, we have to loop thru all records and display to the user
     while($row = mysqli_fetch_array($result)){
         $first_name = $row['first_name'];
         $last_name = $row['last_name'];
-        $occupation = $row['occupation'];
-        $age = $row['age'];
         $description = $row['description'];
     }
-	//echo $first_name . " " . $last_name . " " . $age . " " . $occupation . " " . $description;
-
-	
+	//echo $first_name . " " . $last_name . " " . $age . " " . $occupation . " " . $description;	
 ?>
 
 <div class="container">
@@ -193,36 +176,6 @@
 				?>
 			</div>
 			<!--end of Lastname-->
-			<!--start of Age-->
-			<div class="form-group">
-				<label for="age">Age:</label>
-				<input
-					type="number"
-					class="form-control"
-					name="age"
-					placeholder="Enter age here"
-					value="<?php echo $age; // prepopulate the value type text input?>"
-				>
-				<?php
-					if($valAgeMsg) { echo $msgPreError. $valAgeMsg. $msgPost; } // this is validation
-				?>
-			</div>
-			<!--end of Age-->
-			<!--start of Occupation-->
-			<div class="form-group">
-				<label for="occupation">Occupation:</label>
-				<input
-					type="text"
-					class="form-control"
-					name="occupation"
-					placeholder="Enter occupation here"
-					value="<?php echo $occupation; // prepopulate the value type text input?>"
-				>
-				<?php
-					if($valOccupationMsg) { echo $msgPreError. $valOccupationMsg. $msgPost; } // this is validation
-				?>
-			</div>
-			<!--end of Occupation-->
 			<!--start of Description-->
 			<div class="form-group">
 				<label for="description">Description</label>
