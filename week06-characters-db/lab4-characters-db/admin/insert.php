@@ -81,13 +81,16 @@
 </div>
 
 
-<?php
-	if($msgSuccess) {
-		echo $msgPreSuccess.$msgSuccess.$msgPost;
-	}
-?>
+
 
 <form id="myform" name="myform" method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>">
+	
+	<?php
+		if($msgSuccess) {
+			echo $msgPreSuccess.$msgSuccess.$msgPost;
+		}
+	?>
+
 	<!--start of Firstname-->
 	<div class="form-group">
 		<label for="first-name">Firstname:</label>

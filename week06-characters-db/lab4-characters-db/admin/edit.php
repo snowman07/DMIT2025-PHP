@@ -132,11 +132,6 @@
 <div class="row">
 
 	<div class="col-sm-8">
-		<?php
-			if($msgSuccess) {
-				echo $msgPreSuccess.$msgSuccess.$msgPost;
-			}
-		?>
 
 		<?php
 			/*
@@ -146,6 +141,13 @@
 		?>
 
 		<form id="myform" name="myform" method="post" action="<?php echo htmlspecialchars($_SERVER['REQUEST_URI']); ?>"> <!--from PHP_SELF to REQUEST_URI-->
+			
+			<?php
+				if($msgSuccess) {
+					echo $msgPreSuccess.$msgSuccess.$msgPost;
+				}
+			?>
+
 			<!--start of Firstname-->
 			<div class="form-group">
 				<label for="first-name">Firstname:</label>
