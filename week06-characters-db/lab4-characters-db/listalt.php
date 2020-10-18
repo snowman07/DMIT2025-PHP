@@ -1,16 +1,12 @@
-
-
-
-
 <?php
-//================================================//
-//========== THIS IS AN ALT SYNTAX TOPIC==========//
-//================================================//
-
     include ("includes/header.php");
 ?>
 
-<h1>List Characters</h1>
+<div class="container">
+    <div class="jumbotron clearfix">
+        <h1>List Characters</h1>
+    </div>
+</div>
 
 <?php
     // Here, lets retrieve and list all our characters

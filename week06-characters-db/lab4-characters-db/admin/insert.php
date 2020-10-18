@@ -87,7 +87,12 @@
 </style>
 <!--END of Style for required field-->
 
-<h2>Insert</h2>
+<div class="container">
+    <div class="jumbotron clearfix">
+        <h1>Insert Characters</h1>
+    </div>
+</div>
+
 
 <?php
 	if($msgSuccess) {

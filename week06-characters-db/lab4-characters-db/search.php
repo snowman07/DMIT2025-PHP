@@ -9,7 +9,12 @@
 
 ?>
 
-<h1>Search</h1>
+<div class="container">
+    <div class="jumbotron clearfix">
+        <h1>Search Characters</h1>
+    </div>
+</div>
+
 
 <form method="post" action="search.php">
     <input type="text" name="term">

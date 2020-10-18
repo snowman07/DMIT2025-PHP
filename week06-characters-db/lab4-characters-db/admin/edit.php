@@ -139,7 +139,12 @@
 	
 ?>
 
-<h2>Edit</h2>
+<div class="container">
+    <div class="jumbotron clearfix">
+        <h1>Edit Characters</h1>
+    </div>
+</div>
+
 
 <div class="row">
 
