@@ -206,6 +206,7 @@
 		</button> -->
 		<button class="btn btn-danger">
 			<a href="delete.php?id=<?php echo $pageID ?>" onclick="return confirm('Are you sure?')">Delete Character</a>
+			<!--onClick is an "inline JS confrim"-->
 		</button>
 
 	</div> <!-- END OF col-sm-8-->

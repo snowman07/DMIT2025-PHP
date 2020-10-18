@@ -34,6 +34,17 @@
     </div>
   </div>
 
+  <!-- CHALLENGE: search  MySQL Random and Limit -->
+  <!-- <div class="row">
+    <?php
+      $random = mysqli_query($con, "SELECT first_name, last_name, description FROM harry_potter
+      ORDER BY RAND()
+      LIMIT 1");
+    ?>
+    <h2><?php echo $random['first_name']; ?> <?php echo $random['last_name']; ?></h2><br>
+    <div><b>Description: </b><?php echo $random['description']; ?></div><br>
+  </div> -->
+
 
       
 <?php
