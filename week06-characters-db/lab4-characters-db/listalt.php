@@ -21,8 +21,8 @@
 
     <!-- ALL of this is simple HTML, then I uses PHP "mixins" to grab the data-->
     <div class="alert alert-info">
-        <h2><?php echo $row['first_name']; ?> <?php echo $row['last_name']; ?></h2>
-        <div><b>Description: </b><?php echo $row['description']; ?></div>
+        <h2><?php echo $row['first_name']; ?> <?php echo $row['last_name']; ?></h2><br>
+        <div><b>Description: </b><?php echo $row['description']; ?></div><br>
     </div>
 
 <!-- to end while loop-->

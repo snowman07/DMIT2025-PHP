@@ -25,9 +25,15 @@ body {
 
 .row {
 	padding: 20px;
-	border: solid #2D2DEB 4px;
+	border: solid #2D2DEB 8px;
 	margin: 10px;
 }
+
+
+.edit-link-container {
+	color: red;
+}
+
 
 /* footer {
 	position: fixed; 

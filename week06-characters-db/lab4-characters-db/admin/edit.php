@@ -205,16 +205,19 @@
 		Submit
 		</button> -->
 		<button class="btn btn-danger">
-			<a href="delete.php?id=<?php echo $pageID ?>">Delete Character</a>
+			<a href="delete.php?id=<?php echo $pageID ?>" onclick="return confirm('Are you sure?')">Delete Character</a>
 		</button>
 
 	</div> <!-- END OF col-sm-8-->
 
 	<div class="col-sm-4">
-		<?php
-			// temp location for our character select links. Might do this in a second column later
-			echo $editLinks;
-		?>
+		<div class="edit-link-container">
+			<p><b>Lists of all the characters:</b></p>
+			<?php
+				// temp location for our character select links. Might do this in a second column later
+				echo $editLinks;
+			?>
+		</div>
 	</div> <!-- END of col-sm-4 -->
 
 
