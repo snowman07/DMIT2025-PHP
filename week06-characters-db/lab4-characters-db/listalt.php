@@ -7,7 +7,7 @@
 
 <div class="container">
     <div class="jumbotron clearfix">
-        <h1>List Characters</h1>
+        <h1>List of Characters</h1>
     </div>
 </div>
 
