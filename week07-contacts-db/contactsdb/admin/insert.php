@@ -7,6 +7,13 @@
 	$your_name = trim($_POST["your-name"]);
 	$email = trim($_POST["email"]);
 	$website = trim($_POST["website"]);
+	$phone_number = trim($_POST["phone-number"]);
+	$address = trim($_POST["address"]);
+	$city = trim($_POST["city"]);
+	$province = trim($_POST["province"]);
+	$description = trim($_POST["description"]);
+	$newsletter = trim($_POST["newsletter"]);
+	
 
 	//echo $first_name . " " . $last_name . " " . $age . " " . $occupation . " " . $description;
 	
@@ -16,7 +23,7 @@
 <h2>Insert</h2>
 
 <form id="myform" name="myform" method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>">
-	<div class="form-group">
+	<!-- <div class="form-group">
 		<label for="alpha">Alpha:</label>
 		<input type="text" name="alpha" class="form-control">
 	</div>
@@ -27,7 +34,7 @@
 	<div class="form-group">
 		<label for="submit">&nbsp;</label>
 		<input type="submit" name="submit" class="btn btn-info" value="Submit">
-	</div>
+	</div> -->
 
 	<!--start of Business Name-->
 	<div class="form-group">
@@ -81,12 +88,86 @@
 	</div>
 	<!-- END of Website URL -->
 
-	<div>&nbsp;</div>
-	<!-- space before button -->
+	<!--start of Phone Number-->
+	<div class="form-group">
+		<label for="age">Phone Number</label>
+		<input
+			type="number"
+			class="form-control"
+			name="phone-number"
+			placeholder="Enter phone number here"
+		>
+	</div>
+	<!--end of Phone Number-->
+
+	<!-- Address: -->
+	<div class="form-group">
+		<label for="address">Adress:</label>
+		<input type="text" class="form-control" name="address" placeholder="Enter address here" value="<?php echo $address; ?>"> 
+		<?php
+			if($valAddressMsg) { echo $preErrorMsg. $valAddressMsg. $postMsg; }
+		?>
+	</div>
+	<!-- END of Address -->
+
+	<!-- City: -->
+	<div class="form-group">
+		<label for="city">City:</label>
+		<input type="text" class="form-control" name="city" placeholder="Enter city here" value="<?php echo $city; ?>"> 
+		<?php
+			if($valCityMsg) { echo $preErrorMsg. $valCityMsg. $postMsg; }
+		?>
+	</div>
+	<!-- END of City -->
+
+	<!-- Province: -->
+	<div class="form-group">
+		<label for="province">Province:</label>
+		<select name="province" class="form-control">
+			<option value="">---Select province---</option>
+			<option value="AB" <?php if(isset($province) && $province == "AB") {echo "selected";} ?>>Alberta</option>
+			<option value="BC" <?php if(isset($province) && $province == "BC") {echo "selected";} ?>>British Columbia</option>
+			<option value="MB" <?php if(isset($province) && $province == "MB") {echo "selected";} ?>>Manitoba</option>
+			<option value="NB" <?php if(isset($province) && $province == "NB") {echo "selected";} ?>>New Brunswick</option>
+			<option value="NL" <?php if(isset($province) && $province == "NL") {echo "selected";} ?>>Newfoundland and Labrador</option>
+			<option value="NS" <?php if(isset($province) && $province == "NS") {echo "selected";} ?>>Nova Scotia</option>
+			<option value="ON" <?php if(isset($province) && $province == "ON") {echo "selected";} ?>>Ontario</option>
+			<option value="PE" <?php if(isset($province) && $province == "PE") {echo "selected";} ?>>Prince Edward Island</option>
+			<option value="QC" <?php if(isset($province) && $province == "QC") {echo "selected";} ?>>Quebec</option>
+			<option value="SK" <?php if(isset($province) && $province == "SK") {echo "selected";} ?>>Saskatchewan</option>
+			<option value="NT" <?php if(isset($province) && $province == "NT") {echo "selected";} ?>>Northwest Territories</option>
+			<option value="NU" <?php if(isset($province) && $province == "NU") {echo "selected";} ?>>Nunavut</option>
+			<option value="YT" <?php if(isset($province) && $province == "YT") {echo "selected";} ?>>Yukon</option>
+			<!-- if(isset($province) && $province == "AB") {echo "selected";}  to prepop select options -->
+		</select>
+	</div>
+	<!-- END of Province -->
+
+	<!--start of Description-->
+	<div class="form-group">
+		<label for="description">Description</label>
+		<textarea class="form-control" name="description" rows="3"><?php if($description) {echo $description;} ?></textarea>
+		<?php
+			if($valDescriptionMsg) { echo $msgPreError. $valDescriptionMsg. $msgPost; }
+		?>
+	</div>
+	<!--end of Subscribe to Newsletter-->
+
+	<!---->
+	<div class="form-check">
+		<label for="newsletter" class="form-check-label">
+			<input type="checkbox" class="form-check-input" name="newsletter" value="1" <?php if(isset($newsletter) && $newsletter == 1){echo "checked";} ?>>Subscribe to Newsletter
+		</label>
+	</div>
+	<!--END of Subscribe to Newsletter-->
+
+	<div>&nbsp;</div> <!-- space before button -->
+
+	<!-- Submit button -->
 	<button type="submit" name="mysubmit" class="btn btn-primary mb-2">
 		Submit
 	</button>
-
+	<!-- End of Submit button -->
 
 </form>
 
