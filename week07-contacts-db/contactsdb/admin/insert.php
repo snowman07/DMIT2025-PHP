@@ -4,8 +4,9 @@
 	//$result = mysqli_query($con, "SELECT * FROM characters"); //this is only for list.php
 
 	$business_name = trim($_POST["business-name"]);
-	$last_name = trim($_POST["last-name"]);
-	$description = trim($_POST["description"]);
+	$your_name = trim($_POST["your-name"]);
+	$email = trim($_POST["email"]);
+	$website = trim($_POST["website"]);
 
 	//echo $first_name . " " . $last_name . " " . $age . " " . $occupation . " " . $description;
 	
@@ -43,6 +44,42 @@
 		?> -->
 	</div>
 	<!--end of Business Name-->
+
+	<!--start of Name-->
+	<div class="form-group">
+		<label for="last-name">Name:</label>
+		<input
+			type="text"
+			class="form-control"
+			name="your-name"
+			placeholder="Enter your name here"
+			value="<?php echo $your_name; // prepopulate the value type text input?>"
+		>
+		<?php
+			if($valLastNameMsg) { echo $msgPreError. $valLastNameMsg. $msgPost; } // this is validation
+		?>
+	</div>
+	<!--end of Name-->
+
+	<!-- Email address: -->
+	<div class="form-group">
+		<label for="email">Email address:</label>
+		<input type="text" class="form-control" name="email" placeholder="Enter email address here" value="<?php echo $email; ?>"> 
+		<?php
+			if($valEmailMsg){echo $preErrorMsg. $valEmailMsg. $postMsg;}
+		?>
+	</div>
+	<!-- END of Email address -->
+
+	<!-- Website URL: -->
+	<div class="form-group">
+		<label for="website">Website URL:</label>
+		<input type="text" class="form-control" name="website" placeholder="Enter url here" value="<?php echo $website; ?>">
+		<?php
+			if($valWebsiteMsg){echo $preErrorMsg. $valWebsiteMsg. $postMsg;}
+		?>
+	</div>
+	<!-- END of Website URL -->
 
 	<div>&nbsp;</div>
 	<!-- space before button -->
