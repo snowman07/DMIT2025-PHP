@@ -34,7 +34,7 @@ include("mysql_connect.php");// here we include the connection script; since thi
  <!--  Note how we can use BASE_URL constant to resolve all links no matter where the file resides. -->
 <link href="<?php echo BASE_URL ?>css/styles.css" rel="stylesheet">
 <!-- Themes from https://bootswatch.com/ : Use the Themes dropdown to select a theme you like; copy/paste the bootstrap.css. Here, we have named the downloaded theme as a new file and can overwrite the default.  -->
-<!-- <link href="<?php echo BASE_URL ?>css/bootstrap-lumen.css" rel="stylesheet"> -->
+<link href="<?php echo BASE_URL ?>css/bootstrap-cerulean.css" rel="stylesheet">
 
 </head>
 

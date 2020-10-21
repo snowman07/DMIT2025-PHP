@@ -14,10 +14,13 @@
 	$description = trim($_POST["description"]);
 	$newsletter = trim($_POST["newsletter"]);
 
-	//echo $business_name . " " . $email . " " . $website . " " . $phone_number; 
+	//echo $business_name . " " . $email . " " . $newsletter; 
+	
 	
 	// if statement if the button has been pressed. Test that too!
 	if(isset($_POST["mysubmit"])) {
+
+
 		
 		// VALIDATION HERE!!!
 
@@ -62,9 +65,9 @@
 
 			// mysql INSERT
 			mysqli_query($con, "INSERT INTO arr_contacts(arr_bizname, arr_name, arr_email, arr_website, arr_phone, 
-														arr_address, arr_city, arr_prov, arr_desc) 
+														arr_address, arr_city, arr_prov, arr_desc, arr_newsletter) 
 								VALUES('$business_name', '$your_name', '$email', '$website', '$phone_number', 
-														'$address', '$city', '$province', '$description')") 
+														'$address', '$city', '$province', '$description', '$newsletter')") 
 								or die(mysqli_error($con));
 
 			$msgSuccess = "New contact inserted.";
