@@ -24,7 +24,7 @@ Table storage format Must be MYISAM: Can access this in phpMyAdmin under Operati
 
 		$searchterm = mysqli_real_escape_string($con, $_POST['searchterm']); 
 		// add more columns here so you can search them
-		$sql = "SELECT * FROM cd_catalog_class WHERE MATCH (title,description) AGAINST ('$searchterm' IN BOOLEAN MODE)";
+		$sql = "SELECT * FROM cd_catalog_class WHERE MATCH (title,description) AGAINST ('$searchterm' IN BOOLEAN MODE)"; //fulltext searching
 
 
 		echo "search results for <b>$searchterm</b>";
@@ -33,10 +33,12 @@ Table storage format Must be MYISAM: Can access this in phpMyAdmin under Operati
 		while ($row = mysqli_fetch_array( $result )){
 			
 			$title = $row['title'];
+			$artist = $row['artist'];
 			
 	
 			
 			echo "<p>". $title . "</p>";
+			echo "<p>". $artist . "</p><br>";
 			}
 		
 
