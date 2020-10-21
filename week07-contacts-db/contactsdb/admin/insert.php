@@ -13,13 +13,90 @@
 	$province = trim($_POST["province"]);
 	$description = trim($_POST["description"]);
 	$newsletter = trim($_POST["newsletter"]);
-	
 
-	//echo $first_name . " " . $last_name . " " . $age . " " . $occupation . " " . $description;
+	//echo $business_name . " " . $email . " " . $website . " " . $phone_number; 
 	
+	// if statement if the button has been pressed. Test that too!
+	if(isset($_POST["mysubmit"])) {
+		
+		// VALIDATION HERE!!!
 
+		// lets set some variables for later use
+		$valid = 1;	//assume everyting is OK, go ahead and process form data
+			// vars here are for bootstrap design
+		$msgPreError = "\n<div class=\"alert alert-danger\" role=\"alert\">";
+		$msgPreSuccess = "\n<div class=\"alert alert-primary\" role=\"alert\">";
+		$msgPost = "\n</div>";
+
+		//Business Name validation
+		if((strlen($business_name) < 1) || (strlen($business_name) > 20)) {
+			$valid = 0;
+			$valBusinessNameMsg = "\nPlease enter firstname from 1 to 20 characters";
+		}
+		//END of Business Name validation
+
+		// Email address validation
+		$email = filter_var($email, FILTER_SANITIZE_EMAIL); // remove unwanted chars
+		if(!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+			$valid = 0;
+			$valEmailMsg = "\nFill in a proper email address";
+		}
+		// END of Email address validation
+
+		// website validation
+        if (!filter_var($website, FILTER_VALIDATE_URL)) {
+            $valid = 0;
+            $valWebsiteMsg = "Please fill in proper website url";
+        } 
+		// END of website validation
+		
+		//Phone Number validation
+		if((is_numeric($phone_number) < 10) || (is_numeric($phone_number) > 10)) {
+			$valid = 0;
+			$valPhoneNumberMsg = "\nPhone number should be 10 digits";
+		}
+		//END of Phone Number validation
+
+		//SUCCESS!!! If boolean ($valid) is still 1, then user form data is good, go ahead and process this form
+		if($valid == 1) {
+
+			// mysql INSERT
+			mysqli_query($con, "INSERT INTO arr_contacts(arr_bizname, arr_name, arr_email, arr_website, arr_phone, 
+														arr_address, arr_city, arr_prov, arr_desc) 
+								VALUES('$business_name', '$your_name', '$email', '$website', '$phone_number', 
+														'$address', '$city', '$province', '$description')") 
+								or die(mysqli_error($con));
+
+			$msgSuccess = "New contact inserted.";
+
+			// IF SUCCESS, form will be blank
+			$business_name = "";
+			$your_name = "";
+			$email = "";
+			$website = "";
+			$phone_number = "";
+			$address = "";
+			$city = "";
+			$province = "";
+			$description = "";
+			$newsletter = "";
+		}
+	} // END of if
 
 ?>
+
+<!--Style for required field-->
+<style>
+	label[for="business-name"]:before,
+	label[for="email"]:before,
+	label[for="website"]:before,
+	label[for="phone-number"]:before{
+		content: "* ";
+		color: red;
+	}
+</style>
+<!--END of Style for required field-->
+
 <h2>Insert</h2>
 
 <form id="myform" name="myform" method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>">
@@ -37,6 +114,13 @@
 	</div> -->
 
 	<!--start of Business Name-->
+
+	<?php
+		if($msgSuccess) {
+			echo $msgPreSuccess.$msgSuccess.$msgPost;
+		}
+	?>
+	
 	<div class="form-group">
 		<label for="business-name">Business Name:</label>
 		<input
@@ -46,9 +130,9 @@
 			placeholder="Enter business name here"
 			value="<?php echo $business_name; // prepopulate the value type text input?>"
 		>
-		<!-- <?php
-			if($valFirstNameMsg) { echo $msgPreError. $valFirstNameMsg. $msgPost; } // this is validation
-		?> -->
+		<?php
+			if($valBusinessNameMsg) { echo $msgPreError. $valBusinessNameMsg. $msgPost; } // this is validation
+		?>
 	</div>
 	<!--end of Business Name-->
 
@@ -62,9 +146,9 @@
 			placeholder="Enter your name here"
 			value="<?php echo $your_name; // prepopulate the value type text input?>"
 		>
-		<?php
+		<!-- <?php
 			if($valLastNameMsg) { echo $msgPreError. $valLastNameMsg. $msgPost; } // this is validation
-		?>
+		?> -->
 	</div>
 	<!--end of Name-->
 
@@ -73,7 +157,7 @@
 		<label for="email">Email address:</label>
 		<input type="text" class="form-control" name="email" placeholder="Enter email address here" value="<?php echo $email; ?>"> 
 		<?php
-			if($valEmailMsg){echo $preErrorMsg. $valEmailMsg. $postMsg;}
+			if($valEmailMsg){echo $msgPreError. $valEmailMsg. $msgPost;}
 		?>
 	</div>
 	<!-- END of Email address -->
@@ -83,20 +167,24 @@
 		<label for="website">Website URL:</label>
 		<input type="text" class="form-control" name="website" placeholder="Enter url here" value="<?php echo $website; ?>">
 		<?php
-			if($valWebsiteMsg){echo $preErrorMsg. $valWebsiteMsg. $postMsg;}
+			if($valWebsiteMsg){echo $msgPreError. $valWebsiteMsg. $msgPost;}
 		?>
 	</div>
 	<!-- END of Website URL -->
 
 	<!--start of Phone Number-->
 	<div class="form-group">
-		<label for="age">Phone Number</label>
+		<label for="phone-number">Phone Number</label>
 		<input
 			type="number"
 			class="form-control"
 			name="phone-number"
 			placeholder="Enter phone number here"
+			value="<?php echo $phone_number; // prepopulate the value type text input?>"
 		>
+		<?php
+			if($valPhoneNumberMsg) { echo $msgPreError. $valPhoneNumberMsg. $msgPost; }
+		?>
 	</div>
 	<!--end of Phone Number-->
 
@@ -104,9 +192,9 @@
 	<div class="form-group">
 		<label for="address">Adress:</label>
 		<input type="text" class="form-control" name="address" placeholder="Enter address here" value="<?php echo $address; ?>"> 
-		<?php
+		<!-- <?php
 			if($valAddressMsg) { echo $preErrorMsg. $valAddressMsg. $postMsg; }
-		?>
+		?> -->
 	</div>
 	<!-- END of Address -->
 
@@ -114,9 +202,9 @@
 	<div class="form-group">
 		<label for="city">City:</label>
 		<input type="text" class="form-control" name="city" placeholder="Enter city here" value="<?php echo $city; ?>"> 
-		<?php
+		<!-- <?php
 			if($valCityMsg) { echo $preErrorMsg. $valCityMsg. $postMsg; }
-		?>
+		?> -->
 	</div>
 	<!-- END of City -->
 
@@ -147,9 +235,9 @@
 	<div class="form-group">
 		<label for="description">Description</label>
 		<textarea class="form-control" name="description" rows="3"><?php if($description) {echo $description;} ?></textarea>
-		<?php
+		<!-- <?php
 			if($valDescriptionMsg) { echo $msgPreError. $valDescriptionMsg. $msgPost; }
-		?>
+		?> -->
 	</div>
 	<!--end of Subscribe to Newsletter-->
 
