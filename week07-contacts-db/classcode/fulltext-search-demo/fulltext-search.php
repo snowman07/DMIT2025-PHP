@@ -34,11 +34,13 @@ Table storage format Must be MYISAM: Can access this in phpMyAdmin under Operati
 			
 			$title = $row['title'];
 			$artist = $row['artist'];
+			$description = $row['description'];
 			
 	
 			
 			echo "<p>". $title . "</p>";
-			echo "<p>". $artist . "</p><br>";
+			echo "<p>". $artist . "</p>";
+			echo "<p>". $description . "</p><br>";
 			}
 		
 
