@@ -57,26 +57,44 @@
 		// refer to this link: https://www.digitaldesignjournal.com/how-to-validate-phone-numbers-using-php/
 		
 		// One way to validate phone number. This is the PHP built-in filters
-		// $phone_number = filter_var($phone_number, FILTER_SANITIZE_NUMBER_INT); // remove unwanted chars
-		// $phone_number =	str_replace("-", "", $phone_number);
-		// if (!filter_var($phone_number, FILTER_SANITIZE_NUMBER_INT)) {
-		// 	$valid = 0;
-        //     $valPhoneNumberMsg = "Please fill in proper phone number format";
-		// }
+		$phone_number = filter_var($phone_number, FILTER_SANITIZE_NUMBER_INT); // remove unwanted chars
+		$phone_number =	str_replace("-", "", $phone_number);
+		if (!filter_var($phone_number, FILTER_SANITIZE_NUMBER_INT)) {
+			$valid = 0;
+            $valPhoneNumberMsg = "Please fill in proper phone number format";
+		}
 
-		// if (strlen($phone_number) < 10 || strlen($phone_number) > 14) {
-		// 	$valid = 0;
-        //     $valPhoneNumberMsg = "Please fill in proper phone number format";
-		// } 
+		//if (strlen($phone_number) < 10 || strlen($phone_number) > 14) 
+		if (strlen($phone_number) < 10 || strlen($phone_number) > 10) {
+			$valid = 0;
+            $valPhoneNumberMsg = "Please fill in proper phone number format";
+		} 
 
 
 		// Other way to validate phone number is called Regular Expressions(regex)
-		if(!preg_match('/^[0-9]{3}-[0-9]{3}-[0-9]{4}$/', $phone_number)) {
-			$valid = 0;
-            $valPhoneNumberMsg = "Please fill proper phone format";
-		}
+		// if(!preg_match('/^[0-9]{3}-[0-9]{3}-[0-9]{4}$/', $phone_number)) {
+		// 	$valid = 0;
+        //     $valPhoneNumberMsg = "Please fill proper phone format";
+		// }
 
 		//END of Phone Number validation
+
+		//Description validation
+		if($description != "") {
+			if((strlen($description) < 3) || (strlen($description) > 100)) {
+				$valid = 0;
+				$valDescriptionMsg = "Description must be 3 to 100 characters";
+			}
+		}
+
+		// if((strlen($description) < 3) || (strlen($description) > 1000)) {
+		// 	$valid = 0;
+		// 	$valDescriptionMsg = "Description must be 3 to 1000 characters";
+		// }
+		//END of Description validation
+
+
+
 
 		//SUCCESS!!! If boolean ($valid) is still 1, then user form data is good, go ahead and process this form
 		if($valid == 1) {
@@ -258,9 +276,9 @@
 	<div class="form-group">
 		<label for="description">Description</label>
 		<textarea class="form-control" name="description" rows="3"><?php if($description) {echo $description;} ?></textarea>
-		<!-- <?php
+		<?php
 			if($valDescriptionMsg) { echo $msgPreError. $valDescriptionMsg. $msgPost; }
-		?> -->
+		?>
 	</div>
 	<!--end of Subscribe to Newsletter-->
 
