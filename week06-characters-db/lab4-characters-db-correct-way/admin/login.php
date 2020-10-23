@@ -32,7 +32,8 @@
             session_start();
             $_SESSION['aasdffrtgfbqw'] = session_id(); // make as random as possible
 
-            header("Location: edit.php");  //remember to disable this if you are debugging!!
+            header("Location: insert.php");  //remember to disable this if you are debugging!!
+            header("Location: edit.php");
 
         } else {
             $msg = "Incorrect Login";
@@ -55,7 +56,7 @@
 
 <div class="container">
     <div class="jumbotron clearfix">
-        <h1>Login to Edit Characters</h1>
+        <h1>Login to Insert/Edit Characters</h1>
     </div>
 </div>
 
