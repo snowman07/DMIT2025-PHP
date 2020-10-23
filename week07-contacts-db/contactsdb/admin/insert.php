@@ -46,7 +46,7 @@
 		}
 		// END of Email address validation
 
-		// website validation
+		// website validation	// filter_var is a PHP built-in filters validation
         if (!filter_var($website, FILTER_VALIDATE_URL)) {
             $valid = 0;
             $valWebsiteMsg = "Please fill in proper website url";
@@ -54,10 +54,28 @@
 		// END of website validation
 		
 		//Phone Number validation
-		if((is_numeric($phone_number) < 10) || (is_numeric($phone_number) > 10)) {
+		// refer to this link: https://www.digitaldesignjournal.com/how-to-validate-phone-numbers-using-php/
+		
+		// One way to validate phone number. This is the PHP built-in filters
+		// $phone_number = filter_var($phone_number, FILTER_SANITIZE_NUMBER_INT); // remove unwanted chars
+		// $phone_number =	str_replace("-", "", $phone_number);
+		// if (!filter_var($phone_number, FILTER_SANITIZE_NUMBER_INT)) {
+		// 	$valid = 0;
+        //     $valPhoneNumberMsg = "Please fill in proper phone number format";
+		// }
+
+		// if (strlen($phone_number) < 10 || strlen($phone_number) > 14) {
+		// 	$valid = 0;
+        //     $valPhoneNumberMsg = "Please fill in proper phone number format";
+		// } 
+
+
+		// Other way to validate phone number is called Regular Expressions(regex)
+		if(!preg_match('/^[0-9]{3}-[0-9]{3}-[0-9]{4}$/', $phone_number)) {
 			$valid = 0;
-			$valPhoneNumberMsg = "\nPhone number should be 10 digits";
+            $valPhoneNumberMsg = "Please fill proper phone format";
 		}
+
 		//END of Phone Number validation
 
 		//SUCCESS!!! If boolean ($valid) is still 1, then user form data is good, go ahead and process this form
@@ -179,12 +197,14 @@
 	<div class="form-group">
 		<label for="phone-number">Phone Number</label>
 		<input
-			type="number"
+			type="tel"
 			class="form-control"
 			name="phone-number"
 			placeholder="Enter phone number here"
 			value="<?php echo $phone_number; // prepopulate the value type text input?>"
-		>
+		> <!--
+			pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" // html tel validation
+		-->
 		<?php
 			if($valPhoneNumberMsg) { echo $msgPreError. $valPhoneNumberMsg. $msgPost; }
 		?>
