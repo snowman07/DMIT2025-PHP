@@ -22,13 +22,15 @@ include ("includes/header.php");
     
     <h2><?php echo $row["arr_bizname"]; ?></h2>
     <!--This is an alternate syntax-->
-    <?php if($row["arr_name"]): ?>
+    <!-- <?php if($row["arr_name"]): ?>
         <p><b>Name: </b><?php echo $row["arr_name"]; ?></p>
-    <?php endif; ?>
+    <?php endif; ?> -->
     <!--END OF This is an alternate syntax-->
+    <p><b>Name: </b><?php echo $row["arr_name"]; ?></p>
+    <p><b>Name: </b><a href="mailto:"><?php echo $row["arr_email"]; ?></a></p>
 
 
-    <p><?php echo $row["arr_name"]; ?></p>
+    <!-- <p><?php echo $row["arr_name"]; ?></p>
     <p><a href="mailto:"><?php echo $row["arr_email"]; ?></a></p>
     <p><?php $link = $row["arr_website"]; ?><a href="$link" target="_blank"></a></p>
     <p><?php echo $row["arr_phone"]; ?></p>
@@ -36,7 +38,7 @@ include ("includes/header.php");
     <p><?php echo $row["arr_city"]; ?></p>
     <p><?php echo $row["arr_prov"]; ?></p>
     <p><?php echo $row["arr_desc"]; ?></p>
-    <p><?php echo $row["arr_resume"]; ?></p>
+    <p><?php echo $row["arr_resume"]; ?></p> -->
   </div>
 
 
