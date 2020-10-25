@@ -12,7 +12,7 @@ include ("includes/header.php");
 
 <?php
     // Here, lets retrieve and list all our characters
-    $result = mysqli_query($con, "SELECT * FROM arr_contacts");    
+    $result = mysqli_query($con, "SELECT * FROM arr_contacts ORDER BY arr_bizname ASC");    
 ?>
 
 <?php while($row = mysqli_fetch_array($result)): ?> 
@@ -20,8 +20,8 @@ include ("includes/header.php");
 
   <!-- ALL of this is simple HTML, then I uses PHP "mixins" to grab the data-->
   <div class="alert alert-info">
-    <p><?php echo $row["arr_bizname"]; ?><a href="companyprofile.php?id=<?php echo $row['id'] ?> "> more ... </a></p> <!--companyprofile.php?id= is a query string-->
-    <p><?php echo $row["arr_name"]; ?></p>
+    <p><?php echo $row["arr_bizname"]; ?><a href="companyprofile.php?id=<?php echo $row['id'] ?> ">  View Company... </a></p> <!--companyprofile.php?id= is a query string-->
+    <!-- <p><?php echo $row["arr_name"]; ?></p>
     <p><?php echo $row["arr_email"]; ?></p>
     <p><?php echo $row["arr_website"]; ?></p>
     <p><?php echo $row["arr_phone"]; ?></p>
@@ -29,7 +29,7 @@ include ("includes/header.php");
     <p><?php echo $row["arr_city"]; ?></p>
     <p><?php echo $row["arr_prov"]; ?></p>
     <p><?php echo $row["arr_desc"]; ?></p>
-    <p><?php echo $row["arr_resume"]; ?></p>
+    <p><?php echo $row["arr_resume"]; ?></p> -->
   </div>
 
 

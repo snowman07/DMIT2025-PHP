@@ -15,7 +15,7 @@ include ("includes/header.php");
 ?>
 
 <?php while($row = mysqli_fetch_array($result)): ?> 
-<!-- above is a ternary operator with a colon ":" -->
+  <!-- above is a ternary operator with a colon ":" -->
 
   <!-- ALL of this is simple HTML, then I uses PHP "mixins" to grab the data-->
   <div class="alert alert-info">
@@ -29,8 +29,8 @@ include ("includes/header.php");
 
 
     <p><?php echo $row["arr_name"]; ?></p>
-    <p><?php echo $row["arr_email"]; ?></p>
-    <p><?php echo $row["arr_website"]; ?></p>
+    <p><a href="mailto:"><?php echo $row["arr_email"]; ?></a></p>
+    <p><a href="https://www.google.com/" target="_blank"><?php echo $row["arr_website"]; ?></a></p>
     <p><?php echo $row["arr_phone"]; ?></p>
     <p><?php echo $row["arr_address"]; ?></p>
     <p><?php echo $row["arr_city"]; ?></p>
