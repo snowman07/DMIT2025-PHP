@@ -40,7 +40,6 @@ include("mysql_connect.php");// here we include the connection script; since thi
 
   <body>
 
-    
     <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4 fixed-top">
       <a class="navbar-brand" href="<?php echo BASE_URL ?>index.php"><i class="material-icons" style="font-size:36px">home</i></a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
@@ -52,6 +51,10 @@ include("mysql_connect.php");// here we include the connection script; since thi
           <li class="nav-item active">
             <!-- This is a placeholder link. You will need to change this to link to your files. -->
             <a class="nav-link" href="<?php echo BASE_URL ?>#">Link</a>
+          </li>
+          <li class="nav-item active">
+            <!-- This is a placeholder link. You will need to change this to link to your files. -->
+            <a class="nav-link" href="<?php echo BASE_URL ?>#">Search</a>
           </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
