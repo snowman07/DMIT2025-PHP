@@ -6,7 +6,7 @@
 
     if(is_numeric($charID)) {
         // on your own... do a DELETE statement
-        mysqli_query($con, "DELETE FROM harry_potter WHERE id = $charID") or die(mysqli_error($con)); 
+        mysqli_query($con, "DELETE FROM arr_contacts WHERE id = $charID") or die(mysqli_error($con)); 
         header("Location:edit.php"); // this will redirect after delete from db
     }
 ?>
