@@ -83,13 +83,13 @@
 		$phone_number =	str_replace("-", "", $phone_number);
 		if (!filter_var($phone_number, FILTER_SANITIZE_NUMBER_INT)) {
 			$valid = 0;
-            $valPhoneNumberMsg = "Please fill in proper phone number format";
+            $valPhoneNumberMsg = "Please fill in 10 digit phone number";
 		}
 
 		//if (strlen($phone_number) < 10 || strlen($phone_number) > 14) 
 		if (strlen($phone_number) < 10 || strlen($phone_number) > 10) {
 			$valid = 0;
-            $valPhoneNumberMsg = "Please fill in proper phone number format";
+            $valPhoneNumberMsg = "Please fill in 10 digit phone number";
 		} 
 
 
@@ -166,7 +166,7 @@
 <!--END of Style for required field-->
 
 <div class="jumbotron clearfix">
-  <h1><?php echo APP_NAME ?></h1>
+  <h1>Insert Contacts</h1>
   <p class="lead">
     You can insert contacts here.
   </p>

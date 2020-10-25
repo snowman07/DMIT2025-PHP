@@ -32,7 +32,7 @@
       <p><b>Email Address: </b><a href="mailto:"><?php echo $row["arr_email"]; ?></a></p>
     <?php endif; ?>
     <?php if($row["arr_website"]): ?>
-      <p><b>Website: </b><a href="companyprofile.php?id=<?php echo $row['id'] ?>" target="_blank"><?php echo $row["arr_website"]; ?></a></p>
+      <p><b>Website: </b><a href="<?php echo $row["arr_website"]; ?>" target="_blank"><?php echo $row["arr_website"]; ?></a></p>
     <?php endif; ?>
     <?php if($row["arr_phone"]): ?>
       <p><b>Phone: </b><?php echo $row["arr_phone"]; ?></p>

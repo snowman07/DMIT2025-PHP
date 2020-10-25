@@ -25,17 +25,14 @@
 <?php while($row = mysqli_fetch_array($result)): ?> <!-- ternary operator with a colon ":" -->
   <!-- ALL of this is simple HTML, then I uses PHP "mixins" to grab the data-->
   <div class="alert alert-info">
-    <p class="lead"><?php echo $row["arr_bizname"]; ?><a href="companyprofile.php?id=<?php echo $row['id'] ?> "> View details here </a></p> <!--companyprofile.php?id= is a query string-->
+    <p class="lead">
+      <?php 
+        echo "<b>". $row["arr_bizname"] ."</b>"; 
+      ?><br>
+      <a href="companyprofile.php?id=<?php echo $row['id'] ?> ">View details here </a>
+    </p> <!--companyprofile.php?id= is a query string-->
     <!-- 
     <p><?php echo $row["arr_name"]; ?></p>
-    <p><?php echo $row["arr_email"]; ?></p>
-    <p><?php echo $row["arr_website"]; ?></p>
-    <p><?php echo $row["arr_phone"]; ?></p>
-    <p><?php echo $row["arr_address"]; ?></p>
-    <p><?php echo $row["arr_city"]; ?></p>
-    <p><?php echo $row["arr_prov"]; ?></p>
-    <p><?php echo $row["arr_desc"]; ?></p>
-    <p><?php echo $row["arr_resume"]; ?></p> 
     -->
   </div>
 <?php endwhile; ?> <!-- to end while loop-->

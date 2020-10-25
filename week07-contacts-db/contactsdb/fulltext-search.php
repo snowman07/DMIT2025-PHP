@@ -3,7 +3,7 @@
 ?>
 
 <div class="jumbotron clearfix">
-  <h1><?php echo APP_NAME ?></h1>
+  <h1>Search Contacts</h1>
   <p class="lead">
     This is where you can do a search.
   </p>

@@ -99,13 +99,13 @@
 		$phone_number =	str_replace("-", "", $phone_number);
 		if (!filter_var($phone_number, FILTER_SANITIZE_NUMBER_INT)) {
 			$valid = 0;
-            $valPhoneNumberMsg = "Please fill in proper phone number format";
+            $valPhoneNumberMsg = "Please fill in 10 digit phone number";
 		}
 
 		//if (strlen($phone_number) < 10 || strlen($phone_number) > 14) 
 		if (strlen($phone_number) < 10 || strlen($phone_number) > 10) {
 			$valid = 0;
-            $valPhoneNumberMsg = "Please fill in proper phone number format";
+            $valPhoneNumberMsg = "Please fill in 10 digit phone number";
 		} 
 
 
@@ -215,7 +215,7 @@
 ?>
 
 <div class="jumbotron clearfix">
-  <h1><?php echo APP_NAME ?></h1>
+  <h1>Edit Contacts</h1>
   <p class="lead">
     You can edit contacts here.
   </p>
@@ -403,7 +403,7 @@
     </div> <!-- END OF col-sm-8-->
 
     <div class="col-sm-4">
-		<div class="edit-link-container">
+		<div class="alert alert-info">
 			<p><b>Lists of all the contacts:</b></p>
 			<?php
 				// temp location for our character select links. Might do this in a second column later
