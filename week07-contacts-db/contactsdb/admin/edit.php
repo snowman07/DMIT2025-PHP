@@ -1,4 +1,17 @@
+<!-- this is a secured page -->
+<?php
+    session_start();
+    //echo session_id();
 
+    //if(!isset($_SESSION['aasdffrtgfb'])) {        //<-- from here     isset means something is set
+    if(isset($_SESSION['aasdffrtgfbqw'])) {                //<-- to here
+        //header("Location: login.php");
+        //echo "Logged in";
+    } else {
+        //echo "NOT logged in";
+        header("Location: login.php");
+    }
+?>
 
 <?php
     include("../includes/header.php");
@@ -201,7 +214,13 @@
     //echo $first_name . " " . $last_name . " " . $age . " " . $occupation . " " . $description;
 ?>
 
-<h2>Insert</h2>
+<div class="jumbotron clearfix">
+  <h1><?php echo APP_NAME ?></h1>
+  <p class="lead">
+    You can edit contacts here.
+  </p>
+  <a class="btn btn-primary float-right" href="logout.php" role="button">Logout</a>
+</div>
 
 <div class="row"> 
     <div class="col-sm-8">

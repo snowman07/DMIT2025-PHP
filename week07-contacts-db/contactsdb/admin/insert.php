@@ -1,4 +1,17 @@
+<!-- this is a secured page -->
+<?php
+    session_start();
+    //echo session_id();
 
+    //if(!isset($_SESSION['aasdffrtgfb'])) {        //<-- from here     isset means something is set
+    if(isset($_SESSION['aasdffrtgfbqw'])) {                //<-- to here
+        //header("Location: login.php");
+        //echo "Logged in";
+    } else {
+        //echo "NOT logged in";
+        header("Location: login.php");
+    }
+?>
 
 <?php
 	include("../includes/header.php");
@@ -152,7 +165,13 @@
 </style>
 <!--END of Style for required field-->
 
-<h2>Insert</h2>
+<div class="jumbotron clearfix">
+  <h1><?php echo APP_NAME ?></h1>
+  <p class="lead">
+    You can insert contacts here.
+  </p>
+  <a class="btn btn-primary float-right" href="logout.php" role="button">Logout</a>
+</div>
 
 <form id="myform" name="myform" method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>">
 	<!-- <div class="form-group">
