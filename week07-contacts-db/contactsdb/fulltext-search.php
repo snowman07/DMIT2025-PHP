@@ -34,7 +34,7 @@
         echo "<br><br><br>";
 		$result = mysqli_query($con,$sql) or die (mysqli_error($con));
             
-        //if (mysqli_num_rows($result) > 0) {
+        if (mysqli_num_rows($result) > 0) {
             while ($row = mysqli_fetch_array( $result )){
                 
                     $business_name = $row['arr_bizname'];
@@ -52,9 +52,9 @@
 
             } // end of while
 
-        // } else {
-        //     echo "\n<div class=\"alert alert-warning\">No results</div>\n";
-        // }
+        } else {
+            echo "\n<div class=\"alert alert-warning\">No results</div>\n";
+        }
 	}
 ?>
 
