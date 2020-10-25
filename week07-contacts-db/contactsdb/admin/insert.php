@@ -1,3 +1,20 @@
+<!-- this is a secured page -->
+<!-- <?php
+    session_start();
+
+    //echo session_id();
+
+    //if(!isset($_SESSION['aasdffrtgfb'])) {        //<-- from here     isset means something is set
+    if(isset($_SESSION['aasdffrtgfbqw'])) {                //<-- to here
+        //header("Location: login.php");
+        //echo "Logged in";
+    } else {
+        //echo "NOT logged in";
+        header("Location: login.php");
+    }
+
+?> -->
+
 <?php
 	include("../includes/header.php");
 
@@ -34,9 +51,16 @@
 		//Business Name validation
 		if((strlen($business_name) < 1) || (strlen($business_name) > 20)) {
 			$valid = 0;
-			$valBusinessNameMsg = "\nPlease enter firstname from 1 to 20 characters";
+			$valBusinessNameMsg = "\nPlease enter business name from 1 to 20 characters";
 		}
 		//END of Business Name validation
+
+		//Name validation
+		if((strlen($your_name) < 3) || (strlen($your_name) > 20)) {
+			$valid = 0;
+			$valNameMsg = "\nPlease enter a name from 3 to 20 characters";
+		}
+		//END of Name validation
 
 		// Email address validation
 		$email = filter_var($email, FILTER_SANITIZE_EMAIL); // remove unwanted chars
@@ -78,6 +102,13 @@
 		// }
 
 		//END of Phone Number validation
+
+		//Province validation
+		if($province == "") {
+			$valid = 0;
+			$valProvinceMsg = "Please select a province";
+		}
+		//END of Province validation
 
 		//Description validation
 		if($description != "") {
@@ -152,14 +183,15 @@
 		<input type="submit" name="submit" class="btn btn-info" value="Submit">
 	</div> -->
 
-	<!--start of Business Name-->
+	
 
 	<?php
 		if($msgSuccess) {
 			echo $msgPreSuccess.$msgSuccess.$msgPost;
 		}
 	?>
-	
+
+	<!--start of Business Name-->
 	<div class="form-group">
 		<label for="business-name">Business Name:</label>
 		<input
@@ -177,7 +209,7 @@
 
 	<!--start of Name-->
 	<div class="form-group">
-		<label for="last-name">Name:</label>
+		<label for="your-name">Name:</label>
 		<input
 			type="text"
 			class="form-control"
@@ -185,9 +217,9 @@
 			placeholder="Enter your name here"
 			value="<?php echo $your_name; // prepopulate the value type text input?>"
 		>
-		<!-- <?php
-			if($valLastNameMsg) { echo $msgPreError. $valLastNameMsg. $msgPost; } // this is validation
-		?> -->
+		<?php
+			if($valNameMsg) { echo $msgPreError. $valNameMsg. $msgPost; } // this is validation
+		?>
 	</div>
 	<!--end of Name-->
 
@@ -269,6 +301,9 @@
 			<option value="YT" <?php if(isset($province) && $province == "YT") {echo "selected";} ?>>Yukon</option>
 			<!-- if(isset($province) && $province == "AB") {echo "selected";}  to prepop select options -->
 		</select>
+		<?php
+			if($valProvinceMsg) { echo $msgPreError. $valProvinceMsg. $msgPost; }
+		?>
 	</div>
 	<!-- END of Province -->
 

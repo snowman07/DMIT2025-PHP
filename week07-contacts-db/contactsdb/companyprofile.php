@@ -30,7 +30,7 @@ include ("includes/header.php");
 
     <p><?php echo $row["arr_name"]; ?></p>
     <p><a href="mailto:"><?php echo $row["arr_email"]; ?></a></p>
-    <p><a href="https://www.google.com/" target="_blank"><?php echo $row["arr_website"]; ?></a></p>
+    <p><?php $link = $row["arr_website"]; ?><a href="$link" target="_blank"></a></p>
     <p><?php echo $row["arr_phone"]; ?></p>
     <p><?php echo $row["arr_address"]; ?></p>
     <p><?php echo $row["arr_city"]; ?></p>

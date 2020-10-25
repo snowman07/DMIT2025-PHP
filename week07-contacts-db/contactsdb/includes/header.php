@@ -57,6 +57,7 @@ include("mysql_connect.php");// here we include the connection script; since thi
             <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
             <div class="dropdown-menu" aria-labelledby="dropdown01">
               <a class="dropdown-item" href="<?php echo BASE_URL ?>admin/insert.php">Insert</a>
+              <a class="dropdown-item" href="<?php echo BASE_URL ?>admin/edit.php">Edit</a>
               <!-- <a class="dropdown-item" href="<?php echo BASE_URL ?>#">Link</a> -->
               
 
