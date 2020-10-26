@@ -145,17 +145,17 @@
             // doNOT add a comma after the last item
             //column_name = $php variable
 			mysqli_query($con, "UPDATE arr_contacts SET 
-            arr_bizname = '$business_name', 
-            arr_name = '$your_name',
-            arr_email = '$email',
-            arr_website = '$website',
-            arr_phone = '$phone_number',
-            arr_address = '$address',
-            arr_city = '$city',
-            arr_prov = '$province',
-            arr_desc = '$description',
-            arr_newsletter = '$newsletter'	
-            WHERE id = '$pageID'") or die(mysqli_error($con));
+                    arr_bizname = '$business_name', 
+                    arr_name = '$your_name',
+                    arr_email = '$email',
+                    arr_website = '$website',
+                    arr_phone = '$phone_number',
+                    arr_address = '$address',
+                    arr_city = '$city',
+                    arr_prov = '$province',
+                    arr_desc = '$description',
+                    arr_newsletter = '$newsletter'	
+                    WHERE id = '$pageID'") or die(mysqli_error($con));
         
             $msgSuccess = "Contacts has been updated.";
 
@@ -183,7 +183,7 @@
     // Now, we have to loop thru all records and display to the user
 
     while($row = mysqli_fetch_array($result)){
-        $thisBusinessname = $row['arr_bizname'];
+        $thisBusinessname = $row["arr_bizname"];
         $thisId = $row["id"];
 
         // from this data, create some links which shows the character names to the user
@@ -225,7 +225,14 @@
 <div class="row"> 
     <div class="col-sm-8">
 
-        <form id="myform" name="myform" method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>">
+        <?php
+			/*
+			$_SERVER['REQUEST_URI'] will retain the necessary Query String (appended URL) info <-- use this for form updates
+			$_SERVER['PHP_SELF'] will NOT retain the necessary Query String (appended URL) info
+			*/
+		?>
+
+        <form id="myform" name="myform" method="post" action="<?php echo htmlspecialchars($_SERVER['REQUEST_URI']); ?>"> <!--from PHP_SELF to REQUEST_URI-->
             <!-- <div class="form-group">
                 <label for="alpha">Alpha:</label>
                 <input type="text" name="alpha" class="form-control">
@@ -238,8 +245,6 @@
                 <label for="submit">&nbsp;</label>
                 <input type="submit" name="submit" class="btn btn-info" value="Submit">
             </div> -->
-
-            
 
             <?php
                 if($msgSuccess) {
