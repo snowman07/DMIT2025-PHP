@@ -1,5 +1,6 @@
 <?php
   include ("includes/header.php");
+  include ("includes/_functions.php");
 ?>
 
 <div class="jumbotron clearfix">
@@ -43,6 +44,7 @@
     -->
   </div>
 <?php endwhile; ?> <!-- to end while loop-->
+
 
 
 <?php
