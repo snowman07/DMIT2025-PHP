@@ -1,7 +1,7 @@
 <?php
   function addEmoticons($txt) {
 
-    // <-
+    // ->
     $thisEmoticon = "<img src=\"emoticons/icon_arrow.gif\">";
     $txt = str_replace("->", $thisEmoticon, $txt);
 
@@ -23,7 +23,7 @@
 
     // :(
     $thisEmoticon = "<img src=\"emoticons/icon_sad.gif\">";
-    $txt = str_replace(":)", $thisEmoticon, $txt);
+    $txt = str_replace(":(", $thisEmoticon, $txt);
 
     // :)
     $thisEmoticon = "<img src=\"emoticons/icon_smile.gif\">";
