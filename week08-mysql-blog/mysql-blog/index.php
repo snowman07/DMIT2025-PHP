@@ -68,8 +68,8 @@
       <?php 
         echo "<b>". $row["arr_title"] ."</b>"; 
       ?><br>
-      <?php 
-        echo "<b>". addEmoticons($row["arr_message"]) ."</b>"; 
+      <?php     // nl2br: new line to break <br>
+        echo "<b>". nl2br(makeClickableLinks(addEmoticons($row["arr_message"]))) ."</b>"; 
       ?><br>
       
     </p> <!--companyprofile.php?id= is a query string-->
@@ -80,6 +80,37 @@
 <?php endwhile; ?> <!-- to end while loop-->
 
 
+
+
 <?php
+
+  ///////////////// pagination links: perhaps put these BELOW where your results are echo'd out.
+  if($postnum > $limit){
+    echo "<strong>Pages:</strong> &nbsp;&nbsp;&nbsp;";
+    $n = $pg + 1;
+    $p = $pg - 1;
+    $thisroot = $_SERVER['PHP_SELF'];
+      
+    if($pg > 1){
+      echo "<a href=\"$thisroot?pg=$p\"><< prev</a>&nbsp;&nbsp;";
+    }
+    
+    for($i=1; $i<=$num_pages; $i++){
+      if($i!= $pg){
+        echo "<a href=\"$thisroot?pg=$i\">$i</a>&nbsp;&nbsp;";
+      }else{
+      echo "$i&nbsp;&nbsp;";
+      }
+    }
+    
+    if($pg < $num_pages){
+      echo "<a href=\"$thisroot?pg=$n\">next >></a>";
+    }
+    echo "&nbsp;&nbsp;";
+  }
+  // ambitious students may want to reformat this. Perhaps use Bootstraps pagination markup.
+  ////////////// end pagination
+  
+
   include ("includes/footer.php");
 ?>
