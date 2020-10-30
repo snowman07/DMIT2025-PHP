@@ -29,7 +29,7 @@
       <p><b>Name: </b><?php echo $row["arr_name"]; ?></p>
     <?php endif; ?>
     <?php if($row["arr_email"]): ?>
-      <p><b>Email Address: </b><a href="mailto:"><?php echo $row["arr_email"]; ?></a></p>
+      <p><b>Email Address: </b><a href="mailto:<?php echo $row["arr_email"]; ?>"><?php echo $row["arr_email"]; ?></a></p>
     <?php endif; ?>
     <?php if($row["arr_website"]): ?>
       <p><b>Website: </b><a href="<?php echo $row["arr_website"]; ?>" target="_blank"><?php echo $row["arr_website"]; ?></a></p>
