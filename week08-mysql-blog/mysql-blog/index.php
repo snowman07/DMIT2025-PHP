@@ -3,7 +3,7 @@
   include ("includes/_functions.php");
 
 
-  //////////// pagination
+  // Pagination 1/3   // One goes BEFORE your main query and is used to create a variable called $limstring
   $getcount = mysqli_query ($con,"SELECT COUNT(*) FROM arr_blog");
   $postnum = mysqli_result($getcount,0);  // this needs a fix for MySQLi upgrade; see custom function below 
   $limit = 3;
@@ -30,23 +30,33 @@
   }
 
   // MySQLi upgrade: we need this for mysql_result() equivalent
-  function mysqli_result($res, $row, $field=0) {$res->data_seek($row);
+  function mysqli_result($res, $row, $field=0) {
+    $res->data_seek($row);
     $datarow = $res->fetch_array();
     return $datarow[$field];
   }
+  //END of Pagination 1/3
 
 ?>
 
 <div class="jumbotron clearfix">
   <h1><?php echo APP_NAME ?></h1>
-  <p class="lead">This is a simple Bootstrap template to assist in creating simple applications in PHP. <br>
-    Please make the necessary changes as you need.
+  <p class="lead">This is an online Blog application utilizing a MySQL database for storage. New features & concepts: <br>
+    <ul class="lead">
+      <li>Pagination using MySQL</li>
+      <li>Emoticons using str_replace() and an emoticon editor using Javascript</li>
+      <li>Autolink URLs</li>
+      <li>MySQL Timestamp and formatting</li>
+    </ul>
   </p>
-  <a class="btn btn-primary float-right" href="#" role="button">Button</a>
+  <!-- <a class="btn btn-primary float-right" href="#" role="button">Button</a> -->
 </div>
 
 
 <?php
+
+  // Pagination 2/3. //Your main query that outputs the results will then include the $limstring variable at the end.
+
   // Here, lets retrieve and list all our characters
   $result = mysqli_query($con, "SELECT * FROM arr_blog ORDER BY bid DESC $limstring");    
 ?>
@@ -80,37 +90,52 @@
 <?php endwhile; ?> <!-- to end while loop-->
 
 
-
-
 <?php
 
-  ///////////////// pagination links: perhaps put these BELOW where your results are echo'd out.
+  // Pagination (3/3) links: perhaps put these BELOW where your results are echo'd out.
   if($postnum > $limit){
-    echo "<strong>Pages:</strong> &nbsp;&nbsp;&nbsp;";
+    // echo "<strong>Pages:</strong> &nbsp;&nbsp;&nbsp;";
     $n = $pg + 1;
     $p = $pg - 1;
     $thisroot = $_SERVER['PHP_SELF'];
       
+    //echo "<ul>""</ul>"
+
     if($pg > 1){
-      echo "<a href=\"$thisroot?pg=$p\"><< prev</a>&nbsp;&nbsp;";
+      $prev = "<a href=\"$thisroot?pg=$p\"><< prev</a>&nbsp;&nbsp;";
     }
     
     for($i=1; $i<=$num_pages; $i++){
       if($i!= $pg){
-        echo "<a href=\"$thisroot?pg=$i\">$i</a>&nbsp;&nbsp;";
+        $currentPage = "<a href=\"$thisroot?pg=$i\">$i</a>&nbsp;&nbsp;";
       }else{
-      echo "$i&nbsp;&nbsp;";
+      //echo "$i&nbsp;&nbsp;";
       }
     }
     
     if($pg < $num_pages){
-      echo "<a href=\"$thisroot?pg=$n\">next >></a>";
+      $next = "<a href=\"$thisroot?pg=$n\">next >></a>";
     }
-    echo "&nbsp;&nbsp;";
+    //echo "&nbsp;&nbsp;";
   }
   // ambitious students may want to reformat this. Perhaps use Bootstraps pagination markup.
   ////////////// end pagination
-  
+?>
+
+<nav aria-label="Page navigation example">
+  <ul class="pagination">
+    <li class="page-item"><a class="page-link" href="#">$prev</a></li>
+    <li class="page-item"><a class="page-link" href="#">$currentPage</a></li>
+    <!-- <li class="page-item"><a class="page-link" href="#">2</a></li>
+    <li class="page-item"><a class="page-link" href="#">3</a></li> -->
+    <li class="page-item"><a class="page-link" href="#">$next</a></li>
+  </ul>
+</nav>
+
+
+
+<?php
 
   include ("includes/footer.php");
+
 ?>
