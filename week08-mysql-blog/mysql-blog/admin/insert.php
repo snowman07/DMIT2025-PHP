@@ -99,7 +99,7 @@
 		<div>
 			<a href="javascript:emoticon('->')"><img src="../emoticons/icon_arrow.gif"></a>
 			<a href="javascript:emoticon(':D')"><img src="../emoticons/icon_biggrin.gif"></a>
-			<a href="javascript:emoticon(':/')"><img src="../emoticons/icon_confused.gif"></a>
+			<a href="javascript:emoticon(':|')"><img src="../emoticons/icon_confused.gif"></a>
 			<a href="javascript:emoticon('8)')"><img src="../emoticons/icon_cool.gif"></a>
 			<a href="javascript:emoticon('=(')"><img src="../emoticons/icon_cry.gif"></a>
 			<a href="javascript:emoticon(':(')"><img src="../emoticons/icon_sad.gif"></a>

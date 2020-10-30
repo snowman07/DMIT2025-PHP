@@ -9,9 +9,9 @@
     $thisEmoticon = "<img src=\"emoticons/icon_biggrin.gif\">";
     $txt = str_replace(":D", $thisEmoticon, $txt);
 
-    // :/
-    //$thisEmoticon = "<img src=\"emoticons/icon_confused.gif\">";
-    //$txt = str_replace(":/", $thisEmoticon, $txt);
+    // :|
+    $thisEmoticon = "<img src=\"emoticons/icon_confused.gif\">";
+    $txt = str_replace(":|", $thisEmoticon, $txt);
 
     // 8)
     $thisEmoticon = "<img src=\"emoticons/icon_cool.gif\">";
