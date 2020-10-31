@@ -89,63 +89,46 @@
   </div>
 <?php endwhile; ?> <!-- to end while loop-->
 
-
 <?php
-
-  // // Pagination (3/3) links: perhaps put these BELOW where your results are echo'd out.
-  // if($postnum > $limit){
-  //   echo "<strong>Pages:</strong> &nbsp;&nbsp;&nbsp;";
-  //   $n = $pg + 1;
-  //   $p = $pg - 1;
-  //   $thisroot = $_SERVER['PHP_SELF'];
-      
-  //   //echo "<ul>""</ul>"
-
-  //   if($pg > 1){
-  //     //$prev = "<a href=\"$thisroot?pg=$p\"><< prev</a>&nbsp;&nbsp;";
-  //     echo "<a href=\"$thisroot?pg=$p\"><< prev</a>&nbsp;&nbsp;";
-  //   }
+  ///////////////// pagination links: perhaps put these BELOW where your results are echo'd out.
+  if($postnum > $limit){
+    echo "<strong>Pages:</strong> &nbsp;&nbsp;&nbsp;";
     
-  //   for($i=1; $i<=$num_pages; $i++){
-  //     if($i!= $pg){
-  //       //$currentPage = "<a href=\"$thisroot?pg=$i\">$i</a>&nbsp;&nbsp;";
-  //       echo "<a href=\"$thisroot?pg=$i\">$i</a>&nbsp;&nbsp;";
-  //     }else{
-  //       echo "$i&nbsp;&nbsp;";
-  //     }
-  //   }
+    $n = $pg + 1;
+    $p = $pg - 1;
+    $thisroot = $_SERVER['PHP_SELF'];
     
-  //   if($pg < $num_pages){
-  //     //$next = "<a href=\"$thisroot?pg=$n\">next >></a>";
-  //     echo "<a href=\"$thisroot?pg=$n\">next >></a>";
-  //   }
-  //   echo "&nbsp;&nbsp;";
-  // }
-  // // ambitious students may want to reformat this. Perhaps use Bootstraps pagination markup.
-  // ////////////// end pagination
+    if($pg > 1){
+      echo "
+        <a href=\"$thisroot?pg=$p\">
+          << prev
+        </a>&nbsp;&nbsp;
+      ";
+    }
+
+    for($i=1; $i<=$num_pages; $i++){
+      if($i!= $pg){
+        echo "
+          <a href=\"$thisroot?pg=$i\">
+            $i
+          </a>&nbsp;&nbsp;";
+      }else{
+        echo "$i&nbsp;&nbsp;";
+      }
+    }
+
+    if($pg < $num_pages){
+      echo "
+        <a href=\"$thisroot?pg=$n\">
+          next >>
+        </a>
+      ";
+    }
+    //echo "&nbsp;&nbsp;";
+  }
+  // ambitious students may want to reformat this. Perhaps use Bootstraps pagination markup.
+  ////////////// end pagination
 ?>
-
- <!-- Pagination -->
- <nav aria-label="Page navigation example mt-5">
-    <ul class="pagination justify-content-center">
-        <li class="page-item <?php if($page <= 1){ echo 'disabled'; } ?>">
-            <a class="page-link"
-                href="<?php if($page <= 1){ echo '#'; } else { echo "?page=" . $prev; } ?>">Previous</a>
-        </li>
-
-        <?php for($i = 1; $i <= $totoalPages; $i++ ): ?>
-        <li class="page-item <?php if($page == $i) {echo 'active'; } ?>">
-            <a class="page-link" href="index.php?page=<?= $i; ?>"> <?= $i; ?> </a>
-        </li>
-        <?php endfor; ?>
-
-        <li class="page-item <?php if($page >= $totoalPages) { echo 'disabled'; } ?>">
-            <a class="page-link"
-                href="<?php if($page >= $totoalPages){ echo '#'; } else {echo "?page=". $next; } ?>">Next</a>
-        </li>
-    </ul>
-  </nav>
-
 
 
 <?php
