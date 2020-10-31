@@ -124,11 +124,11 @@
 
 <nav aria-label="Page navigation example">
   <ul class="pagination">
-    <li class="page-item"><a class="page-link" href="#">$prev</a></li>
-    <li class="page-item"><a class="page-link" href="#">$currentPage</a></li>
+    <li class="page-item"><a class="page-link" href="#"><?php $prev; ?></a></li>
+    <li class="page-item"><a class="page-link" href="#"><?php $currentPage; ?></a></li>
     <!-- <li class="page-item"><a class="page-link" href="#">2</a></li>
     <li class="page-item"><a class="page-link" href="#">3</a></li> -->
-    <li class="page-item"><a class="page-link" href="#">$next</a></li>
+    <li class="page-item"><a class="page-link" href="#"><?php $next; ?></a></li>
   </ul>
 </nav>
 
