@@ -6,7 +6,7 @@
   // Pagination 1/3   // One goes BEFORE your main query and is used to create a variable called $limstring
   $getcount = mysqli_query ($con,"SELECT COUNT(*) FROM arr_blog");
   $postnum = mysqli_result($getcount,0);  // this needs a fix for MySQLi upgrade; see custom function below 
-  $limit = 3;
+  $limit = 5;
   if($postnum > $limit){
     $tagend = round($postnum % $limit,0);
     $splits = round(($postnum - $tagend)/$limit,0);
@@ -92,45 +92,59 @@
 
 <?php
 
-  // Pagination (3/3) links: perhaps put these BELOW where your results are echo'd out.
-  if($postnum > $limit){
-    // echo "<strong>Pages:</strong> &nbsp;&nbsp;&nbsp;";
-    $n = $pg + 1;
-    $p = $pg - 1;
-    $thisroot = $_SERVER['PHP_SELF'];
+  // // Pagination (3/3) links: perhaps put these BELOW where your results are echo'd out.
+  // if($postnum > $limit){
+  //   echo "<strong>Pages:</strong> &nbsp;&nbsp;&nbsp;";
+  //   $n = $pg + 1;
+  //   $p = $pg - 1;
+  //   $thisroot = $_SERVER['PHP_SELF'];
       
-    //echo "<ul>""</ul>"
+  //   //echo "<ul>""</ul>"
 
-    if($pg > 1){
-      $prev = "<a href=\"$thisroot?pg=$p\"><< prev</a>&nbsp;&nbsp;";
-    }
+  //   if($pg > 1){
+  //     //$prev = "<a href=\"$thisroot?pg=$p\"><< prev</a>&nbsp;&nbsp;";
+  //     echo "<a href=\"$thisroot?pg=$p\"><< prev</a>&nbsp;&nbsp;";
+  //   }
     
-    for($i=1; $i<=$num_pages; $i++){
-      if($i!= $pg){
-        $currentPage = "<a href=\"$thisroot?pg=$i\">$i</a>&nbsp;&nbsp;";
-      }else{
-      //echo "$i&nbsp;&nbsp;";
-      }
-    }
+  //   for($i=1; $i<=$num_pages; $i++){
+  //     if($i!= $pg){
+  //       //$currentPage = "<a href=\"$thisroot?pg=$i\">$i</a>&nbsp;&nbsp;";
+  //       echo "<a href=\"$thisroot?pg=$i\">$i</a>&nbsp;&nbsp;";
+  //     }else{
+  //       echo "$i&nbsp;&nbsp;";
+  //     }
+  //   }
     
-    if($pg < $num_pages){
-      $next = "<a href=\"$thisroot?pg=$n\">next >></a>";
-    }
-    //echo "&nbsp;&nbsp;";
-  }
-  // ambitious students may want to reformat this. Perhaps use Bootstraps pagination markup.
-  ////////////// end pagination
+  //   if($pg < $num_pages){
+  //     //$next = "<a href=\"$thisroot?pg=$n\">next >></a>";
+  //     echo "<a href=\"$thisroot?pg=$n\">next >></a>";
+  //   }
+  //   echo "&nbsp;&nbsp;";
+  // }
+  // // ambitious students may want to reformat this. Perhaps use Bootstraps pagination markup.
+  // ////////////// end pagination
 ?>
 
-<nav aria-label="Page navigation example">
-  <ul class="pagination">
-    <li class="page-item"><a class="page-link" href="#"><?php $prev; ?></a></li>
-    <li class="page-item"><a class="page-link" href="#"><?php $currentPage; ?></a></li>
-    <!-- <li class="page-item"><a class="page-link" href="#">2</a></li>
-    <li class="page-item"><a class="page-link" href="#">3</a></li> -->
-    <li class="page-item"><a class="page-link" href="#"><?php $next; ?></a></li>
-  </ul>
-</nav>
+ <!-- Pagination -->
+ <nav aria-label="Page navigation example mt-5">
+    <ul class="pagination justify-content-center">
+        <li class="page-item <?php if($page <= 1){ echo 'disabled'; } ?>">
+            <a class="page-link"
+                href="<?php if($page <= 1){ echo '#'; } else { echo "?page=" . $prev; } ?>">Previous</a>
+        </li>
+
+        <?php for($i = 1; $i <= $totoalPages; $i++ ): ?>
+        <li class="page-item <?php if($page == $i) {echo 'active'; } ?>">
+            <a class="page-link" href="index.php?page=<?= $i; ?>"> <?= $i; ?> </a>
+        </li>
+        <?php endfor; ?>
+
+        <li class="page-item <?php if($page >= $totoalPages) { echo 'disabled'; } ?>">
+            <a class="page-link"
+                href="<?php if($page >= $totoalPages){ echo '#'; } else {echo "?page=". $next; } ?>">Next</a>
+        </li>
+    </ul>
+  </nav>
 
 
 
