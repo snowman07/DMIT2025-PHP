@@ -130,6 +130,80 @@
   ////////////// end pagination
 ?>
 
+<!-- Pagination with BOOTSTRAP-->
+<nav aria-label="Page navigation example mt-5">
+  <ul class="pagination justify-content-center">
+    
+    <!--START of Previous-->
+    <li 
+      class="page-item 
+        <?php 
+          if($page <= 1){ 
+            echo 'disabled'; 
+          } 
+        ?>
+      ">
+      <a class="page-link"
+        href="
+          <?php 
+            if($page <= 1){ 
+              echo '#'; 
+            } else { 
+              echo "?page=" . $prev; 
+            } 
+          ?>
+        "
+        >
+        Previous
+      </a>
+    </li>
+    <!--END of Previous-->
+
+    <!--START of Number-->      
+    <?php for($i = 1; $i <= $totoalPages; $i++ ): ?>
+      <li 
+        class="page-item 
+          <?php 
+            if($page == $i) {
+              echo 'active'; 
+            } 
+          ?>
+        ">
+        <a class="page-link" href="index.php?page=<?= $i; ?>"> 
+          <?= $i; ?> 
+        </a>
+      </li>
+    <?php endfor; ?>
+    <!--END of Number--> 
+
+    <!--START of Next-->
+    <li 
+      class="page-item 
+        <?php 
+          if($page >= $totoalPages) { 
+            echo 'disabled'; 
+          } 
+        ?>
+        "
+        >
+      <a class="page-link"
+        href="
+          <?php 
+            if($page >= $totoalPages){ 
+              echo '#'; 
+            } else {
+              echo "?page=". $next; 
+            } 
+          ?>
+        "
+        >
+        Next
+      </a>
+    </li>
+    <!--END of Next-->
+  </ul>
+</nav>
+
 
 <?php
 
