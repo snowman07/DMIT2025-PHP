@@ -57,7 +57,7 @@
   // Pagination 2/3. //Your main query that outputs the results will then include the $limstring variable at the end.
 
   // Here, lets retrieve and list all our characters
-  $result = mysqli_query($con, "SELECT * FROM arr_blog ORDER BY bid DESC $limstring");    
+  $result = mysqli_query($con, "SELECT * FROM arr_blog ORDER BY id DESC $limstring");    
 ?>
 
 <?php while($row = mysqli_fetch_array($result)): ?> <!-- ternary operator with a colon ":" -->
