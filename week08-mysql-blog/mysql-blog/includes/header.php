@@ -66,7 +66,7 @@ include("mysql_connect.php");// here we include the connection script; since thi
          
           <li class="nav-item active">
             <!-- This is a placeholder link. You will need to change this to link to your files. -->
-            <a class="nav-link" href="<?php echo BASE_URL ?>#">Link</a>
+            <!-- <a class="nav-link" href="<?php echo BASE_URL ?>#">Link</a> -->
           </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>

@@ -75,7 +75,7 @@
     </p>
     <p class="lead">
       <?php 
-        echo "<b>". $row["arr_title"] ."</b>"; 
+        echo "<b>". $row["arr_title"] ."</b><br>"; 
       ?><br>
       <?php     // nl2br: new line to break <br>
         echo "<b>". nl2br(makeClickableLinks(addEmoticons($row["arr_message"]))) ."</b>"; 
