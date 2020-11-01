@@ -15,7 +15,7 @@
     // but, what happens if we  just come to edit and havent yet selected an item to edit? Lets have a default item that is chosen as soon as we load the page
 
     if(!isset($pageID)) {
-        $tmp = mysqli_query($con, "SELECT id FROM arr_blog LIMIT 1");
+        $tmp = mysqli_query($con, "SELECT id FROM arr_blog LIMIT 0");
         while($row = mysqli_fetch_array($tmp)){
 			$pageID = $row["id"];	// here is our default value
 		}
@@ -43,7 +43,7 @@
 		//Title validation
 		if((strlen($title) < 1) || (strlen($title) > 20)) {
 			$valid = 0;
-			$valBusinessNameMsg = "\nPlease enter title from 1 to 20 characters";
+			$valTitleMsg = "\nPlease enter title from 1 to 20 characters";
 		}
 		//END of Title validation
     
@@ -81,24 +81,25 @@
         
     } // END of if
     
+    // //==========================================
+    // /*Step 1: Create dynamic nav system */
 
-    /*Step 1: Create dynamic nav system */
+    // $result = mysqli_query($con, "SELECT * FROM arr_blog");
 
-    $result = mysqli_query($con, "SELECT * FROM arr_blog");
+    // // Now, we have to loop thru all records and display to the user
 
-    // Now, we have to loop thru all records and display to the user
+    // while($row = mysqli_fetch_array($result)){
+    //     $thisTitle = $row["arr_title"];
+    //     $thisId = $row["id"];
 
-    while($row = mysqli_fetch_array($result)){
-        $thisTitle = $row["arr_title"];
-        $thisId = $row["id"];
+    //     // from this data, create some links which shows the character names to the user
 
-        // from this data, create some links which shows the character names to the user
+    //     $editLinks .= "\n<a href=\"edit.php?id=$thisId\">$thisTitle</a><br>";
 
-        $editLinks .= "\n<a href=\"edit.php?id=$thisId\">$thisTitle</a><br>";
-
-        /* Query string syntax: pagename.php?var=value&var2=value2&var3=value3 */
+    //     /* Query string syntax: pagename.php?var=value&var2=value2&var3=value3 */
     
-    } // end of while
+    // } // end of while
+    // //==========================================
     
 
     /* Step 2: Prepop form fields with existing values for selected item */
@@ -173,6 +174,18 @@
                 <?php
                     if($valMessageMsg) { echo $msgPreError. $valMessageMsg. $msgPost; }
                 ?>
+
+                <!--Emoticon editor-->
+                <div>
+                    <a href="javascript:emoticon('->')"><img src="../emoticons/icon_arrow.gif"></a>
+                    <a href="javascript:emoticon(':D')"><img src="../emoticons/icon_biggrin.gif"></a>
+                    <a href="javascript:emoticon(':|')"><img src="../emoticons/icon_confused.gif"></a>
+                    <a href="javascript:emoticon('8)')"><img src="../emoticons/icon_cool.gif"></a>
+                    <a href="javascript:emoticon('=(')"><img src="../emoticons/icon_cry.gif"></a>
+                    <a href="javascript:emoticon(':(')"><img src="../emoticons/icon_sad.gif"></a>
+                    <a href="javascript:emoticon(':)')"><img src="../emoticons/icon_smile.gif"></a>
+                    <a href="javascript:emoticon(';-)')"><img src="../emoticons/icon_wink.gif"></a>
+                </div>
             </div>
             <!--end of Message-->
 
@@ -196,11 +209,18 @@
 
     <div class="col-sm-4">
 		<div class="alert alert-info">
-			<p><b>Lists of all the contacts:</b></p>
-			<?php
-				// temp location for our character select links. Might do this in a second column later
-				echo $editLinks;
-			?>
+            <p><b>Lists of all the contacts:</b></p>
+            <select name="entryselect" class="form-control" onchange="go()"> 
+                <option selected="selected">Select</option>
+                <?php  
+                    $result = mysqli_query($con, "SELECT * FROM arr_blog"); 
+                    while($row = mysqli_fetch_array($result)){
+                        $thisTitle = $row["arr_title"];
+                        $thisId = $row["id"];
+                        echo "<option value=\"edit.php?id=$thisId\">" .$thisTitle. "</option>";
+                    }
+                ?>        
+            </select>            
 		</div>
 	</div> <!-- END of col-sm-4 -->
 

@@ -51,6 +51,14 @@ include("mysql_connect.php");// here we include the connection script; since thi
   }
 </script>
 
+<script>
+  function go() {
+    box = document.getElementById('entryselect'); // gets form element by the id.
+    destination = box.options[box.selectedIndex].value;
+    if (destination) location.href = destination;
+  }
+</script>
+
 </head>
 
   <body>
