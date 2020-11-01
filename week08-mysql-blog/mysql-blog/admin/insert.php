@@ -17,17 +17,17 @@
 		$msgPost = "\n</div>";
 
 		//Title validation
-		if((strlen($title) < 1) || (strlen($title) > 20)) {
+		if((strlen($title) < 1) || (strlen($title) > 100)) {
 			$valid = 0;
-			$valTitleMsg = "\nPlease enter title from 1 to 20 characters";
+			$valTitleMsg = "\nPlease enter title from 1 to 100 characters";
 		}
 		//Title validation
 
 		//Message validation
 		if($message != "") {
-			if((strlen($message) < 3) || (strlen($message) > 100)) {
+			if((strlen($message) < 3) || (strlen($message) > 1000)) {
 				$valid = 0;
-				$valMessageMsg = "Message must be 3 to 100 characters";
+				$valMessageMsg = "Message must be 3 to 1000 characters";
 			}
 		}
 

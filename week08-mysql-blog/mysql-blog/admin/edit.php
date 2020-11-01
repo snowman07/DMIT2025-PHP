@@ -15,7 +15,7 @@
     // but, what happens if we  just come to edit and havent yet selected an item to edit? Lets have a default item that is chosen as soon as we load the page
 
     if(!isset($pageID)) {
-        $tmp = mysqli_query($con, "SELECT id FROM arr_blog LIMIT 0");
+        $tmp = mysqli_query($con, "SELECT id FROM arr_blog LIMIT 1");
         while($row = mysqli_fetch_array($tmp)){
 			$pageID = $row["id"];	// here is our default value
 		}
@@ -41,18 +41,18 @@
 		$msgPost = "\n</div>";
 
 		//Title validation
-		if((strlen($title) < 1) || (strlen($title) > 20)) {
+		if((strlen($title) < 1) || (strlen($title) > 100)) {
 			$valid = 0;
-			$valTitleMsg = "\nPlease enter title from 1 to 20 characters";
+			$valTitleMsg = "\nPlease enter title from 1 to 100 characters";
 		}
 		//END of Title validation
     
 
 		//Message validation
 		if($message != "") {
-			if((strlen($message) < 3) || (strlen($message) > 100)) {
+			if((strlen($message) < 3) || (strlen($message) > 1000)) {
 				$valid = 0;
-				$valMessageMsg = "Message must be 3 to 100 characters";
+				$valMessageMsg = "Message must be 3 to 1000 characters";
 			}
         }
 		// if((strlen($description) < 3) || (strlen($description) > 1000)) {
@@ -211,13 +211,13 @@
 		<div class="alert alert-info">
             <p><b>Lists of all the contacts:</b></p>
             <select name="entryselect" class="form-control" onchange="go()"> 
-                <option selected="selected">Select</option>
+                <!-- <option selected="selected">Select</option> -->
                 <?php  
                     $result = mysqli_query($con, "SELECT * FROM arr_blog"); 
                     while($row = mysqli_fetch_array($result)){
                         $thisTitle = $row["arr_title"];
                         $thisId = $row["id"];
-                        echo "<option value=\"edit.php?id=$thisId\">" .$thisTitle. "</option>";
+                        echo "<option value=\"edit.php?id=$thisId\" >" .$thisTitle. "</option>";
                     }
                 ?>        
             </select>            
