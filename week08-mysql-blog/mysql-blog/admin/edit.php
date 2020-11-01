@@ -140,18 +140,19 @@
     <div class="col-sm-5">
 		<div class="alert alert-info">
             <p><b>Select your blogs:</b></p>
-            <select name="entryselect" id="entryselect" class="form-control" onchange="go()"> 
+            <select name="entryselect" id="entryselect" class="form-control" onchange="go()"> <!-- id="entryselect"-->
                 <option value="">---Select here---</option> <!--selected="selected"-->
                 <?php  
                     $result = mysqli_query($con, "SELECT * FROM arr_blog ORDER BY id");// added ORDER BY id to sort option select in ASC
                     while($row = mysqli_fetch_array($result)){
                         $thisTitle = $row["arr_title"];
                         $thisId = $row["id"];
-                        //from this data, show the option of titles to user
-                        $titleQueryString = "edit.php?id=$thisId";
+                        // //from this data, show the option of titles to user
+                        // $titleQueryString = "edit.php?id=$thisId";
                         
-                        //echo "<option value=\"$titleOptionLink\">$thisTitle</option>";
-                        echo "\n<option value=\"$titleQueryString\">$thisTitle</option>";
+                        // //echo "<option value=\"$titleOptionLink\">$thisTitle</option>";
+                        // echo "\n<option value=\"$titleQueryString\">$thisTitle</option>";
+                       echo "\n<option value=\"edit.php?id={$thisId}\">$thisTitle</option>";
                     }
                 ?>        
             </select>            
@@ -167,7 +168,7 @@
                 */
             ?>
 
-            <form id="entryselect" name="myform" method="post" action="<?php echo htmlspecialchars($_SERVER['REQUEST_URI']); ?>"> <!--from PHP_SELF to REQUEST_URI-->
+            <form id="myform" name="myform" method="post" action="<?php echo htmlspecialchars($_SERVER['REQUEST_URI']); ?>"> <!--from PHP_SELF to REQUEST_URI-->
                 <!-- <div class="form-group">
                     <label for="alpha">Alpha:</label>
                     <input type="text" name="alpha" class="form-control">
