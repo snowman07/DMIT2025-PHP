@@ -15,7 +15,7 @@
     // but, what happens if we  just come to edit and havent yet selected an item to edit? Lets have a default item that is chosen as soon as we load the page
 
     if(!isset($pageID)) {
-        $tmp = mysqli_query($con, "SELECT id FROM arr_blog LIMIT 1 "); //LIMIT 1
+        $tmp = mysqli_query($con, "SELECT id FROM arr_blog LIMIT 0 "); //from LIMIT 1
         while($row = mysqli_fetch_array($tmp)){
 			$pageID = $row["id"];	// here is our default value
 		}
@@ -122,113 +122,114 @@
 </div>
 
 <div class="row"> 
-    <div class="col-sm-8">
 
-        <?php
-			/*
-			$_SERVER['REQUEST_URI'] will retain the necessary Query String (appended URL) info <-- use this for form updates
-			$_SERVER['PHP_SELF'] will NOT retain the necessary Query String (appended URL) info
-			*/
-		?>
-
-        <form id="myform" name="myform" method="post" action="<?php echo htmlspecialchars($_SERVER['REQUEST_URI']); ?>"> <!--from PHP_SELF to REQUEST_URI-->
-            <!-- <div class="form-group">
-                <label for="alpha">Alpha:</label>
-                <input type="text" name="alpha" class="form-control">
-            </div>
-            <div class="form-group">
-                <label for="beta">Beta:</label>
-                <textarea name="beta" class="form-control"></textarea>
-            </div>
-            <div class="form-group">
-                <label for="submit">&nbsp;</label>
-                <input type="submit" name="submit" class="btn btn-info" value="Submit">
-            </div> -->
-
-            <?php
-                if($msgSuccess) {
-                    echo $msgPreSuccess.$msgSuccess.$msgPost;
-                }
-            ?>
-
-            <!--start of Title-->
-            <div class="form-group">
-                <label for="title">Title:</label>
-                <input
-                    type="text"
-                    class="form-control"
-                    name="title"
-                    placeholder="Enter title name here"
-                    value="<?php echo $title; // prepopulate the value type text input?>"
-                >
-                <?php
-                    if($valTitleMsg) { echo $msgPreError. $valTitleMsg. $msgPost; } // this is validation
-                ?>
-            </div>
-            <!--end of Title-->
-
-            <!--start of Message-->
-            <div class="form-group">
-                <label for="message">Message:</label>
-                <textarea class="form-control" name="message" rows="3"><?php if($message) {echo $message;} ?></textarea>
-                <?php
-                    if($valMessageMsg) { echo $msgPreError. $valMessageMsg. $msgPost; }
-                ?>
-
-                <!--Emoticon editor-->
-                <div>
-                    <a href="javascript:emoticon('->')"><img src="../emoticons/icon_arrow.gif"></a>
-                    <a href="javascript:emoticon(':D')"><img src="../emoticons/icon_biggrin.gif"></a>
-                    <a href="javascript:emoticon(':|')"><img src="../emoticons/icon_confused.gif"></a>
-                    <a href="javascript:emoticon('8)')"><img src="../emoticons/icon_cool.gif"></a>
-                    <a href="javascript:emoticon('=(')"><img src="../emoticons/icon_cry.gif"></a>
-                    <a href="javascript:emoticon(':(')"><img src="../emoticons/icon_sad.gif"></a>
-                    <a href="javascript:emoticon(':)')"><img src="../emoticons/icon_smile.gif"></a>
-                    <a href="javascript:emoticon(';-)')"><img src="../emoticons/icon_wink.gif"></a>
-                </div>
-            </div>
-            <!--end of Message-->
-
-            <!-- Submit button -->
-            <button type="submit" name="mysubmit" class="btn btn-primary mb-2">
-                Submit
-            </button>
-            <!-- End of Submit button -->
-        </form>
-
-        <!--Here we will put our Delete links-->
-		<!-- <button type="submit" name="mysubmit" class="btn btn-primary mb-2">
-		Submit
-		</button> -->
-		<button class="btn btn-danger">
-			<a href="delete.php?id=<?php echo $pageID ?>" onclick="return confirm('Are you sure?')">Delete Character</a>
-			<!--onClick is an "inline JS confrim"-->
-		</button>
-
-    </div> <!-- END OF col-sm-8-->
-
-    <!--There's an echo $editLinks; here!!-->
-
-    <div class="col-sm-4">
+    <div class="col-sm-5">
 		<div class="alert alert-info">
-            <p><b>Lists of all the contacts:</b></p>
+            <p><b>Select your blogs:</b></p>
             <select name="entryselect" id="entryselect" class="form-control" onchange="go()"> 
-                <!-- <option selected="selected">Select</option> -->
+                <option value="">---Select here---</option> <!--selected="selected"-->
                 <?php  
-                    $result = mysqli_query($con, "SELECT * FROM arr_blog"); 
+                    $result = mysqli_query($con, "SELECT * FROM arr_blog ORDER BY id");// added ORDER BY id to sort option select in ASC
                     while($row = mysqli_fetch_array($result)){
                         $thisTitle = $row["arr_title"];
                         $thisId = $row["id"];
                         //from this data, show the option of titles to user
-                        //$titleOptionLink .= "\n<a href=\"edit.php?id=$thisId\">$thisTitle</a><br>";
+                        $titleQueryString = "edit.php?id=$thisId";
                         
                         //echo "<option value=\"$titleOptionLink\">$thisTitle</option>";
-                        echo "<option value=\"edit.php?id=$thisId\">$thisTitle</option>";
+                        echo "\n<option value=\"$titleQueryString\">$thisTitle</option>";
                     }
                 ?>        
             </select>            
 		</div>
 	</div> <!-- END of col-sm-4 -->
+
+    <div class="col-sm-7">
+        <div class="alert alert-info">
+            <?php
+                /*
+                $_SERVER['REQUEST_URI'] will retain the necessary Query String (appended URL) info <-- use this for form updates
+                $_SERVER['PHP_SELF'] will NOT retain the necessary Query String (appended URL) info
+                */
+            ?>
+
+            <form id="entryselect" name="myform" method="post" action="<?php echo htmlspecialchars($_SERVER['REQUEST_URI']); ?>"> <!--from PHP_SELF to REQUEST_URI-->
+                <!-- <div class="form-group">
+                    <label for="alpha">Alpha:</label>
+                    <input type="text" name="alpha" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="beta">Beta:</label>
+                    <textarea name="beta" class="form-control"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="submit">&nbsp;</label>
+                    <input type="submit" name="submit" class="btn btn-info" value="Submit">
+                </div> -->
+
+                <?php
+                    if($msgSuccess) {
+                        echo $msgPreSuccess.$msgSuccess.$msgPost;
+                    }
+                ?>
+
+                <!--start of Title-->
+                <div class="form-group">
+                    <label for="title">Title:</label>
+                    <input
+                        type="text"
+                        class="form-control"
+                        name="title"
+                        value="<?php echo $title; // prepopulate the value type text input?>"
+                    >
+                    <?php
+                        if($valTitleMsg) { echo $msgPreError. $valTitleMsg. $msgPost; } // this is validation
+                    ?>
+                </div>
+                <!--end of Title-->
+
+                <!--start of Message-->
+                <div class="form-group">
+                    <label for="message">Message:</label>
+                    <textarea class="form-control" name="message" rows="3"><?php if($message) {echo $message;} ?></textarea>
+                    <?php
+                        if($valMessageMsg) { echo $msgPreError. $valMessageMsg. $msgPost; }
+                    ?>
+
+                    <!--Emoticon editor-->
+                    <div>
+                        <a href="javascript:emoticon('->')"><img src="../emoticons/icon_arrow.gif"></a>
+                        <a href="javascript:emoticon(':D')"><img src="../emoticons/icon_biggrin.gif"></a>
+                        <a href="javascript:emoticon(':|')"><img src="../emoticons/icon_confused.gif"></a>
+                        <a href="javascript:emoticon('8)')"><img src="../emoticons/icon_cool.gif"></a>
+                        <a href="javascript:emoticon('=(')"><img src="../emoticons/icon_cry.gif"></a>
+                        <a href="javascript:emoticon(':(')"><img src="../emoticons/icon_sad.gif"></a>
+                        <a href="javascript:emoticon(':)')"><img src="../emoticons/icon_smile.gif"></a>
+                        <a href="javascript:emoticon(';-)')"><img src="../emoticons/icon_wink.gif"></a>
+                    </div>
+                </div>
+                <!--end of Message-->
+
+                <!-- Submit button -->
+                <button type="submit" name="mysubmit" class="btn btn-primary mb-2">
+                    Submit
+                </button>
+                <!-- End of Submit button -->
+            </form>
+
+            <!--Here we will put our Delete links-->
+            <!-- <button type="submit" name="mysubmit" class="btn btn-primary mb-2">
+            Submit
+            </button> -->
+            <button class="btn btn-danger">
+                <a href="delete.php?id=<?php echo $pageID ?>" onclick="return confirm('Are you sure?')">Delete Character</a>
+                <!--onClick is an "inline JS confrim"-->
+            </button>
+        </div>
+    </div> <!-- END OF col-sm-8-->
+
+    <!--There's an echo $editLinks; here!!-->
+
 
 
 </div> <!--END of class="row"-->
