@@ -15,7 +15,7 @@
     // but, what happens if we  just come to edit and havent yet selected an item to edit? Lets have a default item that is chosen as soon as we load the page
 
     if(!isset($pageID)) {
-        $tmp = mysqli_query($con, "SELECT id FROM arr_blog LIMIT 1");
+        $tmp = mysqli_query($con, "SELECT id FROM arr_blog LIMIT 1 "); //LIMIT 1
         while($row = mysqli_fetch_array($tmp)){
 			$pageID = $row["id"];	// here is our default value
 		}
@@ -207,17 +207,23 @@
 
     </div> <!-- END OF col-sm-8-->
 
+    <!--There's an echo $editLinks; here!!-->
+
     <div class="col-sm-4">
 		<div class="alert alert-info">
             <p><b>Lists of all the contacts:</b></p>
-            <select name="entryselect" class="form-control" onchange="go()"> 
+            <select name="entryselect" id="entryselect" class="form-control" onchange="go()"> 
                 <!-- <option selected="selected">Select</option> -->
                 <?php  
                     $result = mysqli_query($con, "SELECT * FROM arr_blog"); 
                     while($row = mysqli_fetch_array($result)){
                         $thisTitle = $row["arr_title"];
                         $thisId = $row["id"];
-                        echo "<option value=\"edit.php?id=$thisId\" >" .$thisTitle. "</option>";
+                        //from this data, show the option of titles to user
+                        //$titleOptionLink .= "\n<a href=\"edit.php?id=$thisId\">$thisTitle</a><br>";
+                        
+                        //echo "<option value=\"$titleOptionLink\">$thisTitle</option>";
+                        echo "<option value=\"edit.php?id=$thisId\">$thisTitle</option>";
                     }
                 ?>        
             </select>            

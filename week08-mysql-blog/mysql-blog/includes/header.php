@@ -49,6 +49,7 @@ include("mysql_connect.php");// here we include the connection script; since thi
       txtarea.focus();
     }
   }
+
 </script>
 
 <script>
