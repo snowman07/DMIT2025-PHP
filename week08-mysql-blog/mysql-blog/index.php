@@ -78,7 +78,7 @@
         echo "<b>". $row["arr_title"] ."</b>"; 
       ?>
       <?php     // nl2br: new line to break <br>
-        echo "<hr><b>". nl2br(makeClickableLinks(addEmoticons($row["arr_message"]))) ."</b>"; 
+        echo "<hr><br><b>". nl2br(makeClickableLinks(addEmoticons($row["arr_message"]))) ."</b>"; 
       ?><br>
       
     </p> <!--companyprofile.php?id= is a query string-->
