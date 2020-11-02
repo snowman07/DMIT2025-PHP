@@ -9,6 +9,13 @@
 
 <?php
 	// This will be completed in class.
+
+	include("watermark.php");
+
+	mergePix("../img/butterfly.jpg", "../img/watermark.jpg", "outputimage.jpg", 0, 50);
+
 ?>
+
+<img src="outputimage.jpg">
 </body>
 </html>
