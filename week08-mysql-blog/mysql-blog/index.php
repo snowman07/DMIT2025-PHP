@@ -75,10 +75,10 @@
     </p>
     <p class="lead">
       <?php 
-        echo "<b>". $row["arr_title"] ."</b><br>"; 
-      ?><br>
+        echo "<b>". $row["arr_title"] ."</b>"; 
+      ?>
       <?php     // nl2br: new line to break <br>
-        echo "<b>". nl2br(makeClickableLinks(addEmoticons($row["arr_message"]))) ."</b>"; 
+        echo "<hr><b>". nl2br(makeClickableLinks(addEmoticons($row["arr_message"]))) ."</b>"; 
       ?><br>
       
     </p> <!--companyprofile.php?id= is a query string-->
