@@ -11,7 +11,7 @@ To save to a file instead of outputting to the browser
 2. remove the header info because we are NOT outputting to the browser
 3. Remember: We will not see anything unless we code it.
 */
-imagejpeg($im, "testdir/test2.jpg");
+imagejpeg($im, "test.jpg");
 imagedestroy($im);
 
 ?>
