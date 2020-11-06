@@ -68,6 +68,8 @@
 
             // IF VALIDATION HAS PASSED, THEN DO THE UPLOAD
             if($valid == 1) {
+
+
                 //if(move_uploaded_file($_FILES["myfile"]["tmp_name"], "uploadedfiles/" . $_FILES["myfile"]["name"])) { //directory is added here
                 if(move_uploaded_file($_FILES["myfile"]["tmp_name"], $originalsFolder . $_FILES["myfile"]["name"])) { //directory is added here
                     // SUCCESS: File has been uploaded. Go ahead, and create thumbnail copies
@@ -82,10 +84,21 @@
 
 
                     /* Challenge: Lets put this into the DB table
-                    Title: VARCHAR ; $_POST["title"]
-                    Filename: (just the name, not the path): VARCHAR ; $_FILES["myfile"]["name"]
-                    
+                    Title: VARCHAR ; $_POST["title"];
+                    Filename: (just the name, not the path): VARCHAR ; $_FILES["myfile"]["name"];
                     */
+
+                    include("mysql_connect.php");
+
+                    $title = $_POST["title"];
+                    $filename = $_FILES["myfile"]["name"];
+
+                    // mysql INSERT
+                    mysqli_query($con, "INSERT INTO arr_uploads(arr_title, arr_filename) 
+                                        VALUES('$title', '$filename')") 
+                                        or die(mysqli_error($con));
+
+                    //$msgSuccess = "New blog inserted.";
                     
 
                     echo "Upload Successful";
