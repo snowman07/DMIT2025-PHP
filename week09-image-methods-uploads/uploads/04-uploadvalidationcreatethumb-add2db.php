@@ -50,9 +50,9 @@
             }
 
             //image size
-            if($_FILES["myfile"]["size"]/1024/1024 > 3) { //change the 8
+            if($_FILES["myfile"]["size"]/1024/1024 > 8) { //change the 8
                 $valid = 0;
-                $valMessage = "File too large. Please upload an image smaller than 3 MB";
+                $valMessage = "File too large. Please upload an image smaller than 8 MB";
             }
 
 
