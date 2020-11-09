@@ -36,28 +36,6 @@ include("mysql_connect.php");// here we include the connection script; since thi
 <!-- Themes from https://bootswatch.com/ : Use the Themes dropdown to select a theme you like; copy/paste the bootstrap.css. Here, we have named the downloaded theme as a new file and can overwrite the default.  -->
 <link href="<?php echo BASE_URL ?>css/bootstrap-cerulean.css" rel="stylesheet">
 
-<script type="text/javascript">
-  function emoticon(text) {
-    var txtarea = document.myform.message; // must change these var txtarea = document.name_of_form.name_of_textarea; // must change these
-    text = ' ' + text + ' ';
-    if (txtarea.createTextRange && txtarea.caretPos) {
-      var caretPos = txtarea.caretPos;
-      caretPos.text = caretPos.text.charAt(caretPos.text.length - 1) == ' ' ? text + ' ' : text;
-      txtarea.focus();
-    } else {
-      txtarea.value += text;
-      txtarea.focus();
-    }
-  }
-
-  function go() {
-    box = document.getElementById('entryselect'); // gets form element by the id.
-    destination = box.options[box.selectedIndex].value;
-    if (destination) location.href = destination;
-  }
-
-</script>
-
 <!-- <script>
   function go() {
     box = document.getElementById('entryselect'); // gets form element by the id.
@@ -69,8 +47,6 @@ include("mysql_connect.php");// here we include the connection script; since thi
 </head>
 
   <body>
-
-    
     <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4 fixed-top">
       <a class="navbar-brand" href="<?php echo BASE_URL ?>index.php"><i class="material-icons" style="font-size:36px">home</i></a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
@@ -86,7 +62,7 @@ include("mysql_connect.php");// here we include the connection script; since thi
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
             <div class="dropdown-menu" aria-labelledby="dropdown01">
-              <a class="dropdown-item" href="<?php echo BASE_URL ?>admin/insert.php">Insert</a>
+              <a class="dropdown-item" href="<?php echo BASE_URL ?>admin/insertupload.php">Insert</a>
               <a class="dropdown-item" href="<?php echo BASE_URL ?>admin/edit.php">Edit</a>
               <!-- <a class="dropdown-item" href="<?php echo BASE_URL ?>#">Link</a> -->
             </div>

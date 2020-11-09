@@ -1,6 +1,5 @@
 <?php
   include ("includes/header.php");
-  include ("includes/_functions.php");
 
   // Pagination 1/3   // One goes BEFORE your main query and is used to create a variable called $limstring
   $getcount = mysqli_query ($con,"SELECT COUNT(*) FROM arr_blog");
