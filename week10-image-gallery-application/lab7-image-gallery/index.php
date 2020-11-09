@@ -40,14 +40,32 @@
 
 <div class="jumbotron clearfix">
   <h1><?php echo APP_NAME ?></h1>
-  <p class="lead">This is an online Blog application utilizing a MySQL database for storage. New features & concepts: <br>
-    <ul class="lead">
-      <li>Pagination using MySQL</li>
-      <li>Emoticons using str_replace() and an emoticon editor using Javascript</li>
-      <li>Autolink URLs</li>
-      <li>MySQL Timestamp and formatting</li>
-    </ul>
+  <p class="lead">This is a web application based on the topic of <i>Image Methods and Uploads</i>  <br>
+    <ol class="lead">
+      <p><b>PHP Image Methods</b></p>
+      <li>Create the image object</li>
+      <li>Image processing</li>
+      <li>Define header info if outputting to browser</li>
+      <li>Output image to either the browser or a file</li>
+      <li>Destroy the image object</li>
+    </ol>
   </p>
+  <ul class="lead">
+      <p><b>PHP Uploads</b></p>
+      <li>Necessary form attribute: enctype="multipart/form-data"</li>
+      <li>$_FILES array elements</li>
+      <ul> 
+        <li>type</li>
+        <li>name</li>
+        <li>size</li>
+        <li>tmp_name</li>
+        <li>error</li>
+      </ul>
+      <li>move_uploaded_file method</li>
+      <li>Upload with validation</li>
+      <li>Resizing uploaded image to create thumbnail images</li>
+      <li>Adding uploaded image information to database</li>
+    </ul>
   <!-- <a class="btn btn-primary float-right" href="#" role="button">Button</a> -->
 </div>
 
