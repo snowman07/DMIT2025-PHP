@@ -1,3 +1,4 @@
+<!--THIS CODE IS SIMILAR TO >>week09 >>04--uploadvalidationcreatethumb-add2db.php -->
 <!-- this is a secured page -->
 <?php
     // session_start();
