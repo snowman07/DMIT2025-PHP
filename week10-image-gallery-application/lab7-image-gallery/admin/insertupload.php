@@ -16,37 +16,15 @@
 
 <?php
     include("../includes/header.php");
-?>
-
-<div class="jumbotron clearfix">
-  <h1>Insert Image</h1>
-  <p class="lead">
-    You can insert image here.
-  </p>
-  <a class="btn btn-primary float-right" href="logout.php" role="button">Logout</a>
-</div>
-
-
-
-
-<!--To use file uploads, we MUST include the enctype attribute in the form tag
-enctype="multipart/form-data"
--->
-<form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" enctype="multipart/form-data">
-    Title: <input type="text" name="title"><br>
-    Description: <input type="text" name="description">
-    File: <input type="file"  name="myfile"><br>
-    <input type="submit" name="mysubmit">
-</form>
-
-<?php
 
     //Lets set some vars for the folders
     $originalsFolder = "../uploads/originals/"; ////////// PATH MODIFICATION
     $thumbsFolder = "../uploads/thumbs/"; ////////// PATH MODIFICATION
     $displayFolder = "../uploads/display/"; ////////// PATH MODIFICATION
 
-
+    $title = $_POST["title"];
+    $description = $_POST["description"];
+    $filename = $_FILES["myfile"]["name"];
 
     if(isset($_POST["mysubmit"])) {
         /* Lets take a look at the $_FILES array. All the info about this file is in that  
@@ -66,6 +44,26 @@ enctype="multipart/form-data"
 
         // VALIDATION
         $valid = 1; // assumes validation has passed. Any validator can override this and set to 0
+            // vars here for bootstrap design
+        $msgPreError = "\n<div class=\"alert alert-danger\" role=\"alert\">";
+        $msgPreSuccess = "\n<div class=\"alert alert-primary\" role=\"alert\">";
+        $msgPost = "\n</div>";
+
+        //Title validation
+		if((strlen($title) < 1) || (strlen($title) > 100)) {
+			$valid = 0;
+			$valTitleMsg = "\nPlease enter title from 1 to 100 characters";
+		}
+        //end of Title validation
+        
+        //Description validation
+        if($description != "") {
+			if((strlen($description) < 3) || (strlen($description) > 1000)) {
+				$valid = 0;
+				$valDescriptionMsg = "Message must be 3 to 1000 characters";
+			}
+		}
+        //end of Description validation
 
         //image type
         if($_FILES["myfile"]["type"] != "image/jpeg") {
@@ -77,6 +75,12 @@ enctype="multipart/form-data"
         if($_FILES["myfile"]["size"]/1024/1024 > 8) { //change the 8
             $valid = 0;
             $valMessage = "File too large. Please upload an image smaller than 8 MB";
+        }
+
+        //image blank
+        if($filename == "") {
+            $valid = 0;
+            $valMessage = "You've not chosen a file.";
         }
 
 
@@ -112,21 +116,19 @@ enctype="multipart/form-data"
                 Filename: (just the name, not the path): VARCHAR ; $_FILES["myfile"]["name"];
                 */
 
-                include("../includes/mysql_connect.php"); ////////// PATH MODIFICATION
+                //include("../includes/mysql_connect.php"); ////////// PATH MODIFICATION
 
-                $title = $_POST["title"];
-                $description = $_POST["description"];
-                $filename = $_FILES["myfile"]["name"];
+                // $title = $_POST["title"];
+                // $description = $_POST["description"];
+                // $filename = $_FILES["myfile"]["name"];
 
                 // mysql INSERT
                 mysqli_query($con, "INSERT INTO arr_lab7_image_gallery(arr_title, arr_description, arr_filename) 
                                     VALUES('$title', '$description', '$filename')") 
                                     or die(mysqli_error($con));
 
-                //$msgSuccess = "New blog inserted.";
-                
-
-                echo "Upload Successful";
+                $msgSuccess = "Upload successful.";
+                //echo "Upload Successful";
             } else {
                 echo "ERROR";
             }
@@ -135,10 +137,7 @@ enctype="multipart/form-data"
         // PLEASE MAKE SURE YOU CHECK FILEZILLA(and refresh the view) TO SEE IF THE FILES ARE THERE!!!!!!
     }
 
-    if($valMessage) {
-        echo "<h3>$valMessage</h3>";
-    }
-
+    
     // function to resize the image; make smaller copy
 
     function createThumbnail($file, $folder, $newwidth) {
@@ -163,6 +162,76 @@ enctype="multipart/form-data"
 
         imagedestroy($thumb);
         imagedestroy($source);
-    }
-        
+    }      
 ?>  
+
+<div class="jumbotron clearfix">
+  <h1>Insert Image</h1>
+  <p class="lead">
+    You can insert image here.
+  </p>
+  <a class="btn btn-primary float-right" href="logout.php" role="button">Logout</a>
+</div>
+
+<!--To use file uploads, we MUST include the enctype attribute in the form tag
+enctype="multipart/form-data"
+-->
+<form id="myform" name="myform" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" enctype="multipart/form-data"> 
+    
+    <?php
+        if($msgSuccess) {
+            echo $msgPreSuccess.$msgSuccess.$msgPost;
+        }
+    ?>
+
+    <!-- Title: <input type="text" name="title"><br>
+    Description: <input type="text" name="description"> -->
+
+    <!--start of Title-->
+    <div class="form-group">
+        <label for="title">Title</label>
+        <input 
+            type="text"
+            class="form-control"
+            name="title"
+            placeholder="Enter title here"
+			value="<?php echo $title; // prepopulate the value type text input?>"
+        >
+        <?php
+			if($valTitleMsg) { echo $msgPreError. $valTitleMsg. $msgPost; } // this is validation
+		?>
+    </div>
+    <!--end of Title-->
+
+    <!--start of Description-->
+    <div class="form-group">
+        <label for="description">Description</label>
+        <textarea class="form-control" name="description" rows="10"><?php if($description) {echo $description;} ?></textarea>
+        <?php
+            if($valDescriptionMsg) { echo $msgPreError. $valDescriptionMsg. $msgPost; }
+        ?>
+    </div>
+    <!--end of Description-->
+
+    <!--start of File-->
+    <div class="form-group">
+        <input 
+            type="file"  
+            name="myfile"
+        ><br>
+        <?php
+            if($valMessage) { echo $msgPreError. $valMessage. $msgPost; } // this is validation
+        ?>
+    </div>
+    <!--end of File-->
+
+    <!--Submit button-->
+    <button type="submit" name="mysubmit" class="btn btn-primary mb-2">
+        Submit
+    </button>
+    <!--end of Submit button-->
+</form>
+
+<?php
+    include("../includes/footer.php");
+?>
