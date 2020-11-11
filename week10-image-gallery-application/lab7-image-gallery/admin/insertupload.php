@@ -1,17 +1,17 @@
 <!--THIS CODE IS SIMILAR TO >>week09 >>04--uploadvalidationcreatethumb-add2db.php -->
 <!-- this is a secured page -->
 <?php
-    // session_start();
-    // //echo session_id();
+    session_start();
+    //echo session_id();
 
-    // //if(!isset($_SESSION['aasdffrtgfb'])) {        //<-- from here     isset means something is set
-    // if(isset($_SESSION['aasdffrtgfbqw'])) {                //<-- to here
-    //     //header("Location: login.php");
-    //     //echo "Logged in";
-    // } else {
-    //     //echo "NOT logged in";
-    //     header("Location: login.php");
-    // }
+    //if(!isset($_SESSION['aasdffrtgfb'])) {        //<-- from here     isset means something is set
+    if(isset($_SESSION['aasdffrtgfbqw'])) {                //<-- to here
+        //header("Location: login.php");
+        //echo "Logged in";
+    } else {
+        //echo "NOT logged in";
+        header("Location: login.php");
+    }
 ?>
 
 <?php
