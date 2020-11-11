@@ -34,16 +34,17 @@ enctype="multipart/form-data"
 -->
 <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" enctype="multipart/form-data">
     Title: <input type="text" name="title"><br>
-    FIle: <input type="file"  name="myfile"><br>
+    Description: <input type="text" name="description">
+    File: <input type="file"  name="myfile"><br>
     <input type="submit" name="mysubmit">
 </form>
 
 <?php
 
     //Lets set some vars for the folders
-    $originalsFolder = "originals/";
-    $thumbsFolder = "thumbs/";
-    $displayFolder = "display/";
+    $originalsFolder = "../uploads/originals/"; ////////// PATH MODIFICATION
+    $thumbsFolder = "../uploads/thumbs/"; ////////// PATH MODIFICATION
+    $displayFolder = "../uploads/display/"; ////////// PATH MODIFICATION
 
 
 
@@ -111,14 +112,15 @@ enctype="multipart/form-data"
                 Filename: (just the name, not the path): VARCHAR ; $_FILES["myfile"]["name"];
                 */
 
-                include("mysql_connect.php");
+                include("../includes/mysql_connect.php"); ////////// PATH MODIFICATION
 
                 $title = $_POST["title"];
+                $description = $_POST["description"];
                 $filename = $_FILES["myfile"]["name"];
 
                 // mysql INSERT
-                mysqli_query($con, "INSERT INTO arr_uploads(arr_title, arr_filename) 
-                                    VALUES('$title', '$filename')") 
+                mysqli_query($con, "INSERT INTO arr_lab7_image_gallery(arr_title, arr_description, arr_filename) 
+                                    VALUES('$title', '$description', '$filename')") 
                                     or die(mysqli_error($con));
 
                 //$msgSuccess = "New blog inserted.";
