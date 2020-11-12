@@ -38,6 +38,7 @@
 ?>
 <?php while($row = mysqli_fetch_array($result)): ?>
   <div style="width:300px; float:left; margin:10px">
+  <!--<div style="display:flex; flex-flow:column wrap; justify-content:space-between;">-->
     <img src="uploads/thumbs/<?php echo $row["arr_filename"]; ?>" >   <!--need to modify the src-->
   </div>
 <?php endwhile; ?>
