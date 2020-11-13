@@ -142,6 +142,13 @@
             <p><b>Select your blogs:</b></p>
             <select name="entryselect" id="entryselect" class="form-control" onchange="go()"> <!-- id="entryselect"-->
                 <option value="">---Select here---</option> <!--selected="selected"-->
+                <!--figure out how to prepopulate the select option-->
+                <!--
+                    <option value="<?php echo $thisTitle?>"<?php if(isset($thisTitle) && ($thisTitle == $thisId)) {echo "selected";} ?>></option>
+                -->
+                <!--
+                <option value="<?php echo $thisTitle?>"<?php if(isset($thisTitle)) {echo "selected";} ?>></option>
+                -->
                 <?php  
                     $result = mysqli_query($con, "SELECT * FROM arr_blog ORDER BY id");// added ORDER BY id to sort option select in ASC
                     while($row = mysqli_fetch_array($result)){
@@ -152,7 +159,7 @@
                         
                         // //echo "<option value=\"$titleOptionLink\">$thisTitle</option>";
                         // echo "\n<option value=\"$titleQueryString\">$thisTitle</option>";
-                       echo "\n<option value=\"edit.php?id=$thisId\">  $thisTitle</option>";
+                       echo "\n<option value=\"edit.php?id=$thisId\">$thisTitle</option>";
                     }
                 ?>        
             </select>            
