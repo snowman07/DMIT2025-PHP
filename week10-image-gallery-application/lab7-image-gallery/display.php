@@ -29,7 +29,7 @@
         <p><b>Description: </b><?php echo $row["arr_description"]; ?></p>
     <?php endif; ?>
     <?php if($row["arr_filename"]): ?>
-        <img src="uploads/thumbs/<?php echo $row["arr_filename"]; ?>" >
+        <img src="uploads/display/<?php echo $row["arr_filename"]; ?>" >
     <?php endif; ?>
 
 
