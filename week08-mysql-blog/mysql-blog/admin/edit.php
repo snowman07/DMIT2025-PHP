@@ -152,7 +152,7 @@
                         
                         // //echo "<option value=\"$titleOptionLink\">$thisTitle</option>";
                         // echo "\n<option value=\"$titleQueryString\">$thisTitle</option>";
-                       echo "\n<option value=\"edit.php?id={$thisId}\" <?php if(($thisTitle) && ($thisTitle == $thisId)) {echo \"selected\";} ?> $thisTitle</option>";
+                       echo "\n<option value=\"edit.php?id=$thisId\">  $thisTitle</option>";
                     }
                 ?>        
             </select>            
