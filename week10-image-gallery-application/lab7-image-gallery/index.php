@@ -33,15 +33,22 @@
   <!-- <a class="btn btn-primary float-right" href="#" role="button">Button</a> -->
 </div>
 
+<!--This is for the Thumbnail View-->
 <?php
   $result = mysqli_query($con, "SELECT * FROM arr_lab7_image_gallery");
 ?>
-<?php while($row = mysqli_fetch_array($result)): ?>
+<?php while($row = mysqli_fetch_array($result)): ?> <!-- ternary operator with a colon ":" -->
   <div style="width:300px; float:left; margin:10px">
   <!--<div style="display:flex; flex-flow:column wrap; justify-content:space-between;">-->
-    <img src="uploads/thumbs/<?php echo $row["arr_filename"]; ?>" >   <!--need to modify the src-->
+    <a href="display.php?id=<?php echo $row['id'] ?> ">
+      <img src="uploads/thumbs/<?php echo $row["arr_filename"]; ?>" >   <!--need to modify the src-->
+    </a>
+    <?php
+      echo "<center>" .$row["arr_title"] ."</center>";
+    ?>
   </div>
 <?php endwhile; ?>
+<!--END OF This is for the Thumbnail View-->
 
 <?php
   include ("includes/footer.php");
