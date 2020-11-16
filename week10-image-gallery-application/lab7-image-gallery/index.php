@@ -38,10 +38,21 @@
   $result = mysqli_query($con, "SELECT * FROM arr_lab7_image_gallery");
 ?>
 <?php while($row = mysqli_fetch_array($result)): ?> <!-- ternary operator with a colon ":" -->
-  <div style="width:300px; float:left; margin:10px">
+  <div style="float: left;
+              width: 350px;
+              height: 300px;
+              border: 1px solid #ccc;
+              margin: 10px;
+              padding:3px;
+              ">
   <!--<div style="display:flex; flex-flow:column wrap; justify-content:space-between;">-->
     <a href="display.php?id=<?php echo $row['id'] ?> ">
-      <img src="uploads/thumbs/<?php echo $row["arr_filename"]; ?>" >   <!--need to modify the src-->
+      <img src="uploads/thumbs/<?php echo $row["arr_filename"]; ?>" 
+        style="display: block;
+              margin-left: auto;
+              margin-right: auto;
+              width: 100%;"
+      >   <!--need to modify the src-->
     </a>
     <?php
       echo "<center>" .$row["arr_title"] ."</center>";
@@ -49,49 +60,6 @@
   </div>
 <?php endwhile; ?>
 <!--END OF This is for the Thumbnail View-->
-
-
-
-
-<?php
-  $filename = $row["arr_filename"];
-
-  function correctImageOrientation($filename) {
-    if (function_exists('exif_read_data')) {
-      $exif = exif_read_data($filename);
-      if($exif && isset($exif['Orientation'])) {
-        $orientation = $exif['Orientation'];
-        if($orientation != 1){
-          $img = imagecreatefromjpeg($filename);
-          $deg = 0;
-          switch ($orientation) {
-            case 3:
-              $deg = 180;
-              break;
-            case 6:
-              $deg = 270;
-              break;
-            case 8:
-              $deg = 90;
-              break;
-          }
-          if ($deg) {
-            $img = imagerotate($img, $deg, 0);        
-          }
-          // then rewrite the rotated image back to the disk as $filename 
-          imagejpeg($img, $filename, 95);
-        } // if there is some rotation necessary
-      } // if have the exif orientation info
-    } // if function exists      
-  }
-
-  move_uploaded_file($uploadedFile, $destinationFilename);
-  correctImageOrientation($destinationFilename);
-
-?>
-
-
-
 
 <?php
   include ("includes/footer.php");

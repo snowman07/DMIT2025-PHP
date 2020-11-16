@@ -22,9 +22,10 @@
     $thumbsFolder = "../uploads/thumbs/"; ////////// PATH MODIFICATION
     $displayFolder = "../uploads/display/"; ////////// PATH MODIFICATION
 
-    $title = $_POST["title"];
-    $description = $_POST["description"];
+    $title = trim($_POST["title"]);
+    $description = trim($_POST["description"]);
     $filename = $_FILES["myfile"]["name"];
+    $imageFileType = strtolower(pathinfo($filename, PATHINFO_EXTENSION));//Enable PNG uploads as well as JPG
 
     if(isset($_POST["mysubmit"])) {
         /* Lets take a look at the $_FILES array. All the info about this file is in that  
@@ -49,6 +50,9 @@
         $msgPreSuccess = "\n<div class=\"alert alert-primary\" role=\"alert\">";
         $msgPost = "\n</div>";
 
+        //Enable PNG uploads as well as JPG
+        $allowed_extensions = array("image/png", "image/jpeg");
+
         //Title validation
 		if((strlen($title) < 1) || (strlen($title) > 100)) {
 			$valid = 0;
@@ -65,11 +69,19 @@
 		}
         //end of Description validation
 
-        //image type
-        if($_FILES["myfile"]["type"] != "image/jpeg") {
+        //PNG and JPEG uploads VALIDATION
+        if ($imageFileType != "png" && $imageFileType != "jpg" && $imageFileType != "jpeg") {
             $valid = 0;
-            $valMessage = "Wrong FileType: That is NOT a JPEG image.";
+            $validMessage = "Wrong FileType: Only JPEG, JPG and PNG allowed";
         }
+
+        //END of PNG and JPEG uploads VALIDATION
+
+        // //image type
+        // if($_FILES["myfile"]["type"] != "image/jpeg") {
+        //     $valid = 0;
+        //     $valMessage = "Wrong FileType: That is NOT a JPEG image.";
+        // }
 
         //image size
         if($_FILES["myfile"]["size"]/1024/1024 > 8) { //change the 8
@@ -96,7 +108,9 @@
 
         // IF VALIDATION HAS PASSED, THEN DO THE UPLOAD
         if($valid == 1) {
-
+            
+            $temp = explode(".", $_FILES["file"]["name"]);
+		    $renameFile = uniqid() . '.' . end($temp);
 
             //if(move_uploaded_file($_FILES["myfile"]["tmp_name"], "uploadedfiles/" . $_FILES["myfile"]["name"])) { //directory is added here
             if(move_uploaded_file($_FILES["myfile"]["tmp_name"], $originalsFolder . $_FILES["myfile"]["name"])) { //directory is added here
@@ -104,31 +118,42 @@
                 
                 $thisFile = $originalsFolder . $_FILES["myfile"]["name"];
 
-                //createThumbnail($file, $folder, $newwidth) ---> params mean (source, destination, width)
-                createThumbnail($thisFile, $thumbsFolder, 300);
 
-                createThumbnail($thisFile, $displayFolder, 800);
+                if ($imageFileType == "jpg" || $imageFileType == "jpeg"){
+                    //createThumbnailJPEG($file, $folder, $newwidth) ---> params mean (source, destination, width)
+                    createThumbnailJPEG($thisFile, $thumbsFolder, 300, $orientation);
+                    createThumbnailJPEG($thisFile, $displayFolder, 800, $orientation);
+                    /* Challenge: Lets put this into the DB table
+                    Title: VARCHAR ; $_POST["title"];
+                    Filename: (just the name, not the path): VARCHAR ; $_FILES["myfile"]["name"];
+                    */
 
+                    //include("../includes/mysql_connect.php"); ////////// PATH MODIFICATION
 
+                    // $title = $_POST["title"];
+                    // $description = $_POST["description"];
+                    // $filename = $_FILES["myfile"]["name"];
 
-                /* Challenge: Lets put this into the DB table
-                Title: VARCHAR ; $_POST["title"];
-                Filename: (just the name, not the path): VARCHAR ; $_FILES["myfile"]["name"];
-                */
+                    // mysql INSERT
+                    mysqli_query($con, "INSERT INTO arr_lab7_image_gallery(arr_title, arr_description, arr_filename) 
+                                        VALUES('$title', '$description', '$filename')") 
+                                        or die(mysqli_error($con));
 
-                //include("../includes/mysql_connect.php"); ////////// PATH MODIFICATION
+                    $msgSuccess = "Upload successful.";
+                    //echo "Upload Successful";
+                } else if ($imageFileType == "png") {
+                    createThumbnailPNG($thisFile, $thumbsFolder, 300, $orientation);
+                    createThumbnailPNG($thisFile, $displayFolder, 800, $orientation);
 
-                // $title = $_POST["title"];
-                // $description = $_POST["description"];
-                // $filename = $_FILES["myfile"]["name"];
+                    // mysql INSERT
+                    mysqli_query($con, "INSERT INTO arr_lab7_image_gallery(arr_title, arr_description, arr_filename) 
+                                        VALUES('$title', '$description', '$filename')") 
+                                        or die(mysqli_error($con));
 
-                // mysql INSERT
-                mysqli_query($con, "INSERT INTO arr_lab7_image_gallery(arr_title, arr_description, arr_filename) 
-                                    VALUES('$title', '$description', '$filename')") 
-                                    or die(mysqli_error($con));
-
-                $msgSuccess = "Upload successful.";
-                //echo "Upload Successful";
+                    $msgSuccess = "Upload successful.";
+                    //echo "Upload Successful";
+                }
+                
             } else {
                 echo "ERROR";
             }
@@ -140,9 +165,10 @@
     
     // function to resize the image; make smaller copy
 
-    function createThumbnail($file, $folder, $newwidth) {
+    function createThumbnailJPEG($file, $folder, $newwidth, $orientation) {
 
         list($width, $height) = getimagesize($file);
+
         $imgRatio = $width/$height;
 
         $newheight= $newwidth/$imgRatio;
@@ -152,17 +178,68 @@
         $thumb = imagecreatetruecolor($newwidth, $newheight);
         $source = imagecreatefromjpeg($file);
 
+        // (dst_image, src_image, dst_x, dst_y, src_x, src_y, dst_w, dst_h, src_w, src_h)
+        imagecopyresampled($thumb, $source, 0, 0, 0, 0, $newwidth, $newheight, $width, $height);
+
         //resize
         // IN ORIGINALS FOLDER is the ACTUAL SIZE. IN THUMBS FOLDER is the RESIZED IMAGE 
         $newFilename = basename($file); // strip path from original filename
 
-        // (dst_image, src_image, dst_x, dst_y, src_x, src_y, dst_w, dst_h, src_w, src_h)
-        imagecopyresampled($thumb, $source, 0, 0, 0, 0, $newwidth, $newheight, $width, $height);
-        imagejpeg($thumb, $folder . $newFilename, 80);
+        // for images from phone
+        switch($orientation) {
+            case 8:
+                $thumb = imagerotate($thumb, 90, 0);
+                break;
+            case 3:
+                $thumb = imagerotate($thumb, 180, 0);
+                break;
+            case 6: 
+                $thumb = imagerotate($thumb, -90, 0);
+                break;
+        }
 
+        imagejpeg($thumb, $folder . $newFilename, 80);
         imagedestroy($thumb);
         imagedestroy($source);
-    }      
+    }   
+    
+    function createThumbnailPNG($file, $folder, $newwidth, $orientation) {
+
+        list($width, $height) = getimagesize($file);
+
+        $imgRatio = $width/$height;
+
+        $newheight= $newwidth/$imgRatio;
+
+        //echo "$newwidth | $newheight";
+
+        $thumb = imagecreatetruecolor($newwidth, $newheight);
+        $source = imagecreatefrompng($file);
+
+        // (dst_image, src_image, dst_x, dst_y, src_x, src_y, dst_w, dst_h, src_w, src_h)
+        imagecopyresampled($thumb, $source, 0, 0, 0, 0, $newwidth, $newheight, $width, $height);
+
+        //resize
+        // IN ORIGINALS FOLDER is the ACTUAL SIZE. IN THUMBS FOLDER is the RESIZED IMAGE 
+        $newFilename = basename($file); // strip path from original filename
+        
+        // for images from phone
+        switch($orientation) {
+            case 8:
+                $thumb = imagerotate($thumb, 90, 0);
+                break;
+            case 3:
+                $thumb = imagerotate($thumb, 180, 0);
+                break;
+            case 6: 
+                $thumb = imagerotate($thumb, -90, 0);
+                break;
+        }
+        imagepng($thumb, $folder . $newFilename, 2);
+        imagedestroy($thumb);
+        imagedestroy($source);
+    } 
+
 ?>  
 
 <div class="jumbotron clearfix">
