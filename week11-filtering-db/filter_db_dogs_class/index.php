@@ -53,12 +53,14 @@ if($displayby && $displayvalue){
 /*************************************************
 Step 3) If you understand how we did Step 2 with two query string variables, then create your own logical if/then statement here and three query string variables for "intelligence". One way would be to pass 'displayby=intelligence' as one var, then '&min=1&max=4' as 2 more. If this is the case, then have a special BETWEEN query here that overwrites the previous and let's us filter a range.
 ***************************************************/
-// $var1 = $_GET['var1'];
-// $var2 = $_GET['var2'];
-// $var3 = $_GET['var3'];
-// if(){
-	// $sql = "SELECT * FROM dogs WHERE...";
-// }
+//$var1 = $_GET['intelligence'];
+
+
+$min = $_GET['min'];
+$max = $_GET['max'];
+if($displayby == "intelligence"){
+	$sql = "SELECT * FROM dogs WHERE intelligence BETWEEN '$min' AND '$max'";
+}
 
 $result = mysqli_query($con,$sql); //OK. Let's run whatever query we have set above.
 echo "<h3>". $sql ."</h3>";// As well, let's see the actual query over the results (for our learning purposes only...NOT for the final product).

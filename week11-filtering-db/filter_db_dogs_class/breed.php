@@ -30,15 +30,15 @@ while ($row = mysqli_fetch_array( $result )){
 		echo "<img src=\"images/display_400x300/$image_file\" /><br />";
   
 	 
-	  echo "<b>Size:</b> ". $row['size']. "<br />";
-	  echo "<b>Good with Children:</b> ". $row['children']. "<br />";
-	  echo "<b>Intelligence:</b> ". $row['intelligence']. "/10<br />";
-	  $description = "Here we might get the description or more info from the DB and write it because we are only showing one item only instead of listing many.";
-	  echo $description;
-	  $returnToLastQuery = "<p><b><a href=\"". $_SERVER['HTTP_REFERER']. "\">Back</a></b></p>";
-	  echo $returnToLastQuery;
-	  // IF A USER DECIDES TO VIEW THIS ONE ITEM IN FULL DETAIL, PERHAPS WE COULD CONSIDER THIS AS "POPULAR" AND START RECORDING "HITS"
-	 // mysql_query ("UPDATE dogs SET popularity = popularity +1 WHERE pooch_id = '$pooch_id'") or die (mysql_error());
+		echo "<b>Size:</b> ". $row['size']. "<br />";
+		echo "<b>Good with Children:</b> ". $row['children']. "<br />";
+		echo "<b>Intelligence:</b> ". $row['intelligence']. "/10<br />";
+		$description = "Here we might get the description or more info from the DB and write it because we are only showing one item only instead of listing many.";
+		echo $description;
+		$returnToLastQuery = "<p><b><a href=\"". $_SERVER['HTTP_REFERER']. "\">Back</a></b></p>";
+		echo $returnToLastQuery;
+		// IF A USER DECIDES TO VIEW THIS ONE ITEM IN FULL DETAIL, PERHAPS WE COULD CONSIDER THIS AS "POPULAR" AND START RECORDING "HITS"
+		mysqli_query ($con, "UPDATE dogs SET popularity = popularity +1 WHERE pooch_id = '$pooch_id'") or die (mysql_error($con));
 
 
 }

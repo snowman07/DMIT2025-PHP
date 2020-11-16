@@ -93,12 +93,24 @@ h3{
 	<a href="index.php">ALL Dogs </a><br />
 
 	<h3>Filter by a Column = Value</h3>
+
+	<!--this is a querystring. displayby is the header in DB, displayvalue is the value in DB-->
+	<a href="index.php?displayby=size&displayvalue=large">Large Dogs </a><br />
+	<a href="index.php?displayby=size&displayvalue=medium">Medium Dogs </a><br />
+	<a href="index.php?displayby=size&displayvalue=small">Small Dogs </a><br />
+
+	<a href="index.php?displayby=lowshedding&displayvalue=YES">Low Shedding</a><br />
+	<a href="index.php?displayby=guard&displayvalue=1">Good Guard Dogs</a><br />
 	
 	<h3>Filter by an ID=Value, so 1 result Only</h3>
 	
 
 	<h3>Filter using BETWEEN: </h3>
 	<p>This would be great for price ranges</p>
+
+	<a href="index.php?displayby=intelligence&min=7&max=10">Smart Dogs</a><br />
+	<a href="index.php?displayby=intelligence&min=4&max=6">Medium Smart Dogs</a><br />
+	<a href="index.php?displayby=intelligence&min=1&max=3">Not So Smart Dogs</a><br />
 	
 
 </div>
