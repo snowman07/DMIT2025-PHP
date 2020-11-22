@@ -89,10 +89,10 @@ while ($row = mysqli_fetch_array($result)) {
 
 	//echo "<img src=\"artwork/thumbs100/$artwork\" class=\"cdImage\" />";
 
-	echo "<span class=\"displayCategory\">Title:</span> <span class=\"displayInfo\">". $plant_name ."</span><br />\n";
-	echo "<span class=\"displayCategory\">Artist:</span> <span class=\"displayInfo\">". $plant_descriptiont ."</span><br />\n";
-	echo "<span class=\"displayCategory\">Year:</span> <span class=\"displayInfo\">". $plant_price ."</span><br />\n";
-	echo "<span class=\"displayCategory\">Label:</span> <span class=\"displayInfo\">". $plant_size ."</span><br />\n";
+	echo "<span class=\"displayCategory\">Plant Name:</span> <span class=\"displayInfo\">". $plant_name ."</span><br />\n";
+	echo "<span class=\"displayCategory\">Description:</span> <span class=\"displayInfo\">". $plant_description ."</span><br />\n";
+	echo "<span class=\"displayCategory\">Price: $</span> <span class=\"displayInfo\">". $plant_price ."</span><br />\n";
+	echo "<span class=\"displayCategory\">Size:</span> <span class=\"displayInfo\">". $plant_size ."</span><br />\n";
 	
 	
 	// CREATE A "detail.php" PAGE FOR A SINGLE ITEM VIEW; SHOW ALL INFO FOR THIS CD
@@ -108,7 +108,7 @@ echo "\n</div>\n";
 ?>
 </div>
 <div id="rightcol">
-<h2>SideBar</h2>
+<h2>FILTER AREA</h2>
 
 <a href="display.php">ALL PLANTS</a><br />
 <a href="display.php?displayby=plant_size&displayvalue=small">Small Plants</a><br />
