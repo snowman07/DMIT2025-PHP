@@ -55,128 +55,88 @@ body {
 </head>
 <body>
 
+<div id="rightcol">
+	<h2>FILTER AREA</h2>
+
+	<a href="display.php">ALL PLANTS</a><br />
+	<a href="display.php?displayby=plant_size&displayvalue=small">Small Plants</a><br />
+
+	<!--
+	TASK: Here, create several links for the following:
+	- 3 more genre links -->
+	<a href="display.php?displayby=plant_indoor&displayvalue=yes">Indoor Plants</a><br />
+	<a href="display.php?displayby=plant_inventory&displayvalue=instock">Available Plants</a><br />
+
+</div>
+
 <div id="main">
 
-<?php
-
-require("mysql_connect.php");
-
-
-// DEFAULT QUERY: RETRIEVE EVERYTHING
-$result = mysqli_query($con,"SELECT * FROM plant_catalog") or die (mysql_error());
-
-// FILTERING YOUR DB
-$displayby = $_GET['displayby'];
-$displayvalue = $_GET['displayvalue'];
-
-if(isset($displayby) && isset($displayvalue)) {
-	// HERE IS THE MAGIC: WE TELL OUR DB WHICH COLUMN TO LOOK IN, AND THEN WHICH VALUE FROM THAT COLUMN WE'RE LOOKING FOR
-	$result = mysqli_query($con,"SELECT * FROM plant_catalog WHERE $displayby LIKE '$displayvalue' ") or die (mysql_error());
-	
-}
-
-/************************** ECHO OUT YOUR RESULTS ***********************/
-while ($row = mysqli_fetch_array($result)) {
-	$id = ($row['id']);
-	$plant_name = ($row['plant_name']);
-	$plant_description = ($row['plant_description']);
-	$plant_price = ($row['plant_price']);
-	$plant_size = ($row['plant_size']);
-	$plant_type = ($row['plant_type']);
-	$plant_indoor = $row['plant_indoor'];
-	$inventory = ($row['inventory']);
-	//echo "<div class=\"thisCD\">\n";
-
-	//echo "<img src=\"artwork/thumbs100/$artwork\" class=\"cdImage\" />";
-
-	echo "<span class=\"displayCategory\">Plant Name:</span> <span class=\"displayInfo\">". $plant_name ."</span><br />\n";
-	echo "<span class=\"displayCategory\">Description:</span> <span class=\"displayInfo\">". $plant_description ."</span><br />\n";
-	echo "<span class=\"displayCategory\">Price: $</span> <span class=\"displayInfo\">". $plant_price ."</span><br />\n";
-	echo "<span class=\"displayCategory\">Size:</span> <span class=\"displayInfo\">". $plant_size ."</span><br />\n";
-	
-	
-	// CREATE A "detail.php" PAGE FOR A SINGLE ITEM VIEW; SHOW ALL INFO FOR THIS CD
-	echo "<a href=\"detail.php?cd_id=$id\">More info...</a><br />";
-	
-echo "<div class=\"clearFix\"></div>\n";
-echo "\n</div>\n";
-}
+	<?php
+		require("mysql_connect.php");
 
 
+		// DEFAULT QUERY: RETRIEVE EVERYTHING
+		$result = mysqli_query($con,"SELECT * FROM plant_catalog") or die (mysql_error());
 
+		// FILTERING YOUR DB
+		$displayby = $_GET['displayby'];
+		$displayvalue = $_GET['displayvalue'];
 
-?>
+		if(isset($displayby) && isset($displayvalue)) {
+			// HERE IS THE MAGIC: WE TELL OUR DB WHICH COLUMN TO LOOK IN, AND THEN WHICH VALUE FROM THAT COLUMN WE'RE LOOKING FOR
+			$result = mysqli_query($con,"SELECT * FROM plant_catalog WHERE $displayby LIKE '$displayvalue' ") or die (mysql_error());
+			
+		}
+
+		/************************** ECHO OUT YOUR RESULTS ***********************/
+		while ($row = mysqli_fetch_array($result)) {
+			$id = ($row['id']);
+			$plant_name = ($row['plant_name']);
+			$plant_description = ($row['plant_description']);
+			$plant_price = ($row['plant_price']);
+			$plant_size = ($row['plant_size']);
+			$plant_type = ($row['plant_type']);
+			$plant_indoor = $row['plant_indoor'];
+			$inventory = ($row['inventory']);
+			//echo "<div class=\"thisCD\">\n";
+
+			//echo "<img src=\"artwork/thumbs100/$artwork\" class=\"cdImage\" />";
+
+			echo "<span class=\"displayCategory\">Plant Name:</span> <span class=\"displayInfo\">". $plant_name ."</span><br />\n";
+			echo "<span class=\"displayCategory\">Description:</span> <span class=\"displayInfo\">". $plant_description ."</span><br />\n";
+			echo "<span class=\"displayCategory\">Price: $</span> <span class=\"displayInfo\">". $plant_price ."</span><br />\n";
+			echo "<span class=\"displayCategory\">Size:</span> <span class=\"displayInfo\">". $plant_size ."</span><br />\n";
+			
+			
+			// CREATE A "detail.php" PAGE FOR A SINGLE ITEM VIEW; SHOW ALL INFO FOR THIS CD
+			echo "<a href=\"detail.php?id=$id\">More info...</a><br />";
+			
+		echo "<div class=\"clearFix\"></div>\n";
+		echo "\n</div>\n";
+		}
+	?>
 </div>
-<div id="rightcol">
-<h2>FILTER AREA</h2>
 
-<a href="display.php">ALL PLANTS</a><br />
-<a href="display.php?displayby=plant_size&displayvalue=small">Small Plants</a><br />
-
- <!--
-TASK: Here, create several links for the following:
- - 3 more genre links -->
-<a href="display.php?displayby=plant_indoor&displayvalue=yes">Indoor Plants</a><br />
-<a href="display.php?displayby=plant_inventory&displayvalue=instock">Available Plants</a><br />
-
-
-<!-- - Links to each decade (1950's - 2000's): How to do a decade? Think of how to do a single year...but then think of a wildcard (%). 
---- One decade: This can be done by making sure your query is displayby LIKE
-‘displayvalue’ and passing only the first 3 characters of a year followed by a % in
-the query string. This will match any year that starts with those 3 characters.
-<a href="display.php?displayby=year&displayvalue=195%">Decade:1950</a><br />
-<a href="display.php?displayby=year&displayvalue=196%">Decade:1960</a><br />
-<a href="display.php?displayby=year&displayvalue=197%">Decade:1970</a><br />
-<a href="display.php?displayby=year&displayvalue=198%">Decade:1980</a><br />
-<a href="display.php?displayby=year&displayvalue=199%">Decade:1990</a><br />
-<a href="display.php?displayby=year&displayvalue=200%">Decade:2000</a><br /> -->
 
 
 
 <?php
-/*****************************
-Challenge: 
- - Try creating a couple "widgets": These are items that are generated by a MySQL query when the page loads.
- 		- random CD
-		- random from a certain genre
-		- alphabetical list OR dynamically generated A | B | C | D links
+
+	// DISPLAY RESULTS: Only relevant results thumbnails should be displayed.
+	while ($row = mysqli_fetch_array( $result )){
+		$plant_name = $row['plant_name '];
+		$id = $row['id'];
+		echo "<a href=\"detail.php?id=$id\">$plant_name</a><br />\n";
 		
- - Mastery Challenge: Create a dynamic menu of Record Labels. Using a MSQL SELECT query with a GROUP BY operator , write record label links that then show those CD's belonging to a certain label in your filtered results.
-	- If the "A & M" records value causes a hissy-fit with your project, try using "urlencode()" on your values.
-	- Research any terms I'm using here to understand them better and try to figure out how to create a dynamic menu (created by the items in your DB) that can then link to those labels in your filtered results.
-
- 
-***********************
-echo "<h3>Random CD</h3>";
-
-$randomCD = mysqli_query($con, "SELECT * FROM cd_catalog_class ORDER BY RAND() LIMIT 2");
-while($row = mysqli_fetch_array($randomCD)) {
-
-	$cd_id = $row["cd_id"];
-	$title = $row["title"];
-
-	echo $title . "<a href=\"title.php?cd_id=$cd_id\"> more details...</a><br>";
-}
-
-
-echo "<h3>Random Genre</h3>";
-
-$randomGenre = mysqli_query($con, "SELECT * FROM cd_catalog_class ORDER BY RAND() LIMIT 2");
-while($row = mysqli_fetch_array($randomGenre)) {
-	$cd_id = $row["cd_id"];
-	$genre = $row["genre"];
-
-	echo $genre . "<a href=\"genre.php?cd_id=$cd_id\"> more details...</a><br>";
-}
-
-
-*****/
+	}
 
 ?>
 
 
 
-</div>
+
+
+
 
 </body>
 </html>
