@@ -118,6 +118,19 @@
                 
                 $thisFile = $originalsFolder . $_FILES["myfile"]["name"];
 
+                /*-------------------
+                I NEED TO SET THIS SOMEWHERE TO FIX THE ORIENTATION OF MY IMAGES FROM PHONE
+
+                Arr: THis is where I set this: $orientation = $exif['Orientation'];
+
+                $exif = @exif_read_data ( $thisFile ,'IFD0');
+                if ($exif !== false){
+                $orientation = $exif['Orientation'];
+                }else{
+                $orientation = 0;
+}
+                ----------------*/
+
 
                 if ($imageFileType == "jpg" || $imageFileType == "jpeg"){
                     //createThumbnailJPEG($file, $folder, $newwidth) ---> params mean (source, destination, width)
