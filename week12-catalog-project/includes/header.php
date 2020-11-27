@@ -49,18 +49,18 @@ include("mysql_connect.php");// here we include the connection script; since thi
   <body>
     <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4 fixed-top">
       <a class="navbar-brand" href="<?php echo BASE_URL ?>index.php"><i class="material-icons" style="font-size:36px">home</i></a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+      <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
-      </button>
+      </button> -->
       <div class="collapse navbar-collapse" id="navbarCollapse">
         <ul class="navbar-nav mr-auto">
          
           <li class="nav-item active">
             <!-- This is a placeholder link. You will need to change this to link to your files. -->
-            <!-- <a class="nav-link" href="<?php echo BASE_URL ?>#">Link</a> -->
+            <a class="nav-link" href="<?php echo BASE_URL ?>all-plants.php">All Plants</a>
           </li>
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
+            <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Admin</a>
             <div class="dropdown-menu" aria-labelledby="dropdown01">
               <a class="dropdown-item" href="<?php echo BASE_URL ?>admin/insertupload.php">Insert</a>
               <!--<a class="dropdown-item" href="<?php echo BASE_URL ?>admin/edit.php">Edit</a>-->
@@ -68,13 +68,15 @@ include("mysql_connect.php");// here we include the connection script; since thi
             </div>
           </li>
         </ul>
-        <!-- Search Bar: 
+        
+        <!-- Search Bar:  -->
         <form class="form-inline mt-2 mt-md-0">
           
           <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
           <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-        </form> -->
+        </form>
       </div>
+      
     </nav>
 
     <main role="main" class="container">
