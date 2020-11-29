@@ -2,6 +2,9 @@
   include ("includes/header.php");
 ?>
 
+
+
+
 <div class="jumbotron clearfix">
   <h1><?php echo APP_NAME ?></h1>
   <p class="lead">
@@ -45,6 +48,9 @@
   </div> <!--END of col-sm-9-->
   <div class="col-sm-3">
     <div class="alert alert-info">
+
+
+
       <?php
         include ("includes/filter.php");
       ?>
