@@ -256,9 +256,9 @@
 ?>  
 
 <div class="jumbotron clearfix">
-  <h1>Insert Image</h1>
+  <h1>Insert Plants</h1>
   <p class="lead">
-    You can insert image here.
+    You can insert plants here.
   </p>
   <a class="btn btn-primary float-right" href="logout.php" role="button">Logout</a>
 </div>
@@ -277,21 +277,21 @@ enctype="multipart/form-data"
     <!-- Title: <input type="text" name="title"><br>
     Description: <input type="text" name="description"> -->
 
-    <!--start of Title-->
+    <!--start of Plant Name-->
     <div class="form-group">
-        <label for="title">Title</label>
+        <label for="plant-name">Plant Name</label>
         <input 
             type="text"
             class="form-control"
-            name="title"
-            placeholder="Enter title here"
+            name="plant-name"
+            placeholder="Enter plant name here"
 			value="<?php echo $title; // prepopulate the value type text input?>"
         >
         <?php
 			if($valTitleMsg) { echo $msgPreError. $valTitleMsg. $msgPost; } // this is validation
 		?>
     </div>
-    <!--end of Title-->
+    <!--end of Plant Name-->
 
     <!--start of Description-->
     <div class="form-group">
