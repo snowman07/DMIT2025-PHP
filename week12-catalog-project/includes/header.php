@@ -55,14 +55,14 @@ include("mysql_connect.php");// here we include the connection script; since thi
       <div class="collapse navbar-collapse" id="navbarCollapse">
         <ul class="navbar-nav mr-auto">
          
-          <li class="nav-item active">
-            <!-- This is a placeholder link. You will need to change this to link to your files. -->
+          <!-- <li class="nav-item active">
+            ////////This is a placeholder link. You will need to change this to link to your files.//////
             <a class="nav-link" href="<?php echo BASE_URL ?>all-plants.php">All Plants</a>
-          </li>
+          </li> -->
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Admin</a>
             <div class="dropdown-menu" aria-labelledby="dropdown01">
-              <a class="dropdown-item" href="<?php echo BASE_URL ?>admin/insertupload.php">Insert</a>
+              <a class="dropdown-item" href="<?php echo BASE_URL ?>admin/insert.php">Insert</a>
               <!--<a class="dropdown-item" href="<?php echo BASE_URL ?>admin/edit.php">Edit</a>-->
               <!-- <a class="dropdown-item" href="<?php echo BASE_URL ?>#">Link</a> -->
             </div>

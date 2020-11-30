@@ -30,20 +30,20 @@
   }
 
   /****** ECHO OUT RESULTS ******/
-  // while ($row = mysqli_fetch_array($result)) {
-  //   $id = $row["id"];
-  //   $plant_name = $row["plant_name"];
-  //   $plant_description = $row["plant_description"];
-  //   $plant_price = $row["plant_price"];
-  //   $plant_image = $row["plant_image"];
-  //   $plant_size = $row["plant_size"];
-  //   $plant_type = $row["plant_type"];
-  //   $plant_indoor = $row["plant_indoor"];
-  //   $plant_inventory = $row["plant_inventory"];
-  //   $plant_allseason = $row["plant_allseason"];
-  //   $plant_bestseller = $row["plantbestseller"];
+  while ($row = mysqli_fetch_array($result)) {
+    $id = $row["id"];
+    $plant_name = $row["plant_name"];
+    $plant_description = $row["plant_description"];
+    $plant_price = $row["plant_price"];
+    $plant_image = $row["plant_image"];
+    $plant_size = $row["plant_size"];
+    $plant_type = $row["plant_type"];
+    $plant_indoor = $row["plant_indoor"];
+    $plant_inventory = $row["plant_inventory"];
+    $plant_allseason = $row["plant_allseason"];
+    $plant_bestseller = $row["plant_bestseller"];
 
-  // }
+  }
 
 
   /****** CREATE A PAGE FOR SINGLE ITEM VIEW ******/
@@ -54,9 +54,9 @@
 <div>
   <h2><b>Filter here:</b></h2>
 
-  <a href="all-plants.php">All Plants</a><br />
+  <a href="index.php">All Plants</a><br />
 
   <!--This is a query string-->
-  <a href="all-plants.php?displayby=plant_size&displayvalue=small">Small Plants</a><br />
+  <a href="index.php?displayby=plant_size&displayvalue=small">Small Plants</a><br />
 </div>
 
