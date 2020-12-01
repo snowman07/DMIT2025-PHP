@@ -185,7 +185,7 @@
                 $orientation = $exif['Orientation'];
                 }else{
                 $orientation = 0;
-}
+                                }
                 ----------------*/
 
 
@@ -227,6 +227,18 @@
             } else {
                 echo "ERROR";
             }
+
+            // IF SUCCESS, form will be blank
+            $plant_name = "";
+            $plant_description = "";
+            $filename = "";
+            $plant_price = "";
+            $plant_size = "";
+            $plant_type = "";
+            $plant_indoor = "";
+            $plant_inventory = "";
+            $plant_allseason = "";
+            $plant_bestseller = "";
 
         }
         // PLEASE MAKE SURE YOU CHECK FILEZILLA(and refresh the view) TO SEE IF THE FILES ARE THERE!!!!!!
@@ -365,6 +377,7 @@ enctype="multipart/form-data"
         <input 
             type="file"  
             name="myfile"
+            value="<?php echo $filename ?>"
         ><br>
         <?php
             if($valMessage) { echo $msgPreError. $valMessage. $msgPost; } // this is validation
