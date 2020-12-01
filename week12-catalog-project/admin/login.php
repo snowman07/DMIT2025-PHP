@@ -32,7 +32,7 @@
             session_start();
             $_SESSION['aasdffrtgfbqw'] = session_id(); // make as random as possible
 
-            header("Location: insertupload.php");  //remember to disable this if you are debugging!!
+            header("Location: insert.php");  //remember to disable this if you are debugging!!
             //header("Location: edit.php");
 
         } else if (($username == $username_good) && (password_verify($password, $pw_enc))) {

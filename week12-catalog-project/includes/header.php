@@ -36,13 +36,13 @@ include("mysql_connect.php");// here we include the connection script; since thi
 <!-- Themes from https://bootswatch.com/ : Use the Themes dropdown to select a theme you like; copy/paste the bootstrap.css. Here, we have named the downloaded theme as a new file and can overwrite the default.  -->
 <link href="<?php echo BASE_URL ?>css/bootstrap-cerulean.css" rel="stylesheet">
 
-<!-- <script>
+<script>
   function go() {
     box = document.getElementById('entryselect'); // gets form element by the id.
     destination = box.options[box.selectedIndex].value;
     if (destination) location.href = destination;
   }
-</script> -->
+</script>
 
 </head>
 
@@ -63,7 +63,7 @@ include("mysql_connect.php");// here we include the connection script; since thi
             <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Admin</a>
             <div class="dropdown-menu" aria-labelledby="dropdown01">
               <a class="dropdown-item" href="<?php echo BASE_URL ?>admin/insert.php">Insert</a>
-              <!--<a class="dropdown-item" href="<?php echo BASE_URL ?>admin/edit.php">Edit</a>-->
+              <a class="dropdown-item" href="<?php echo BASE_URL ?>admin/edit.php">Edit</a>
               <!-- <a class="dropdown-item" href="<?php echo BASE_URL ?>#">Link</a> -->
             </div>
           </li>
