@@ -1,6 +1,6 @@
 <!--THIS CODE IS SIMILAR TO >>week09 >>04--uploadvalidationcreatethumb-add2db.php -->
 <!-- this is a secured page -->
-<!-- <?php
+<?php
     session_start();
     //echo session_id();
 
@@ -12,7 +12,7 @@
         //echo "NOT logged in";
         header("Location: login.php");
     }
-?> -->
+?>
 
 <?php
     include("../includes/header.php");
@@ -30,6 +30,10 @@
     $plant_price = trim($_POST["plant-price"]);
     $plant_size = trim($_POST["plant-size"]);
     $plant_type = trim($_POST["plant-type"]);
+    $plant_indoor = trim($_POST["plant-indoor"]);
+    $plant_inventory = trim($_POST["plant-inventory"]);
+    $plant_allseason = trim($_POST["plant-allseason"]);
+    $plant_bestseller = trim($_POST["plant-bestseller"]);
 
     if(isset($_POST["mysubmit"])) {
         /* Lets take a look at the $_FILES array. All the info about this file is in that  
@@ -121,6 +125,33 @@
 		}
         //END of Plant Type Validation
 
+        //Plant Indoor Validation
+        if($plant_indoor == "") {
+            $valid = 0;
+            $valPlantIndoorMsg = "Please select Yes or No.";
+        }
+        //END of Plant Indoor Validation
+
+        //Plant Inventory Validation
+        if($plant_inventory == "") {
+            $valid = 0;
+            $valPlantInventoryMsg = "Please select In Stock or Out of Stock.";
+        }
+        //END of Plant Inventory Validation
+
+        //Plant All Season Validation
+        if($plant_allseason == "") {
+            $valid = 0;
+            $valPlantAllSeasonMsg = "Please select Yes or No.";
+        }
+        //END of Plant All Season Validation
+
+        //Plant Best Seller Validation
+        if($plant_bestseller == "") {
+            $valid = 0;
+            $valPlantBestSellerMsg = "Please select Yes or No.";
+        }
+        //END of Plant Best Seller Validation
 
 
         // // move_uploaded_file(source, destination) --> Moves an uploaded file to a new location
@@ -174,8 +205,8 @@
                     // $filename = $_FILES["myfile"]["name"];
 
                     // mysql INSERT
-                    mysqli_query($con, "INSERT INTO plant_catalog(plant_name, plant_description, plant_price, plant_image, plant_size, plant_type) 
-                                        VALUES('$plant_name', '$plant_description', '$plant_price', '$filename', $plant_size, $plant_type)") 
+                    mysqli_query($con, "INSERT INTO plant_catalog(plant_name, plant_description, plant_price, plant_image, plant_size, plant_type, plant_indoor, plant_inventory, plant_allseason, plant_bestseller) 
+                                        VALUES('$plant_name', '$plant_description', '$plant_price', '$filename', '$plant_size', '$plant_type', '$plant_indoor', '$plant_inventory', '$plant_allseason', '$plant_bestseller')") 
                                         or die(mysqli_error($con));
 
                     $msgSuccess = "Upload successful.";
@@ -185,8 +216,8 @@
                     createThumbnailPNG($thisFile, $displayFolder, 800, $orientation);
 
                     // mysql INSERT
-                    mysqli_query($con, "INSERT INTO plant_catalog(plant_name, plant_description, plant_price, plant_image, plant_size, plant_type) 
-                                        VALUES('$plant_name', '$plant_description', '$plant_price', '$filename', $plant_size, $plant_type)") 
+                    mysqli_query($con, "INSERT INTO plant_catalog(plant_name, plant_description, plant_price, plant_image, plant_size, plant_type, plant_indoor, plant_inventory, plant_allseason, plant_bestseller) 
+                                        VALUES('$plant_name', '$plant_description', '$plant_price', '$filename', '$plant_size', '$plant_type', '$plant_indoor', '$plant_inventory', '$plant_allseason', '$plant_bestseller')") 
                                         or die(mysqli_error($con));
 
                     $msgSuccess = "Upload successful.";
@@ -392,6 +423,81 @@ enctype="multipart/form-data"
     </div>
     <!--END OF Plant Type-->
 
+    <!--Plant Indoor-->
+    <div class="form-group">
+        <label for="plant-indoor">Plant Indoor</label>
+        <div class="form-check">
+            <label class="form-check-label">
+                <input type="radio" class="form-check-input" name="plant-indoor" value="yes" <?php if(isset($plant_indoor) && $plant_indoor == "yes"){echo "checked";} ?>>Yes
+            </label>
+        </div>
+        <div class="form-check">
+            <label class="form-check-label">
+                <input type="radio" class="form-check-input" name="plant-indoor" value="no" <?php if(isset($plant_indoor) && $plant_indoor == "no"){ echo "checked";} ?>>No
+            </label>
+        </div>
+        <?php
+            if($valPlantIndoorMsg) { echo $msgPreError. $valPlantIndoorMsg. $msgPost; }
+        ?>
+    </div>
+    <!--END of Plant Indoor-->
+
+    <!--Plant Inventory-->
+    <div class="form-group">
+        <label for="plant-inventory">Plant Inventory</label>
+        <div class="form-check">
+            <label class="form-check-label">
+                <input type="radio" class="form-check-input" name="plant-inventory" value="in-stock" <?php if(isset($plant_inventory) && $plant_inventory== "in-stock"){echo "checked";} ?>>In Stock
+            </label>
+        </div>
+        <div class="form-check">
+            <label class="form-check-label">
+                <input type="radio" class="form-check-input" name="plant-inventory" value="out-of-stock" <?php if(isset($plant_inventory) && $plant_inventory == "out-of-stock"){ echo "checked";} ?>>Out of Stock
+            </label>
+        </div>
+        <?php
+            if($valPlantInventoryMsg) { echo $msgPreError. $valPlantInventoryMsg. $msgPost; }
+        ?>
+    </div>
+    <!--END of Plant Inventory-->
+
+    <!--Plant All Season-->
+    <div class="form-group">
+        <label for="plant-allseason">Plant All Season</label>
+        <div class="form-check">
+            <label class="form-check-label">
+                <input type="radio" class="form-check-input" name="plant-allseason" value="yes" <?php if(isset($plant_allseason) && $plant_allseason == "yes"){echo "checked";} ?>>Yes
+            </label>
+        </div>
+        <div class="form-check">
+            <label class="form-check-label">
+                <input type="radio" class="form-check-input" name="plant-allseason" value="no" <?php if(isset($plant_allseason) && $plant_allseason == "no"){ echo "checked";} ?>>No
+            </label>
+        </div>
+        <?php
+            if($valPlantAllSeasonMsg) { echo $msgPreError. $valPlantAllSeasonMsg. $msgPost; }
+        ?>
+    </div>
+    <!--END of Plant All Season-->
+
+    <!--Plant Best Seller-->
+    <div class="form-group">
+        <label for="plant-bestseller">Plant Best Seller</label>
+        <div class="form-check">
+            <label class="form-check-label">
+                <input type="radio" class="form-check-input" name="plant-bestseller" value="yes" <?php if(isset($plant_bestseller) && $plant_bestseller == "yes"){echo "checked";} ?>>Yes
+            </label>
+        </div>
+        <div class="form-check">
+            <label class="form-check-label">
+                <input type="radio" class="form-check-input" name="plant-bestseller" value="no" <?php if(isset($plant_bestseller) && $plant_bestseller == "no"){ echo "checked";} ?>>No
+            </label>
+        </div>
+        <?php
+            if($valPlantBestSellerMsg) { echo $msgPreError. $valPlantBestSellerMsg. $msgPost; }
+        ?>
+    </div>
+    <!--END of Plant Best Seller-->
 
 
 
