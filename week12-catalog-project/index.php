@@ -1,5 +1,3 @@
-<!--THE SAME AS WIDGETS-->
-
 <?php
   include ("includes/header.php");
 ?>
@@ -21,26 +19,25 @@
     <?php while($row = mysqli_fetch_array($result)): ?> <!-- ternary operator with a colon ":" -->
       <div style="float: left;
                   width: 350px;
-                  height: 300px;
+                  height: 400px;
                   border: 2px solid #ccc;
                   margin-bottom: 20px;
                   padding:3px;"
                   >
-        <!-- ////////////THIS IS FOR IMG
-         <a href="display.php?id=<?php echo $row['id'] ?> ">
-          <img src="uploads/thumbs/<?php echo $row["arr_filename"]; ?>" 
+        <!-- ////////////THIS IS FOR IMG -->
+        <a href="index.php?id=<?php echo $row['id'] ?> ">
+          <img src="uploads/thumbs/<?php echo $row["plant_image"]; ?>" 
             style="display: block;
                   margin-left: auto;
                   margin-right: auto;
                   width: 100%;"
           >   
-        </a> -->
+        </a>
         <?php
-          echo "<center>" .$row["plant_name"] ."</center>";
-          echo "<span class=\"displayCategory\">Description:</span> <span class=\"displayInfo\">". $plant_description ."</span><br />\n";
-          echo "<span class=\"displayCategory\">Price: $</span> <span class=\"displayInfo\">". $plant_price ."</span><br />\n";
-          echo "<span class=\"displayCategory\">Size:</span> <span class=\"displayInfo\">". $plant_size ."</span><br />\n";
-        ?>
+          echo "<center>" .$row["plant_name"] ."</center><br />\n";
+          echo "<b>Description: </b>" . $row["plant_description"] ."<br />\n";
+          echo "<b>Price: $ </b>". $row["plant_price"] ."<br />\n";
+         ?>
       </div> <!--END of style-->
     <?php endwhile; ?>
     <!--END OF This is for the Thumbnail View-->
@@ -84,9 +81,6 @@
       </div>
     </section>
     
-
-    
-
 
   </div> <!--END of col-sm-3-->
   <!-- <a class="btn btn-primary float-right" href="#" role="button">Button</a> -->
