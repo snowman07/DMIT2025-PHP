@@ -19,14 +19,14 @@
     <?php while($row = mysqli_fetch_array($result)): ?> <!-- ternary operator with a colon ":" -->
       <div style="float: left;
                   width: 350px;
-                  height: 400px;
+                  height: 500px;
                   border: 2px solid #ccc;
                   margin-bottom: 20px;
                   padding:3px;"
                   >
-        <!-- ////////////THIS IS FOR IMG -->
+        <!-- ////////////THIS IS FOR IMG FROM SQUARE FOLDER-->
         <a href="index.php?id=<?php echo $row['id'] ?> ">
-          <img src="uploads/thumbs/<?php echo $row["plant_image"]; ?>" 
+          <img src="uploads/square/<?php echo $row["plant_image"]; ?>"
             style="display: block;
                   margin-left: auto;
                   margin-right: auto;
