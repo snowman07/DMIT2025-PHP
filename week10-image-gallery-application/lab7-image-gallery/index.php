@@ -40,14 +40,14 @@
 <?php while($row = mysqli_fetch_array($result)): ?> <!-- ternary operator with a colon ":" -->
   <div style="float: left;
               width: 350px;
-              height: 300px;
+              height: 400px;
               border: 1px solid #ccc;
               margin: 10px;
               padding:3px;
               ">
   <!--<div style="display:flex; flex-flow:column wrap; justify-content:space-between;">-->
     <a href="display.php?id=<?php echo $row['id'] ?> ">
-      <img src="uploads/thumbs/<?php echo $row["arr_filename"]; ?>" 
+      <img src="uploads/square/<?php echo $row["arr_filename"]; ?>" 
         style="display: block;
               margin-left: auto;
               margin-right: auto;

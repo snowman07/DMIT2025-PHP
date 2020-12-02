@@ -21,6 +21,7 @@
     $originalsFolder = "../uploads/originals/"; ////////// PATH MODIFICATION
     $thumbsFolder = "../uploads/thumbs/"; ////////// PATH MODIFICATION
     $displayFolder = "../uploads/display/"; ////////// PATH MODIFICATION
+    $squareFolder = "../uploads/square/"; ////////// PATH MODIFICATION
 
     $title = trim($_POST["title"]);
     $description = trim($_POST["description"]);
@@ -136,6 +137,7 @@
                     //createThumbnailJPEG($file, $folder, $newwidth) ---> params mean (source, destination, width)
                     createThumbnailJPEG($thisFile, $thumbsFolder, 300, $orientation);
                     createThumbnailJPEG($thisFile, $displayFolder, 800, $orientation);
+                    createSquareImageCopy($thisFile, $squareFolder, 200);
                     /* Challenge: Lets put this into the DB table
                     Title: VARCHAR ; $_POST["title"];
                     Filename: (just the name, not the path): VARCHAR ; $_FILES["myfile"]["name"];
@@ -157,6 +159,7 @@
                 } else if ($imageFileType == "png") {
                     createThumbnailPNG($thisFile, $thumbsFolder, 300, $orientation);
                     createThumbnailPNG($thisFile, $displayFolder, 800, $orientation);
+                    createSquareImageCopy($thisFile, $squareFolder, 200);
 
                     // mysql INSERT
                     mysqli_query($con, "INSERT INTO arr_lab7_image_gallery(arr_title, arr_description, arr_filename) 
@@ -252,6 +255,48 @@
         imagedestroy($thumb);
         imagedestroy($source);
     } 
+
+    //SQUARE IMAGE
+    function createSquareImageCopy($file, $folder, $newWidth){
+	
+        //echo "$filename, $folder, $newWidth";
+        //exit();
+    
+        $thumb_width = $newWidth;
+        $thumb_height = $newWidth;// tweak this for ratio
+    
+        list($width, $height) = getimagesize($file);
+    
+        $original_aspect = $width / $height;
+        $thumb_aspect = $thumb_width / $thumb_height;
+    
+        if($original_aspect >= $thumb_aspect) {
+           // If image is wider than thumbnail (in aspect ratio sense)
+           $new_height = $thumb_height;
+           $new_width = $width / ($height / $thumb_height);
+        } else {
+           // If the thumbnail is wider than the image
+           $new_width = $thumb_width;
+           $new_height = $height / ($width / $thumb_width);
+        }
+    
+        $source = imagecreatefromjpeg($file);
+        $thumb = imagecreatetruecolor($thumb_width, $thumb_height);
+    
+        // Resize and crop
+        imagecopyresampled($thumb,
+                           $source,0 - ($new_width - $thumb_width) / 2, // Center the image horizontally
+                           0 - ($new_height - $thumb_height) / 2, // Center the image vertically
+                           0, 0,
+                           $new_width, $new_height,
+                           $width, $height);
+        
+        $newFileName = $folder. "/" .basename($file);
+        imagejpeg($thumb, $newFileName, 80);
+    
+        //echo "<p><img src=\"$newFileName\" /></p>"; // if you want to see the image
+    }
+    //END OF SQUARE IMAGE
 
 ?>  
 
