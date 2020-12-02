@@ -25,7 +25,7 @@
                   padding:3px;"
                   >
         <!-- ////////////THIS IS FOR IMG FROM SQUARE FOLDER-->
-        <a href="index.php?id=<?php echo $row['id'] ?> ">
+        <a href="display.php?id=<?php echo $row['id'] ?> ">
           <img src="uploads/square/<?php echo $row["plant_image"]; ?>"
             style="display: block;
                   margin-left: auto;
