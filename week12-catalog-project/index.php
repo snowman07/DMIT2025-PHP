@@ -19,8 +19,8 @@
     <?php while($row = mysqli_fetch_array($result)): ?> <!-- ternary operator with a colon ":" -->
       <div style="float: left;
                   width: 350px;
-                  height: 500px;
-                  border: 2px solid #ccc;
+                  height: 450px;
+                  border: 3px solid #ccc;
                   margin-bottom: 20px;
                   padding:3px;"
                   >
@@ -34,9 +34,9 @@
           >   
         </a>
         <?php
-          echo "<center>" .$row["plant_name"] ."</center><br />\n";
-          echo "<b>Description: </b>" . $row["plant_description"] ."<br />\n";
+          echo "<center><b>" .$row["plant_name"] ."</center></b><br />\n";
           echo "<b>Price: $ </b>". $row["plant_price"] ."<br />\n";
+          echo "<b>Size: </b>". $row["plant_size"] ."<br />\n";
          ?>
       </div> <!--END of style-->
     <?php endwhile; ?>

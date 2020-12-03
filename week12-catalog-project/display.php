@@ -31,6 +31,24 @@
     <?php if($row["plant_price"]): ?>
         <p><b>Price: $</b><?php echo $row["plant_price"]; ?></p>
     <?php endif; ?>
+    <?php if($row["plant_size"]): ?>
+        <p><b>Size: </b><?php echo $row["plant_size"]; ?></p>
+    <?php endif; ?>
+    <?php if($row["plant_type"]): ?>
+        <p><b>Type: </b><?php echo $row["plant_type"]; ?></p>
+    <?php endif; ?>
+    <?php if($row["plant_indoor"]): ?>
+        <p><b>Plant Indoor:</b><?php echo $row["plant_indoor"]; ?></p>
+    <?php endif; ?>
+    <?php if($row["plant_inventory"]): ?>
+        <p><b>Plant Inventory: </b><?php echo $row["plant_inventory"]; ?></p>
+    <?php endif; ?>
+    <?php if($row["plant_allseason"]): ?>
+        <p><b>Plant All Season: </b><?php echo $row["plant_allseason"]; ?></p>
+    <?php endif; ?>
+    <?php if($row["plant_bestseller"]): ?>
+        <p><b>Plant Best Seller: </b><?php echo $row["plant_bestseller"]; ?></p>
+    <?php endif; ?>
     <?php if($row["plant_image"]): ?>
         <img src="uploads/display/<?php echo $row["plant_image"]; ?>" >
     <?php endif; ?>
