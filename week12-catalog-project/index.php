@@ -51,6 +51,30 @@
         <?php
           include ("includes/filter.php");
         ?>
+        
+        <?php
+          	// DEFAULT QUERY: RETRIEVE EVERYTHING
+            $result = mysqli_query($con,"SELECT * FROM plant_catalog") or die (mysql_error());
+
+            // FILTERING YOUR DB
+            $displayby = $_GET['displayby'];
+            $displayvalue = $_GET['displayvalue'];
+
+            if(isset($displayby) && isset($displayvalue)) {
+              // HERE IS THE MAGIC: WE TELL OUR DB WHICH COLUMN TO LOOK IN, AND THEN WHICH VALUE FROM THAT COLUMN WE'RE LOOKING FOR
+              $result = mysqli_query($con,"SELECT * FROM plant_catalog WHERE $displayby LIKE '$displayvalue' ") or die (mysql_error());          
+            }
+
+            // DISPLAY RESULTS: Only relevant results thumbnails should be displayed.
+            while ($row = mysqli_fetch_array( $result )){
+              $plant_name = $row['plant_name '];
+              $id = $row['id'];
+              echo "<a href=\"display.php?id=$id\">$plant_name</a><br />\n";   
+            }
+
+        ?>
+
+
       </div>
     </section>
     <!--END OF FILTER SECTION-->
