@@ -14,9 +14,37 @@
   <div class="col-sm-8" style="display: flex; flex-wrap: wrap; justify-content: space-evenly;">
     <!--This is for the Thumbnail View-->
     <?php
-        $result = mysqli_query($con, "SELECT * FROM plant_catalog");
+
+      $result = mysqli_query($con, "SELECT * FROM plant_catalog");
+
+      // FILTERING YOUR DB
+      $displayby = $_GET['displayby'];
+      $displayvalue = $_GET['displayvalue'];
+
+      if(isset($displayby) && isset($displayvalue)) {
+        // HERE IS THE MAGIC: WE TELL OUR DB WHICH COLUMN TO LOOK IN, AND THEN WHICH VALUE FROM THAT COLUMN WE'RE LOOKING FOR
+        $result = mysqli_query($con,"SELECT * FROM plant_catalog WHERE $displayby LIKE '$displayvalue' ") or die (mysql_error());
+        
+      }
+        
     ?>
     <?php while($row = mysqli_fetch_array($result)): ?> <!-- ternary operator with a colon ":" -->
+      
+      <!-- 
+      <?php $id = ($row['id']); ?>
+			<?php $plant_name = ($row['plant_name']); ?>
+			<?php $plant_description = ($row['plant_description']); ?>
+			<?php $plant_price = ($row['plant_price']); ?>
+      <?php $plant_price = ($row['plant_image']); ?>
+			<?php $plant_size = ($row['plant_size']); ?>
+			<?php $plant_type = ($row['plant_type']); ?>
+			<?php $plant_indoor = $row['plant_indoor']; ?>
+			<?php $inventory = ($row['plant_inventory']); ?>
+      <?php $inventory = ($row['plant_allseason']); ?>
+      <?php $inventory = ($row['plant_bestseller']); ?> 
+      -->
+      
+      
       <div style="float: left;
                   width: 350px;
                   height: 450px;
@@ -24,6 +52,33 @@
                   margin-bottom: 20px;
                   padding:3px;"
                   >
+
+                  
+        <?php $id = ($row['id']); ?>
+        <?php $plant_name = ($row['plant_name']); ?>
+        <?php $plant_description = ($row['plant_description']); ?>
+        <?php $plant_price = ($row['plant_price']); ?>
+        <?php $plant_price = ($row['plant_image']); ?>
+        <?php $plant_size = ($row['plant_size']); ?>
+        <?php $plant_type = ($row['plant_type']); ?>
+        <?php $plant_indoor = $row['plant_indoor']; ?>
+        <?php $inventory = ($row['plant_inventory']); ?>
+        <?php $inventory = ($row['plant_allseason']); ?>
+        <?php $inventory = ($row['plant_bestseller']); ?> 
+
+
+        <!-- <?php $row['id']; ?>
+        <?php $row['plant_name']; ?>
+        <?php $row['plant_description']; ?>
+        <?php $row['plant_price']; ?>
+        <?php $row['plant_image']; ?>
+        <?php $row['plant_size']; ?>
+        <?php $row['plant_type']; ?>
+        <?php $row['plant_indoor']; ?>
+        <?php $row['plant_inventory']; ?>
+        <?php $row['plant_allseason']; ?>
+        <?php $row['plant_bestseller']; ?>  -->
+
         <!-- ////////////THIS IS FOR IMG FROM SQUARE FOLDER-->
         <a href="display.php?id=<?php echo $row['id'] ?> ">
           <img src="uploads/square/<?php echo $row["plant_image"]; ?>"

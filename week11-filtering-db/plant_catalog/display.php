@@ -44,7 +44,7 @@ body {
 	float:left;
 }
 #rightcol{
-	float:left;
+	float:right;
 	top: 0px;
 	border: 1px solid #900;	
 	width: 400px;
@@ -60,6 +60,7 @@ body {
 
 	<a href="display.php">ALL PLANTS</a><br />
 	<a href="display.php?displayby=plant_size&displayvalue=small">Small Plants</a><br />
+	<a href="display.php?displayby=plant_size&displayvalue=large">Large Plants</a><br />
 
 	<!--
 	TASK: Here, create several links for the following:
@@ -111,8 +112,8 @@ body {
 			// CREATE A "detail.php" PAGE FOR A SINGLE ITEM VIEW; SHOW ALL INFO FOR THIS CD
 			echo "<a href=\"detail.php?id=$id\">More info...</a><br />";
 			
-		echo "<div class=\"clearFix\"></div>\n";
-		echo "\n</div>\n";
+		// echo "<div class=\"clearFix\"></div>\n";
+		// echo "\n</div>\n";
 		}
 	?>
 </div>
