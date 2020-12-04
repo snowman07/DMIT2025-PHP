@@ -11,7 +11,7 @@
 
 <div class="row"> 
   <!--DISPLAY ALL PLANTS HERE-->
-  <div class="col-sm-8" style="display: flex; flex-wrap: wrap; justify-content: space-evenly;">
+  <div class="col-sm-8 img-container" style="display: flex; flex-wrap: wrap; justify-content: space-evenly;">
     <!--This is for the Thumbnail View-->
     <?php
 
@@ -79,15 +79,20 @@
         <?php $row['plant_allseason']; ?>
         <?php $row['plant_bestseller']; ?>  -->
 
-        <!-- ////////////THIS IS FOR IMG FROM SQUARE FOLDER-->
+        <!-- ////////////THIS IS FOR IMG FROM SQUARE FOLDER--> 
         <a href="display.php?id=<?php echo $row['id'] ?> ">
-          <img src="uploads/square/<?php echo $row["plant_image"]; ?>"
+          <img onmouseover="bigImg(this)" onmouseout="normalImg(this)" src="uploads/square/<?php echo $row["plant_image"]; ?>"
             style="display: block;
                   margin-left: auto;
                   margin-right: auto;
                   width: 100%;"
+      
           >   
         </a>
+
+
+        
+
         <?php
           echo "<center><b>" .$row["plant_name"] ."</center></b><br />\n";
           echo "<b>Price: $ </b>". $row["plant_price"] ."<br />\n";
@@ -168,3 +173,9 @@
 <?php
   include ("includes/footer.php");
 ?>
+
+<script src="js/main.js">
+
+
+ 
+</script>
