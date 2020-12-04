@@ -11,7 +11,7 @@
 
 <div class="row"> 
   <!--DISPLAY ALL PLANTS HERE-->
-  <div class="col-sm-9" style="display: flex; flex-wrap: wrap; justify-content: space-evenly;">
+  <div class="col-sm-8" style="display: flex; flex-wrap: wrap; justify-content: space-evenly;">
     <!--This is for the Thumbnail View-->
     <?php
         $result = mysqli_query($con, "SELECT * FROM plant_catalog");
@@ -44,7 +44,7 @@
 
   </div> <!--END of col-sm-9-->
 
-  <div class="col-sm-3">
+  <div class="col-sm-4">
     <!--FILTER SECTION-->
     <section class="filter">
       <div class="alert alert-info">
@@ -52,7 +52,7 @@
           include ("includes/filter.php");
         ?>
         
-        <?php
+        <!-- <?php
           	// DEFAULT QUERY: RETRIEVE EVERYTHING
             $result = mysqli_query($con,"SELECT * FROM plant_catalog") or die (mysql_error());
 
@@ -72,7 +72,7 @@
               echo "<a href=\"display.php?id=$id\">$plant_name</a><br />\n";   
             }
 
-        ?>
+        ?> -->
 
 
       </div>
