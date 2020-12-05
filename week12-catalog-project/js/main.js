@@ -27,9 +27,10 @@
 //     })
 
 
-function bigImg(x) {
+function shrinkImg(x) {
     //x.style.height = "auto";
-    x.style.width = "auto";
+    x.style.width = "300px";
+    //document.querySelector(".square-img").style.color = "red";
 }
 
 function normalImg(x) {

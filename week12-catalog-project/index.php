@@ -11,7 +11,7 @@
 
 <div class="row"> 
   <!--DISPLAY ALL PLANTS HERE-->
-  <div class="col-sm-8 img-container" style="display: flex; flex-wrap: wrap; justify-content: space-evenly;">
+  <div class="col-sm-9" style="display: flex; flex-wrap: wrap; justify-content: space-evenly;">
     <!--This is for the Thumbnail View-->
     <?php
 
@@ -49,6 +49,7 @@
                   width: 350px;
                   height: 450px;
                   border: 3px solid #ccc;
+                  border-radius: 10px;
                   margin-bottom: 20px;
                   padding:3px;"
                   >
@@ -79,24 +80,22 @@
         <?php $row['plant_allseason']; ?>
         <?php $row['plant_bestseller']; ?>  -->
 
-        <!-- ////////////THIS IS FOR IMG FROM SQUARE FOLDER--> 
+        <!-- ////////////THIS IS FOR IMG FROM SQUARE FOLDER ,     srcis in the filezilla--> 
         <a href="display.php?id=<?php echo $row['id'] ?> ">
-          <img onmouseover="bigImg(this)" onmouseout="normalImg(this)" src="uploads/square/<?php echo $row["plant_image"]; ?>"
+          <img onmouseover="shrinkImg(this)" onmouseout="normalImg(this)" src="uploads/square/<?php echo $row["plant_image"]; ?>" 
             style="display: block;
                   margin-left: auto;
                   margin-right: auto;
                   width: 100%;"
-      
           >   
         </a>
 
-
-        
-
         <?php
-          echo "<center><b>" .$row["plant_name"] ."</center></b><br />\n";
-          echo "<b>Price: $ </b>". $row["plant_price"] ."<br />\n";
-          echo "<b>Size: </b>". $row["plant_size"] ."<br />\n";
+          echo "<div class=\"square-img\">";
+            echo "<center><b>" .$row["plant_name"] ."</center></b><br />\n";
+            echo "<b>Price: $ </b>". $row["plant_price"] ."<br />\n";
+            echo "<b>Size: </b>". $row["plant_size"] ."<br />\n";
+          echo "</div>";
          ?>
       </div> <!--END of style-->
     <?php endwhile; ?>
@@ -104,7 +103,8 @@
 
   </div> <!--END of col-sm-9-->
 
-  <div class="col-sm-4">
+  <div class="col-sm-3">
+    
     <!--FILTER SECTION-->
     <section class="filter">
       <div class="alert alert-info">
@@ -139,32 +139,75 @@
     </section>
     <!--END OF FILTER SECTION-->
 
+    <!--RANDOM PLANTS-->
     <section class="random">
       <div class="alert alert-info"> 
-        <h3>Random Plants</h3>
+        <h3><center>Random Plants</h3></center>
         <div style="display: flex; flex-wrap: wrap; justify-content: space-evenly;">
           <?php   
-            $randomPlants = mysqli_query($con, "SELECT * FROM plant_catalog ORDER BY RAND() LIMIT 2");
+            $randomPlants = mysqli_query($con, "SELECT * FROM plant_catalog ORDER BY RAND() LIMIT 1");
             while ($row = mysqli_fetch_array($randomPlants)){
               $plant_name = $row["plant_name"];
               $id = $row["id"];
               $plant_image = $row["plant_image"];
 
-              echo "<div style=\"float: left;
-                          width: 350px;
-                          height: 300px;
-                          border: 2px solid #ccc;
-                          margin-bottom: 20px;
-                          padding:3px;\"
+              // echo "<div style=\"float: left;
+              //             width: 350px;
+              //             height: 300px;
+              //             border: 2px solid #ccc;
+              //             margin-bottom: 20px;
+              //             padding:3px;\"
+              //       >";
+              echo "<div style=\"           
+                      border: 5px solid #ccc;
+                      border-radius: 20px;
+                      margin-bottom: 20px;
+                      padding:15px;\"
                     >";
-                echo $plant_name;
+                //this will redirect user to display page
+                echo "<center>" . $plant_name . "</center><br />" . "<a href=\"display.php?id=$id\"><img src=\"uploads/square/$plant_image\" /><br /></a>";
               echo "</div>";
             }
           ?>  
         </div>
       </div>
     </section>
-    
+    <!--END OF RANDOM PLANTS-->
+
+    <!--MEDIUM PLANTS-->
+    <section class="random">
+      <div class="alert alert-info"> 
+        <h3><center>Medium Plants</h3></center>
+        <div style="display: flex; flex-wrap: wrap; justify-content: space-evenly;">
+          <?php   
+            $randomPlants = mysqli_query($con, "SELECT * FROM plant_catalog WHERE plant_size LIKE 'medium' ORDER BY RAND() LIMIT 2");
+            while ($row = mysqli_fetch_array($randomPlants)){
+              $plant_name = $row["plant_name"];
+              $id = $row["id"];
+              $plant_image = $row["plant_image"];
+
+              // echo "<div style=\"float: left;
+              //             width: 350px;
+              //             height: 300px;
+              //             border: 2px solid #ccc;
+              //             margin-bottom: 20px;
+              //             padding:3px;\"
+              //       >";
+              echo "<div style=\"           
+                      border: 5px solid #ccc;
+                      border-radius: 20px;
+                      margin-bottom: 20px;
+                      padding:15px;\"
+                    >";
+                //this will redirect user to display page
+                echo "<center>" . $plant_name . "</center><br />" . "<a href=\"display.php?id=$id\"><img src=\"uploads/square/$plant_image\" /><br /></a>";
+              echo "</div>";
+            }
+          ?>  
+        </div>
+      </div>
+    </section>
+    <!--END OF MEDIUM PLANTS-->
 
   </div> <!--END of col-sm-3-->
   <!-- <a class="btn btn-primary float-right" href="#" role="button">Button</a> -->
