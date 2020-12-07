@@ -46,11 +46,11 @@
       
       
       <div style="float: left;
-                  width: 350px;
-                  height: 450px;
+                  width: 200px;
+                  height: 300px;
                   border: 3px solid #ccc;
                   border-radius: 10px;
-                  margin-bottom: 20px;
+                  margin-bottom: 50px;
                   padding:3px;"
                   >
 
@@ -66,19 +66,6 @@
         <?php $inventory = ($row['plant_inventory']); ?>
         <?php $inventory = ($row['plant_allseason']); ?>
         <?php $inventory = ($row['plant_bestseller']); ?> 
-
-
-        <!-- <?php $row['id']; ?>
-        <?php $row['plant_name']; ?>
-        <?php $row['plant_description']; ?>
-        <?php $row['plant_price']; ?>
-        <?php $row['plant_image']; ?>
-        <?php $row['plant_size']; ?>
-        <?php $row['plant_type']; ?>
-        <?php $row['plant_indoor']; ?>
-        <?php $row['plant_inventory']; ?>
-        <?php $row['plant_allseason']; ?>
-        <?php $row['plant_bestseller']; ?>  -->
 
         <!-- ////////////THIS IS FOR IMG FROM SQUARE FOLDER ,     srcis in the filezilla--> 
         <a href="display.php?id=<?php echo $row['id'] ?> ">
@@ -217,8 +204,8 @@
   include ("includes/footer.php");
 ?>
 
-<script src="js/main.js">
+<!-- <script src="js/main.js">
 
 
- 
-</script>
+
+</script> -->
