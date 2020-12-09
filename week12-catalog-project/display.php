@@ -50,11 +50,12 @@
         <p><b>Plant Best Seller: </b><?php echo $row["plant_bestseller"]; ?></p>
     <?php endif; ?>
     <?php if($row["plant_image"]): ?>
-        <img src="uploads/display/<?php echo $row["plant_image"]; ?>" >
-    <?php endif; ?>
+        <img src="uploads/display/<?php echo $row["plant_image"]; ?>" > 
+    <?php endif; ?> 
 
 
 <?php endwhile; ?> <!-- to end while loop-->
+&nbsp; &nbsp;
 
 <?php
   include ("includes/footer.php");

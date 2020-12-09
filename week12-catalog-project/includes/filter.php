@@ -53,7 +53,7 @@
 
 
 <div id="links">
-  <h2><b>Filter here:</b></h2>
+  <h3><center>Filter here:</center></h3>
   <a href="index.php">All Plants</a><br />
   <!--This is a query string-->
   <a href="index.php?displayby=plant_size&displayvalue=small">Small Plants</a><br />

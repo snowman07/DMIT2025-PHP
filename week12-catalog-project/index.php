@@ -96,13 +96,34 @@
     </section>
     <!--END OF FILTER SECTION-->
 
+    <section>
+      <div class="alert alert-info"> 
+        <h3><center>Alphabetical Links</h3></center>
+        <?php
+          $qry = "SELECT *, LEFT(plant_name, 1) AS first_char FROM plant_catalog 
+                  WHERE UPPER(plant_name) BETWEEN 'A' AND 'Z'
+                  ORDER BY plant_name";
+          $result = mysqli_query($con,$qry);
+          $current_char = '';
+          while ($row = mysqli_fetch_assoc($result)) {
+              if ($row['first_char'] != $current_char) {
+                  $current_char = $row['first_char'];
+                  $thisChar = strtoupper($current_char);
+                  echo "<a href=\"index.php?displayby=plant_name&displayvalue=$thisChar%\">$thisChar</a> | ";
+              }
+          }
+        ?>
+
+      </div>
+    </section>
+
     <!--RANDOM PLANTS-->
     <section class="random">
       <div class="alert alert-info"> 
         <h3><center>Random Plants</h3></center>
         <div style="display: flex; flex-wrap: wrap; justify-content: space-evenly;">
           <?php   
-            $randomPlants = mysqli_query($con, "SELECT * FROM plant_catalog ORDER BY RAND() LIMIT 1");
+            $randomPlants = mysqli_query($con, "SELECT * FROM plant_catalog ORDER BY RAND() LIMIT 2");
             while ($row = mysqli_fetch_array($randomPlants)){
               $plant_name = $row["plant_name"];
               $id = $row["id"];

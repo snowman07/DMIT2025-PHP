@@ -87,6 +87,7 @@ include("mysql_connect.php");// here we include the connection script; since thi
               // Now, we have to loop thru all records and display to the user
               while($row = mysqli_fetch_array($result)) {
                 $plant_name = $row['plant_name'];
+                
 
                 
                 echo "<div class=\"square-img\">";
