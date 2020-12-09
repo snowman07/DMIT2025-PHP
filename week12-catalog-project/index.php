@@ -12,24 +12,32 @@
 
 <div class="row"> 
   <!--DISPLAY ALL PLANTS HERE-->
-  <div class="col-sm-9" style="display: flex; flex-wrap: wrap; justify-content: space-evenly;">
+  <div class="col-sm-9" style="display: flex; flex-wrap: wrap; justify-content: space-evenly;"> 
     
-    <!--This is for the Thumbnail View-->
     <?php
+      ///////////// DEFAULT QUERY: RETRIEVE EVERYTHING
+      ///////////// IF NOTHING BELOW THEN THIS QUERY WILL STAND; OTHERWISE, IT WILL BE OVERWRITTEN
+      $result = mysqli_query($con, "SELECT * FROM plant_catalog"); // SHOW EVERYTHING
 
-      $result = mysqli_query($con, "SELECT * FROM plant_catalog");
-
-      // FILTERING YOUR DB
+      //////////// FILTERING DB
       $displayby = $_GET['displayby'];
       $displayvalue = $_GET['displayvalue'];
-
       if(isset($displayby) && isset($displayvalue)) {
         // HERE IS THE MAGIC: WE TELL OUR DB WHICH COLUMN TO LOOK IN, AND THEN WHICH VALUE FROM THAT COLUMN WE'RE LOOKING FOR
-        $result = mysqli_query($con,"SELECT * FROM plant_catalog WHERE $displayby LIKE '$displayvalue' ") or die (mysql_error());
-        
+        $result = mysqli_query($con,"SELECT * FROM plant_catalog WHERE $displayby LIKE '$displayvalue' ") or die (mysql_error());   
       }
-        
+      //////////// END OF FILTERING DB
+
+      ////////////// FILTERING DB USING BETWEEN QUERY here!!!!!!!!!!
+      $min = $_GET['min'];
+      $max = $_GET['max'];
+      if($displayby == "plant_price"){
+        $result = mysqli_query($con,"SELECT * FROM plant_catalog WHERE plant_price BETWEEN '$min' AND '$max'");
+      }
+      ////////////// END OF FILTERING DB USING BETWEEN QUERY here!!!!!!!!!!     
     ?>
+
+    <!--This is for the Thumbnail View. This is where user can see the results of filter as well-->
     <?php while($row = mysqli_fetch_array($result)): ?> <!-- ternary operator with a colon ":" -->
       
       <div style="float: left;
@@ -73,7 +81,8 @@
       </div> <!--END of style-->
     <?php endwhile; ?>
     <!--END OF This is for the Thumbnail View-->
-  </div> <!--END of col-sm-9-->
+  </div> 
+  <!--END of col-sm-9-->
 
   <div class="col-sm-3">
     
@@ -83,30 +92,6 @@
         <?php
           include ("includes/filter.php");
         ?>
-        
-        <!-- <?php
-          	// DEFAULT QUERY: RETRIEVE EVERYTHING
-            $result = mysqli_query($con,"SELECT * FROM plant_catalog") or die (mysql_error());
-
-            // FILTERING YOUR DB
-            $displayby = $_GET['displayby'];
-            $displayvalue = $_GET['displayvalue'];
-
-            if(isset($displayby) && isset($displayvalue)) {
-              // HERE IS THE MAGIC: WE TELL OUR DB WHICH COLUMN TO LOOK IN, AND THEN WHICH VALUE FROM THAT COLUMN WE'RE LOOKING FOR
-              $result = mysqli_query($con,"SELECT * FROM plant_catalog WHERE $displayby LIKE '$displayvalue' ") or die (mysql_error());          
-            }
-
-            // DISPLAY RESULTS: Only relevant results thumbnails should be displayed.
-            while ($row = mysqli_fetch_array( $result )){
-              $plant_name = $row['plant_name '];
-              $id = $row['id'];
-              echo "<a href=\"display.php?id=$id\">$plant_name</a><br />\n";   
-            }
-
-        ?> -->
-
-
       </div>
     </section>
     <!--END OF FILTER SECTION-->
@@ -190,7 +175,5 @@
 ?>
 
 <!-- <script src="js/main.js">
-
-
 
 </script> -->

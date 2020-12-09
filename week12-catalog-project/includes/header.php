@@ -71,10 +71,34 @@ include("mysql_connect.php");// here we include the connection script; since thi
         
         <!-- Search Bar:  -->
         <form class="form-inline mt-2 mt-md-0">
-          
-          <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
-          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+          <input class="form-control mr-sm-2" type="text" placeholder="Search plant name here" aria-label="Search" name="searchtext">
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit" name="searchsubmit">Search</button>
         </form>
+        <?php 
+          $searchtext = trim($_POST["searchtext"]);
+          //include ("includes/search.php");
+          if(isset($_POST['searchsubmit']) && $searchtext != "") {
+            $sql = "SELECT * FROM plant_catalog WHERE
+                plant_name LIKE '$searchtext' ";
+
+            $result = mysqli_query($con, $sql);
+            // Lets deal with NO results from this query
+            if (mysqli_num_rows($result) > 0) {
+              // Now, we have to loop thru all records and display to the user
+              while($row = mysqli_fetch_array($result)) {
+                $plant_name = $row['plant_name'];
+
+                
+                echo "<div class=\"square-img\">";
+                  echo "<center><b>" .$row["plant_name"] ."</center></b><br />\n";
+                  echo "<b>Price: $ </b>". $row["plant_price"] ."<br />\n";
+                  echo "<b>Size: </b>". $row["plant_size"] ."<br />\n";
+                echo "</div>";
+                
+              }
+            }
+          }
+        ?>
       </div>
       
     </nav>
