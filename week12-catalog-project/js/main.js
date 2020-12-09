@@ -28,13 +28,13 @@
 
 
 function shrinkImg(x) {
-    //x.style.height = "auto";
-    //x.style.width = "10px";
+    x.style.height = "auto";
+    x.style.width = "10px";
     //document.querySelector(".square-img").style.color = "red";
 }
 
 function normalImg(x) {
-    //x.style.display = "block";
-    //x.style.width = "100%";
+    x.style.display = "block";
+    x.style.width = "100%";
     //x.style.height = "auto";
 }

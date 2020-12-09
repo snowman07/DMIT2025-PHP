@@ -5,13 +5,15 @@
 <div class="jumbotron clearfix">
   <h1><?php echo APP_NAME ?></h1>
   <p class="lead">
-    This is a finalt project in <i>DMIT 2025</i>  <br>
+    This is a final project in <i>DMIT 2025</i>. It will let buyers see the plants online.
+    Users/buyers will see a bunch of plants with varying sizes, types and prices. <br>
   </p>
 </div> <!--END of class="jumbotron clearfix" -->
 
 <div class="row"> 
   <!--DISPLAY ALL PLANTS HERE-->
   <div class="col-sm-9" style="display: flex; flex-wrap: wrap; justify-content: space-evenly;">
+    
     <!--This is for the Thumbnail View-->
     <?php
 
@@ -30,21 +32,6 @@
     ?>
     <?php while($row = mysqli_fetch_array($result)): ?> <!-- ternary operator with a colon ":" -->
       
-      <!-- 
-      <?php $id = ($row['id']); ?>
-			<?php $plant_name = ($row['plant_name']); ?>
-			<?php $plant_description = ($row['plant_description']); ?>
-			<?php $plant_price = ($row['plant_price']); ?>
-      <?php $plant_price = ($row['plant_image']); ?>
-			<?php $plant_size = ($row['plant_size']); ?>
-			<?php $plant_type = ($row['plant_type']); ?>
-			<?php $plant_indoor = $row['plant_indoor']; ?>
-			<?php $inventory = ($row['plant_inventory']); ?>
-      <?php $inventory = ($row['plant_allseason']); ?>
-      <?php $inventory = ($row['plant_bestseller']); ?> 
-      -->
-      
-      
       <div style="float: left;
                   width: 200px;
                   height: 300px;
@@ -53,8 +40,7 @@
                   margin-bottom: 50px;
                   padding:3px;"
                   >
-
-                  
+        
         <?php $id = ($row['id']); ?>
         <?php $plant_name = ($row['plant_name']); ?>
         <?php $plant_description = ($row['plant_description']); ?>
@@ -67,7 +53,7 @@
         <?php $inventory = ($row['plant_allseason']); ?>
         <?php $inventory = ($row['plant_bestseller']); ?> 
 
-        <!-- ////////////THIS IS FOR IMG FROM SQUARE FOLDER ,     srcis in the filezilla--> 
+        <!-- ////////////THIS IS FOR IMG FROM SQUARE FOLDER ,     src is in the filezilla--> 
         <a href="display.php?id=<?php echo $row['id'] ?> ">
           <img onmouseover="shrinkImg(this)" onmouseout="normalImg(this)" src="uploads/square/<?php echo $row["plant_image"]; ?>" 
             style="display: block;
@@ -83,11 +69,10 @@
             echo "<b>Price: $ </b>". $row["plant_price"] ."<br />\n";
             echo "<b>Size: </b>". $row["plant_size"] ."<br />\n";
           echo "</div>";
-         ?>
+        ?>
       </div> <!--END of style-->
     <?php endwhile; ?>
     <!--END OF This is for the Thumbnail View-->
-
   </div> <!--END of col-sm-9-->
 
   <div class="col-sm-3">

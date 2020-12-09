@@ -54,10 +54,10 @@
 
 <div>
   <h2><b>Filter here:</b></h2>
-
   <a href="index.php">All Plants</a><br />
-
   <!--This is a query string-->
   <a href="index.php?displayby=plant_size&displayvalue=small">Small Plants</a><br />
+  <a href="index.php?displayby=plant_size&displayvalue=medium">Medium Plants</a><br />
+  <a href="index.php?displayby=plant_size&displayvalue=large">Large Plants</a><br />
 </div>
 
