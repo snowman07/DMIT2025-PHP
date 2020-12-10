@@ -38,7 +38,7 @@
     ?>
 
     <!--This is for the Thumbnail View. This is where user can see the results of filter as well-->
-    <?php while($row = mysqli_fetch_array($result)): ?> <!-- ternary operator with a colon ":" -->
+    <?php while($row = mysqli_fetch_array($result)): ?> <!-- ternary operator with a colon ":" . THIS IS AN ALT SYNTAX-->
       
       <div style="float: left;
                   width: 200px;

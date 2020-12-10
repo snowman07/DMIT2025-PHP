@@ -74,6 +74,8 @@ include("mysql_connect.php");// here we include the connection script; since thi
           <input class="form-control mr-sm-2" type="text" placeholder="Search plant name here" aria-label="Search" name="searchtext">
           <button class="btn btn-outline-success my-2 my-sm-0" type="submit" name="searchsubmit">Search</button>
         </form>
+        
+        
         <?php 
           $searchtext = trim($_POST["searchtext"]);
           //include ("includes/search.php");
@@ -87,6 +89,8 @@ include("mysql_connect.php");// here we include the connection script; since thi
               // Now, we have to loop thru all records and display to the user
               while($row = mysqli_fetch_array($result)) {
                 $plant_name = $row['plant_name'];
+                $plant_price = $row['plant_price'];
+                $plant_size = $row['plant_size'];
                 
 
                 
@@ -95,11 +99,19 @@ include("mysql_connect.php");// here we include the connection script; since thi
                   echo "<b>Price: $ </b>". $row["plant_price"] ."<br />\n";
                   echo "<b>Size: </b>". $row["plant_size"] ."<br />\n";
                 echo "</div>";
+
+                // echo "<center><b>" .$row["plant_name"] ."</center></b><br />\n";
+                // echo "<b>Price: $ </b>". $row["plant_price"] ."<br />\n";
+                // echo "<b>Size: </b>". $row["plant_size"] ."<br />\n";
                 
-              }
+              } // end of while
+            } else {
+              echo "\n<div class=\"alert alert-warning\">No results</div>\n";
             }
-          }
+          } // end of if 
         ?>
+
+        
       </div>
       
     </nav>
