@@ -134,7 +134,7 @@
         <h3><center>Random Plants</h3></center>
         <div style="display: flex; flex-wrap: wrap; justify-content: space-evenly;">
           <?php   
-            $randomPlants = mysqli_query($con, "SELECT * FROM plant_catalog ORDER BY RAND() LIMIT 2");
+            $randomPlants = mysqli_query($con, "SELECT * FROM plant_catalog ORDER BY RAND() LIMIT 3");
             while ($row = mysqli_fetch_array($randomPlants)){
               $plant_name = $row["plant_name"];
               $id = $row["id"];
