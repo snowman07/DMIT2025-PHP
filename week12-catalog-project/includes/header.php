@@ -76,7 +76,7 @@ include("mysql_connect.php");// here we include the connection script; since thi
         </form>
         
         
-        <?php 
+        <!-- <?php 
           $searchtext = trim($_POST["searchtext"]);
           //include ("includes/search.php");
           if(isset($_POST['searchsubmit']) && $searchtext != "") {
@@ -109,7 +109,7 @@ include("mysql_connect.php");// here we include the connection script; since thi
               echo "\n<div class=\"alert alert-warning\">No results</div>\n";
             }
           } // end of if 
-        ?>
+        ?> -->
 
         
       </div>

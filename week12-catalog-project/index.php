@@ -37,50 +37,61 @@
       ////////////// END OF FILTERING DB USING BETWEEN QUERY here!!!!!!!!!!     
     ?>
 
-    <!--This is for the Thumbnail View. This is where user can see the results of filter as well-->
-    <?php while($row = mysqli_fetch_array($result)): ?> <!-- ternary operator with a colon ":" . THIS IS AN ALT SYNTAX-->
-      
-      <div style="float: left;
-                  width: 200px;
-                  height: 300px;
-                  border: 3px solid #ccc;
-                  border-radius: 10px;
-                  margin-bottom: 50px;
-                  padding:3px;"
-                  >
+    <div class="square-cont">
+      <!--This is for the Thumbnail View. This is where user can see the results of filter as well-->
+      <?php while($row = mysqli_fetch_array($result)): ?> <!-- ternary operator with a colon ":" . THIS IS AN ALT SYNTAX-->
         
-        <?php $id = ($row['id']); ?>
-        <?php $plant_name = ($row['plant_name']); ?>
-        <?php $plant_description = ($row['plant_description']); ?>
-        <?php $plant_price = ($row['plant_price']); ?>
-        <?php $plant_price = ($row['plant_image']); ?>
-        <?php $plant_size = ($row['plant_size']); ?>
-        <?php $plant_type = ($row['plant_type']); ?>
-        <?php $plant_indoor = $row['plant_indoor']; ?>
-        <?php $inventory = ($row['plant_inventory']); ?>
-        <?php $inventory = ($row['plant_allseason']); ?>
-        <?php $inventory = ($row['plant_bestseller']); ?> 
+        <!-- <div style="float: left;
+                    width: 200px;
+                    height: 300px;
+                    border: 3px solid #ccc;
+                    border-radius: 10px;
+                    margin: 0 3px 0 3px;
+                    padding:3px;"
+                    > -->
 
-        <!-- ////////////THIS IS FOR IMG FROM SQUARE FOLDER ,     src is in the filezilla--> 
-        <a href="display.php?id=<?php echo $row['id'] ?> ">
-          <img onmouseover="shrinkImg(this)" onmouseout="normalImg(this)" src="uploads/square/<?php echo $row["plant_image"]; ?>" 
-            style="display: block;
-                  margin-left: auto;
-                  margin-right: auto;
-                  width: 100%;"
-          >   
-        </a>
+        <div style="float: left;
+            width: 200px;
+            height: 300px;
+            border: 3px solid #ccc;
+            border-radius: 10px;
+            margin: 0 3px 10px 3px;
+            padding:3px;"
+            >
+          
+          <?php $id = ($row['id']); ?>
+          <?php $plant_name = ($row['plant_name']); ?>
+          <?php $plant_description = ($row['plant_description']); ?>
+          <?php $plant_price = ($row['plant_price']); ?>
+          <?php $plant_price = ($row['plant_image']); ?>
+          <?php $plant_size = ($row['plant_size']); ?>
+          <?php $plant_type = ($row['plant_type']); ?>
+          <?php $plant_indoor = $row['plant_indoor']; ?>
+          <?php $inventory = ($row['plant_inventory']); ?>
+          <?php $inventory = ($row['plant_allseason']); ?>
+          <?php $inventory = ($row['plant_bestseller']); ?> 
 
-        <?php
-          echo "<div class=\"square-img\">";
-            echo "<center><b>" .$row["plant_name"] ."</center></b><br />\n";
-            echo "<b>Price: $ </b>". $row["plant_price"] ."<br />\n";
-            echo "<b>Size: </b>". $row["plant_size"] ."<br />\n";
-          echo "</div>";
-        ?>
-      </div> <!--END of style-->
-    <?php endwhile; ?>
-    <!--END OF This is for the Thumbnail View-->
+          <!-- ////////////THIS IS FOR IMG FROM SQUARE FOLDER ,     src is in the filezilla--> 
+          <a href="display.php?id=<?php echo $row['id'] ?> ">
+            <img onmouseover="shrinkImg(this)" onmouseout="normalImg(this)" src="uploads/square/<?php echo $row["plant_image"]; ?>" 
+              style="display: block;
+                    margin-left: auto;
+                    margin-right: auto;
+                    width: 100%;"
+            >   
+          </a>
+
+          <?php
+            echo "<div class=\"square-img\">";
+              echo "<center><b>" .$row["plant_name"] ."</center></b><br />\n";
+              echo "<b>Price: $ </b>". $row["plant_price"] ."<br />\n";
+              echo "<b>Size: </b>". $row["plant_size"] ."<br />\n";
+            echo "</div>";
+          ?>
+        </div> <!--END of style-->
+      <?php endwhile; ?>
+      <!--END OF This is for the Thumbnail View-->
+    </div>
   </div> 
   <!--END of col-sm-9-->
 
