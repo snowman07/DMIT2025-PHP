@@ -28,8 +28,8 @@
 
 
 function shrinkImg(x) {
-    x.style.height = "auto";
-    x.style.width = "10px";
+    x.style.height = "500%";
+    x.style.width = "500%";
     //document.querySelector(".square-img").style.color = "red";
 }
 

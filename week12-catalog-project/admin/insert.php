@@ -515,6 +515,9 @@ enctype="multipart/form-data"
             <option value="flowering" <?php if(isset($plant_type) && $plant_type == "flowering") {echo "selected";} ?>>Flowering</option>
             <option value="lowlight" <?php if(isset($plant_type) && $plant_type == "lowlight") {echo "selected";} ?>>Lowlight</option>
             <option value="cactus" <?php if(isset($plant_type) && $plant_type == "cactus") {echo "selected";} ?>>Cactus</option>
+            <option value="cactus" <?php if(isset($plant_type) && $plant_type == "cactus") {echo "selected";} ?>>Hanging</option>
+            <option value="cactus" <?php if(isset($plant_type) && $plant_type == "cactus") {echo "selected";} ?>>Fern</option>
+            <option value="cactus" <?php if(isset($plant_type) && $plant_type == "cactus") {echo "selected";} ?>>Succulent</option>
             <!-- if(isset($province) && $province == "AB") {echo "selected";}  to prepop select options -->
         </select>
         <?php
