@@ -70,7 +70,7 @@ include("mysql_connect.php");// here we include the connection script; since thi
         </ul>
         
         <!-- Search Bar:  -->
-        <form class="form-inline mt-2 mt-md-0" action="search.php">
+        <form class="form-inline mt-2 mt-md-0" method="post" action="search.php">
           <input class="form-control mr-sm-2" type="text" placeholder="Search plant name here" aria-label="Search" name="searchtext">
           <button class="btn btn-outline-success my-2 my-sm-0" type="submit" name="searchsubmit">Search</button>
         </form>
