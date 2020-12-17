@@ -72,18 +72,48 @@
           <?php $inventory = ($row['plant_bestseller']); ?> 
 
           <!-- ////////////THIS IS FOR IMG FROM SQUARE FOLDER ,     src is in the filezilla--> 
+
+          <!-- .zoom {
+            padding: 50px;
+            background-color: green;
+            transition: transform .2s;
+            width: 200px;
+            height: 200px;
+            margin: 0 auto;
+          }
+
+          .zoom:hover {
+            -ms-transform: scale(1.5); /* IE 9 */
+            -webkit-transform: scale(1.5); /* Safari 3-8 */
+            transform: scale(1.5); 
+          } -->
+
+
+          <style>
+            .zoom {
+              transition: transform .2s;
+              
+            }
+
+            .zoom:hover {
+              -ms-transform: scale(1.1); /* IE 9 */
+              -webkit-transform: scale(1.1); /* Safari 3-8 */
+              transform: scale(1.1); 
+            }
+          </style>
+          <!-- onmouseover="shrinkImg(this)" onmouseout="normalImg(this)" -->
           <a href="display.php?id=<?php echo $row['id'] ?> ">
-            <img onmouseover="shrinkImg(this)" onmouseout="normalImg(this)" src="uploads/square/<?php echo $row["plant_image"]; ?>" 
+            <img class="zoom" src="uploads/square/<?php echo $row["plant_image"]; ?>" 
               style="display: block;
                     margin-left: auto;
                     margin-right: auto;
                     width: 100%;"
             >   
-          </a>
+          </a><br/>
 
           <?php
             echo "<div class=\"square-img\">";
-              echo "<center><b>" .$row["plant_name"] ."</center></b><br />\n";
+              echo "<center><b>" .$row["plant_name"] ."</center></b>\n";
               echo "<b>Price: $ </b>". $row["plant_price"] ."<br />\n";
               echo "<b>Size: </b>". $row["plant_size"] ."<br />\n";
             echo "</div>";
