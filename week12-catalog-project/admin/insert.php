@@ -15,7 +15,7 @@
 ?>
 
 <?php
-    include("../includes/header.php");
+    include("../includes/header-without-search.php");
 
     //Lets set some vars for the folders
     $originalsFolder = "../uploads/originals/"; ////////// PATH MODIFICATION

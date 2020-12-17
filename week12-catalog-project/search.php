@@ -8,7 +8,7 @@
 
 <div class="container">
     <div class="jumbotron clearfix">
-        <h1>Search Plants</h1>
+        <h1>Plant Search Result/s</h1>
     </div>
 </div>
 <!-- 
@@ -48,7 +48,7 @@
 
                 //echo $first_name;
 
-                echo "\n<h2><a href=\"display.php?id=$id\">$plant_name</a></h2>";
+                echo "\n <h3><a href=\"display.php?id=$id\">$plant_name</a></h3><br />";
 
                 // for this project, we will simply echo all the output html. In future projectc, we will use Alt syntax
                 // (ternary operators, etc.), for more HTML and less ECHO

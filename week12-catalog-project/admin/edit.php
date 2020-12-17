@@ -14,7 +14,7 @@
 ?>
 
 <?php
-    include("../includes/header.php");
+    include("../includes/header-without-search.php");
 
     /*
     1. Get all existing items and create dynamic nav system

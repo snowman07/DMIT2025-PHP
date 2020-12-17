@@ -59,7 +59,7 @@
 ?>
 
 <?php
-  include("../includes/header.php");
+  include("../includes/header-without-search.php");
 ?>
 
 <div class="jumbotron clearfix">
