@@ -70,7 +70,12 @@
           <?php $inventory = ($row['plant_allseason']); ?>
           <?php $inventory = ($row['plant_bestseller']); ?> 
 
-          <!-- ////////////THIS IS FOR IMG FROM SQUARE FOLDER ,     src is in the filezilla--> 
+          <!----------------------------------------------------------------------------------->
+          <!--------  THIS IS FOR IMAGES FROM SQUARE FOLDER, src is in the filezilla  ---------> 
+          <!----------------------------------------------------------------------------------->
+
+          <!----------------------------------------->
+          <!-------- STYLE FOR HOVER IMAGES  -------->
 
           <style>
             .zoom {
@@ -82,6 +87,8 @@
               transform: scale(1.1); 
             }
           </style>
+          <!----- END OF STYLE FOR HOVER IMAGES  ---->
+          <!----------------------------------------->
           <!-- onmouseover="shrinkImg(this)" onmouseout="normalImg(this)" -->
           <a href="display.php?id=<?php echo $row['id'] ?> ">
             <img class="zoom" src="uploads/square/<?php echo $row["plant_image"]; ?>" 
