@@ -1,16 +1,10 @@
-		
-
 
 		</div>
     </main>
-
-
     
   </body>
-
   <footer style="background: #02325f; height: 100px;">
     <h2 style="text-align: center; padding-top: 25px;">Live Green | Plant Green</h2>
-
   </footer>
 
   <!-- <footer style="position: fixed;
@@ -22,10 +16,7 @@
    margin-top: 20px;">
     <h2 style="text-align: center;
    padding: 10px;">Live Green | Plant Green</h2>
-
   </footer> -->
-
-
 
 </html>
 

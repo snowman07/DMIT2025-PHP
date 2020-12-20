@@ -1,26 +1,15 @@
 <?php
     include ("includes/header.php");
-
+    
     $searchtext = trim($_POST["searchtext"]);
     //echo $term;
-
 ?>
 
-<div class="container">
-    <div class="jumbotron clearfix">
-        <h1>Plant Search Result/s</h1>
-    </div>
+<div class="jumbotron clearfix">
+    <h1>Plant Search Result/s</h1>
 </div>
-<!-- 
-<h2>Type here:</h2>
-
-<form method="post" action="search.php">
-    <input type="text" name="term">
-    <input type="submit" name="mysubmit" value="Search">
-</form><br><br> -->
 
 <?php
-
     if(isset($_POST['searchsubmit']) && $searchtext != "") {
 
         $sql = "SELECT * FROM plant_catalog WHERE
@@ -34,7 +23,6 @@
         if (mysqli_num_rows($result) > 0) {
 
             // Now, we have to loop thru all records and display to the user
-
             while($row = mysqli_fetch_array($result)){
                 // echo $row["username"] . "<br>"; // $row["name-of-column"]
                 // echo $row["address"] . "<br>";
@@ -61,8 +49,6 @@
         }
     } // end of if
 ?>
-
-
 <?php
   include ("includes/footer.php");
 ?>

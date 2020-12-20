@@ -11,45 +11,44 @@
 </div> <!--END of class="jumbotron clearfix" -->
 
 <div class="row"> 
-  <!--DISPLAY ALL PLANTS HERE-->
+  <!------------------------------------------------------------------>
+  <!--------------------  DISPLAY ALL PLANTS HERE -------------------->
+  <!------------------------------------------------------------------>
   <div class="col-sm-9" style="display: flex; flex-wrap: wrap; justify-content: space-evenly;"> 
     
     <?php
       ///////////// DEFAULT QUERY: RETRIEVE EVERYTHING
       ///////////// IF NOTHING BELOW THEN THIS QUERY WILL STAND; OTHERWISE, IT WILL BE OVERWRITTEN
-      $result = mysqli_query($con, "SELECT * FROM plant_catalog"); // SHOW EVERYTHING
+      $result = mysqli_query($con, "SELECT * FROM plant_catalog"); // SHOWS EVERYTHING
 
-      //////////// FILTERING DB
+      //------------------------------------------------//
+      //----------------  FILTERING DB  ----------------//
       $displayby = $_GET['displayby'];
       $displayvalue = $_GET['displayvalue'];
       if(isset($displayby) && isset($displayvalue)) {
         // HERE IS THE MAGIC: WE TELL OUR DB WHICH COLUMN TO LOOK IN, AND THEN WHICH VALUE FROM THAT COLUMN WE'RE LOOKING FOR
         $result = mysqli_query($con,"SELECT * FROM plant_catalog WHERE $displayby LIKE '$displayvalue' ") or die (mysql_error());   
       }
-      //////////// END OF FILTERING DB
+      //------------- END OF FILTERING DB --------------//
+      //------------------------------------------------//
 
-      ////////////// FILTERING DB USING BETWEEN QUERY here!!!!!!!!!!
+      //---------------------------------------------------//
+      //--------  FILTERING DB USING BETWEEN QUERY  -------//
       $min = $_GET['min'];
       $max = $_GET['max'];
       if($displayby == "plant_price"){
         $result = mysqli_query($con,"SELECT * FROM plant_catalog WHERE plant_price BETWEEN '$min' AND '$max'");
       }
-      ////////////// END OF FILTERING DB USING BETWEEN QUERY here!!!!!!!!!!     
+      //----  END OF FILTERING DB USING BETWEEN QUERY -----// 
+      //---------------------------------------------------// 
     ?>
 
     <div class="square-cont">
-      <!--This is for the Thumbnail View. This is where user can see the results of filter as well-->
+      <!--------------------------------------------------------------------->
+      <!-----------------  This is for the Thumbnail View. ------------------>
+      <!------ This is where user can see the results of filter as well------>
       <?php while($row = mysqli_fetch_array($result)): ?> <!-- ternary operator with a colon ":" . THIS IS AN ALT SYNTAX-->
         
-        <!-- <div style="float: left;
-                    width: 200px;
-                    height: 300px;
-                    border: 3px solid #ccc;
-                    border-radius: 10px;
-                    margin: 0 3px 0 3px;
-                    padding:3px;"
-                    > -->
-
         <div style="float: left;
             width: 200px;
             height: 300px;
@@ -73,28 +72,10 @@
 
           <!-- ////////////THIS IS FOR IMG FROM SQUARE FOLDER ,     src is in the filezilla--> 
 
-          <!-- .zoom {
-            padding: 50px;
-            background-color: green;
-            transition: transform .2s;
-            width: 200px;
-            height: 200px;
-            margin: 0 auto;
-          }
-
-          .zoom:hover {
-            -ms-transform: scale(1.5); /* IE 9 */
-            -webkit-transform: scale(1.5); /* Safari 3-8 */
-            transform: scale(1.5); 
-          } -->
-
-
           <style>
             .zoom {
-              transition: transform .2s;
-              
+              transition: transform .2s;             
             }
-
             .zoom:hover {
               -ms-transform: scale(1.1); /* IE 9 */
               -webkit-transform: scale(1.1); /* Safari 3-8 */
@@ -120,14 +101,15 @@
           ?>
         </div> <!--END of style-->
       <?php endwhile; ?>
-      <!--END OF This is for the Thumbnail View-->
+      <!--------------  END OF This is for the Thumbnail View -------------->
+      <!-------------------------------------------------------------------->
     </div>
   </div> 
   <!--END of col-sm-9-->
 
   <div class="col-sm-3">
-    
-    <!--FILTER SECTION-->
+    <!-------------------------------------->
+    <!----------  FILTER SECTION  ---------->
     <section class="filter">
       <div class="alert alert-info">
         <?php
@@ -135,7 +117,8 @@
         ?>
       </div>
     </section>
-    <!--END OF FILTER SECTION-->
+    <!-------  END OF FILTER SECTION ------->
+    <!-------------------------------------->
 
     <section>
       <div class="alert alert-info"> 
@@ -158,7 +141,8 @@
       </div>
     </section>
 
-    <!--RANDOM PLANTS-->
+    <!------------------------------------------>
+    <!-------------  RANDOM PLANTS ------------->
     <section class="random">
       <div class="alert alert-info"> 
         <h3><center>Random Plants</h3></center>
@@ -191,9 +175,11 @@
         </div>
       </div>
     </section>
-    <!--END OF RANDOM PLANTS-->
+    <!-----------  END OF RANDOM PLANTS  ----------->
+    <!---------------------------------------------->
 
-    <!--MEDIUM PLANTS-->
+    <!---------------------------------------------->
+    <!---------------  MEDIUM PLANTS --------------->
     <section class="random">
       <div class="alert alert-info"> 
         <h3><center>Medium Plants</h3></center>
@@ -226,10 +212,10 @@
         </div>
       </div>
     </section>
-    <!--END OF MEDIUM PLANTS-->
+    <!-----------  END OF MEDIUM PLANTS  ----------->
+    <!---------------------------------------------->
 
   </div> <!--END of col-sm-3-->
-  <!-- <a class="btn btn-primary float-right" href="#" role="button">Button</a> -->
 </div> <!--END of row-->
 
 <?php

@@ -1,7 +1,7 @@
 <?php
 include("mysql_connect.php");// here we include the connection script; since this file(header.php) is included at the top of every page we make, the connection will then also be included. Also, config options like BASE_URL are also available to us.
-
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -15,36 +15,24 @@ include("mysql_connect.php");// here we include the connection script; since thi
     <title><?php echo APP_NAME; ?></title>
 
     <!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
+    <!-- Google Icons: https://material.io/tools/icons/
+      also, check out Font Awesome or Glyphicons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-<!-- Latest compiled and minified JavaScript -->
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-
-
-<!-- Google Icons: https://material.io/tools/icons/
-  also, check out Font Awesome or Glyphicons -->
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-
-
- <!-- Your Custom styles for this project -->
- <!--  Note how we can use BASE_URL constant to resolve all links no matter where the file resides. -->
-<link href="<?php echo BASE_URL ?>css/styles.css" rel="stylesheet">
-<!-- Themes from https://bootswatch.com/ : Use the Themes dropdown to select a theme you like; copy/paste the bootstrap.css. Here, we have named the downloaded theme as a new file and can overwrite the default.  -->
-<link href="<?php echo BASE_URL ?>css/bootstrap-cerulean.css" rel="stylesheet">
-
-<script>
-  function go() {
-    box = document.getElementById('entryselect'); // gets form element by the id.
-    destination = box.options[box.selectedIndex].value;
-    if (destination) location.href = destination;
-  }
-</script>
-
-</head>
+    <!-- Your Custom styles for this project -->
+    <!--  Note how we can use BASE_URL constant to resolve all links no matter where the file resides. -->
+    <link href="<?php echo BASE_URL ?>css/styles.css" rel="stylesheet">
+    
+    <!-- Themes from https://bootswatch.com/ : Use the Themes dropdown to select a theme you like; copy/paste the bootstrap.css. Here, we have named the downloaded theme as a new file and can overwrite the default.  -->
+    <link href="<?php echo BASE_URL ?>css/bootstrap-cerulean.css" rel="stylesheet">
+  </head>
 
   <body>
     <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4 fixed-top">
@@ -67,10 +55,8 @@ include("mysql_connect.php");// here we include the connection script; since thi
               <!-- <a class="dropdown-item" href="<?php echo BASE_URL ?>#">Link</a> -->
             </div>
           </li>
-        </ul>
-        
-      </div>
-      
+        </ul>    
+      </div>  
     </nav>
 
     <main role="main" class="container">

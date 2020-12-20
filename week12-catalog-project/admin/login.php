@@ -1,4 +1,6 @@
-<!--Logic should always comes first before the header-->
+<!--------------------------------------------------------------------------------------->
+<!----------------- Logic should always comes first before the header   ----------------->
+<!--------------------------------------------------------------------------------------->
 <?php
 
     include("/home/adomingo4/data/login-data-catalog-project.php"); // directory for htaccess. /home/adomingo4 - is the root folder "/"
@@ -20,8 +22,6 @@
     if(isset($_POST['mysubmit'])) { // has the button been pushed
 
     //echo " submit"; //this is a test to show submit word when user click submit
-
-  
 
         //if(($username == "phil") && ($password =="web123")) {     // <--- from here
         if(($username == $username_good) && (password_verify($password, $pw_enc))) {     // <-- to here  
@@ -53,9 +53,7 @@
         } else {
             $msg = "Please enter username and password";
         }
-
     }
-
 ?>
 
 <?php
