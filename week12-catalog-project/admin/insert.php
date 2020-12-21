@@ -193,7 +193,9 @@
         //     echo "ERROR";
         // }
 
-        // IF VALIDATION HAS PASSED, THEN DO THE UPLOAD
+        //------------------------------------------------------------------------//
+        //----------    IF VALIDATION HAS PASSED, THEN DO THE UPLOAD    ----------//
+        //------------------------------------------------------------------------//
         if($valid == 1) {
             
             $temp = explode(".", $_FILES["file"]["name"]);
@@ -217,7 +219,6 @@
                 $orientation = 0;
                                 }
                 ----------------*/
-
 
                 if ($imageFileType == "jpg" || $imageFileType == "jpeg"){
                     //createThumbnailJPEG($file, $folder, $newwidth) ---> params mean (source, destination, width)
@@ -271,14 +272,12 @@
             $plant_inventory = "";
             $plant_allseason = "";
             $plant_bestseller = "";
-
         }
         // PLEASE MAKE SURE YOU CHECK FILEZILLA(and refresh the view) TO SEE IF THE FILES ARE THERE!!!!!!
     }
 
-    
-    // function to resize the image; make smaller copy
-
+    //------------------------------------------------------------------------//
+    //----------    function to resize the image; make smaller copy ----------//
     function createThumbnailJPEG($file, $folder, $newwidth, $orientation) {
 
         list($width, $height) = getimagesize($file);
@@ -630,9 +629,6 @@ enctype="multipart/form-data"
         ?>
     </div>
     <!--END of Plant Best Seller-->
-
-
-
 
     <!--Submit button-->
     <button type="submit" name="mysubmit" class="btn btn-primary mb-2">
