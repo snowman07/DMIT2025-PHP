@@ -7,37 +7,38 @@
     // this is for increased security
     // On your own... creat a simple Bootstrap form for a usename and password and submit button.  DONE
 
-    // On your own ... please retrieve the data from the form and echo to test. DONE
-
     $username = trim($_POST['username']); // trim remove spaces before or after the text tring
     $password = trim($_POST['password']);
-
     //echo "$username, $password";
 
-    // vars here are for bootstrap design
+    //-------------------------------------------------------//
+    //--------- vars here are for bootstrap design  ---------//
+    //-------------------------------------------------------//
     $msgPreSuccess = "\n<div class=\"alert alert-primary\" role=\"alert\">";
     $msgPost = "\n</div>";  
 
+    //--------------------------------------------------------//
+    //-------------  RETRIEVE DATA FROM THE FORM -------------//
+
     // if "if" statement is present, critically test it
     if(isset($_POST['mysubmit'])) { // has the button been pushed
-
     //echo " submit"; //this is a test to show submit word when user click submit
 
         //if(($username == "phil") && ($password =="web123")) {     // <--- from here
-        if(($username == $username_good) && (password_verify($password, $pw_enc))) {     // <-- to here  
-
-            //SUCCESS
-
+        if(($username == $username_good) && (password_verify($password, $pw_enc))) {     // <-- to here
+            //-------------------------//
+            //-------- SUCCESS --------//
+            //-------------------------//
             //$msg = "Welcome";   // just for testing 
             session_start();
             $_SESSION['aasdffrtgfbqw'] = session_id(); // make as random as possible
-
             header("Location: insert.php");  //remember to disable this if you are debugging!!
             //header("Location: edit.php");
 
-        } else if (($username == $username_good) && (password_verify($password, $pw_enc))) {
-            //SUCCESS
-
+        } else if (($username == $username_good) && (password_verify($password, $pw_enc))) {  
+            //-------------------------//
+            //-------- SUCCESS --------//
+            //-------------------------//
             //$msg = "Welcome";   // just for testing 
             session_start();
             $_SESSION['aasdffrtgfbqw'] = session_id(); // make as random as possible
@@ -53,7 +54,9 @@
         } else {
             $msg = "Please enter username and password";
         }
-    }
+    } 
+    //-----------  END OF RETRIEVE DATA FROM THE FORM -----------//
+    //-----------------------------------------------------------//
 ?>
 
 <?php
@@ -69,13 +72,11 @@
 </div>
 
 <form id="myform" name="myform" method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>">
-    
     <?php
         if($msg) {
             echo $msgPreSuccess.$msg.$msgPost;
         }
     ?>
-    
     <div class="form-group">
         <label for="username">Name</label>
         <input
@@ -94,10 +95,7 @@
             placeholder="Enter password here"
         />
     </div>
-
-    <button type="submit" name="mysubmit" class="btn btn-primary mb-2">
-    Login
-    </button>
+    <button type="submit" name="mysubmit" class="btn btn-primary mb-2">Login</button>
     <p>&nbsp;</p>
 </form>
 

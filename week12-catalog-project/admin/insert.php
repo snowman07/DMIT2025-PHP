@@ -1,5 +1,7 @@
 <!--THIS CODE IS SIMILAR TO >>week09 >>04--uploadvalidationcreatethumb-add2db.php -->
-<!-- this is a secured page -->
+<!---------------------------------------------------------------------->
+<!----------------------- THIS IS A SECURED PAGE ----------------------->
+<!---------------------------------------------------------------------->
 <?php
     session_start();
     //echo session_id();
@@ -17,11 +19,13 @@
 <?php
     include("../includes/header-without-search.php");
 
-    //Lets set some vars for the folders
-    $originalsFolder = "../uploads/originals/"; ////////// PATH MODIFICATION
-    $thumbsFolder = "../uploads/thumbs/"; ////////// PATH MODIFICATION
-    $displayFolder = "../uploads/display/"; ////////// PATH MODIFICATION
-    $squareFolder = "../uploads/square/"; ////////// PATH MODIFICATION
+    //--------------------------------------------------------------//
+    //------------ Lets set some vars for the folders   ------------//
+    //--------------------------------------------------------------//
+    $originalsFolder = "../uploads/originals/"; ////////// MODIFY PATH BASE ON FTP FILEZILLA
+    $thumbsFolder = "../uploads/thumbs/"; ////////// MODIFY PATH BASE ON FTP FILEZILLA
+    $displayFolder = "../uploads/display/"; ////////// MODIFY PATH BASE ON FTP FILEZILLA
+    $squareFolder = "../uploads/square/"; ////////// MODIFY PATH BASE ON FTP FILEZILLA
 
     $plant_name = trim($_POST["plant-name"]);
     $plant_description = trim($_POST["plant-description"]);
@@ -52,7 +56,8 @@
         // echo "Errors: " . $_FILES["myfile"]["error"] . "<br>"; // any errors in uploading
         // echo "Tmp name: " . $_FILES["myfile"]["tmp_name"] . "<br>"; // tmp name
 
-        //------------- VALIDATION-------------------//
+        //------------------------------------------------------//
+        //------------------ VALIDATION ------------------------//
         $valid = 1; // assumes validation has passed. Any validator can override this and set to 0
             // vars here for bootstrap design
         $msgPreError = "\n<div class=\"alert alert-danger\" role=\"alert\">";
@@ -62,29 +67,34 @@
         //Enable PNG uploads as well as JPG
         $allowed_extensions = array("image/png", "image/jpeg", "image/jpg");
 
-        //Plant Name validation
+        //-------------------------------------------------//
+        //----------    Plant Name validation   ---------- //
 		if((strlen($plant_name) < 1) || (strlen($plant_name) > 100)) {
 			$valid = 0;
 			$valPlantNameMsg = "\nPlease enter plant name from 1 to 100 characters";
 		}
-        //end of Plant Name validation
+        //------    End of Plant Name validation   ------- //
+        //-------------------------------------------------//
         
-        //Plant Description validation
+        //--------------------------------------------------------//
+        //----------    Plant Description validation   ---------- //
         if($plant_description != "") {
 			if((strlen($plant_description) < 3) || (strlen($plant_description) > 1000)) {
 				$valid = 0;
 				$valPlantDescriptionMsg = "Description must be 3 to 1000 characters";
 			}
 		}
-        //end of Plant Description validation
+        //------    End of Plant Description validation   ------- //
+        //--------------------------------------------------------//
 
-        //PNG and JPEG uploads VALIDATION
+        //---------------------------------------------------------//
+        //---------    PNG and JPEG uploads VALIDATION   --------- //
         if ($imageFileType != "png" && $imageFileType != "jpg" && $imageFileType != "jpeg") {
             $valid = 0;
             $validMessage = "Wrong FileType: Only JPEG, JPG and PNG allowed";
         }
-
-        //END of PNG and JPEG uploads VALIDATION
+        //-----    END of PNG and JPEG uploads VALIDATION   ------ //
+        //---------------------------------------------------------//
 
         // //image type
         // if($_FILES["myfile"]["type"] != "image/jpeg") {
@@ -92,67 +102,86 @@
         //     $valMessage = "Wrong FileType: That is NOT a JPEG image.";
         // }
 
-        //image size
+        //-------------------------------------------------//
+        //----------    image size VALIDATION   ---------- //
         if($_FILES["myfile"]["size"]/1024/1024 > 8) { //change the 8
             $valid = 0;
             $valMessage = "File too large. Please upload an image smaller than 8 MB";
         }
+        //-------    end of image size VALIDATION   ------- //
+        //--------------------------------------------------//
 
-        //image blank
+        //--------------------------------------------------//
+        //----------    blank image VALIDATION   ---------- //
         if($filename == "") {
             $valid = 0;
             $valMessage = "You've not chosen a file.";
         }
+        //----------    blank image VALIDATION   ---------- //
+        //--------------------------------------------------//
         
-
-        //Plant Price Validation
+        //--------------------------------------------------//
+        //----------    Plant Price Validation  ----------- //
         if($plant_price == "") {
             $valid = 0;
 			$valPlantPriceMsg = "\nPlease enter price";
         }
-        //END of Plant Price Validation
+        //------    End of Plant Price Validation   ------- //
+        //--------------------------------------------------//
 
-        //Plant Size Validation
+        //--------------------------------------------------//
+        //-----------    Plant Size Validation  ------------//
         if($plant_size == "") {
 			$valid = 0;
 			$valPlantSizeMsg = "Please select a plant size";
 		}
-        //END of Plant Size Validation
+        //-------    END of Plant Size Validation   ------- //
+        //--------------------------------------------------//
 
-        //Plant Type Validation
+        //--------------------------------------------------//
+        //-----------    Plant Type Validation  ------------//
         if($plant_type == "") {
 			$valid = 0;
 			$valPlantTypeMsg = "Please select a plant type";
-		}
-        //END of Plant Type Validation
+        }
+        //-------    END of Plant Type Validation   ------- //
+        //--------------------------------------------------//
 
-        //Plant Indoor Validation
+        //--------------------------------------------------//
+        //-----------    Plant Indoor Validation  ----------//
         if($plant_indoor == "") {
             $valid = 0;
             $valPlantIndoorMsg = "Please select Yes or No.";
         }
-        //END of Plant Indoor Validation
+        //------    END of Plant Indoor Validation   ------ //
+        //--------------------------------------------------//
 
-        //Plant Inventory Validation
+        //--------------------------------------------------//
+        //----------    Plant Inventory Validation  --------//
         if($plant_inventory == "") {
             $valid = 0;
             $valPlantInventoryMsg = "Please select In Stock or Out of Stock.";
         }
-        //END of Plant Inventory Validation
+        //----    END of Plant Inventory Validation   ----- //
+        //--------------------------------------------------//
 
-        //Plant All Season Validation
+        //--------------------------------------------------//
+        //----------    Plant All Season Validation  -------//
         if($plant_allseason == "") {
             $valid = 0;
             $valPlantAllSeasonMsg = "Please select Yes or No.";
         }
-        //END of Plant All Season Validation
+        //----    END of Plant All Season Validation   ---- //
+        //--------------------------------------------------//
 
-        //Plant Best Seller Validation
+        //--------------------------------------------------//
+        //---------    Plant Best Seller Validation  -------//
         if($plant_bestseller == "") {
             $valid = 0;
             $valPlantBestSellerMsg = "Please select Yes or No.";
         }
-        //END of Plant Best Seller Validation
+        //---    END of Plant Best Seller Validation   ---- //
+        //--------------------------------------------------//
 
 
         // // move_uploaded_file(source, destination) --> Moves an uploaded file to a new location

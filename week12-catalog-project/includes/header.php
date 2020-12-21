@@ -32,6 +32,19 @@ include("mysql_connect.php");// here we include the connection script; since thi
     
     <!-- Themes from https://bootswatch.com/ : Use the Themes dropdown to select a theme you like; copy/paste the bootstrap.css. Here, we have named the downloaded theme as a new file and can overwrite the default.  -->
     <link href="<?php echo BASE_URL ?>css/bootstrap-cerulean.css" rel="stylesheet">
+
+    <!--------------------------------------->
+    <!----------  SCRIPT FOR EDIT ----------->
+    <script>
+      function go() {	
+        box = document.getElementById('entryselect'); // gets form element by the id.	
+        destination = box.options[box.selectedIndex].value;	
+        if (destination) location.href = destination;	
+      }	
+    </script>
+    <!------- END OF SCRIPT FOR EDIT -------->
+    <!--------------------------------------->
+
   </head>
 
   <body>
