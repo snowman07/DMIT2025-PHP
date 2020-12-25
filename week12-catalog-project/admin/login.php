@@ -66,7 +66,7 @@
 <div class="jumbotron clearfix">
   <h1><?php echo APP_NAME ?></h1>
   <p class="lead">
-    Please login so you can do insert  an imaget.
+    Please login so you can insert/edit  an image.
   </p>
   <!-- <a class="btn btn-primary float-right" href="logout.php" role="button">Logout</a> -->
 </div>

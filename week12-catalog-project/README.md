@@ -14,7 +14,39 @@ Plants will be displayed right after the user opens the website. At the top of t
     - Password: a**.s**wm*n7 
 
 ## Screenshots
+- Working Website: http://adomingo4.dmitstudent.ca/dmit2025/week12/
 
 ### Homepage
+- User will be redirected to this page upon opening the website
+
 ![](img/home.png)
 
+### Display page
+- When user click an image
+
+![](img/display.png)
+
+### Search Result page
+- This is the result when user search for plant name
+
+![](img/search-result.png)
+
+### Admin page
+- Name: arr
+- Password: arr123
+
+![](img/login.png)
+
+### Insert page
+- User can insert plant here
+
+![](img/insert.png)
+
+### Edit/Delete page
+- User can edit and delete plants here
+
+![](img/edit.png)
+
+### Database Structure
+
+![](img/db.png)
