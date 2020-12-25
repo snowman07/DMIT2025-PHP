@@ -19,34 +19,34 @@ Plants will be displayed right after the user opens the website. At the top of t
 ### Homepage
 - User will be redirected to this page upon opening the website
 
-![](img/home.png)
+![](img/home.PNG)
 
 ### Display page
 - When user click an image
 
-![](img/display.png)
+![](img/display.PNG)
 
 ### Search Result page
 - This is the result when user search for plant name
 
-![](img/search-result.png)
+![](img/search-result.PNG)
 
 ### Admin page
 - Name: arr
 - Password: arr123
 
-![](img/login.png)
+![](img/login.PNG)
 
 ### Insert page
 - User can insert plant here
 
-![](img/insert.png)
+![](img/insert.PNG)
 
 ### Edit/Delete page
 - User can edit and delete plants here
 
-![](img/edit.png)
+![](img/edit.PNG)
 
 ### Database Structure
 
-![](img/db.png)
+![](img/db.PNG)
