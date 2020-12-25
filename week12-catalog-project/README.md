@@ -8,6 +8,8 @@ Plants will be displayed right after the user opens the website. At the top of t
 ## Technology Used
 - PHP
 - MySQL
+- CSS
+    - Framework: Bootstrap
 - NAIT server (below filezilla credentials)
     - Host: dmitstudent.ca
     - Username: adomingo4
