@@ -52,3 +52,11 @@ Plants will be displayed right after the user opens the website. At the top of t
 ### Database Structure
 
 ![](img/db.PNG)
+
+
+## Known Bugs
+
+| Bug       | Description   | Possible Fix  | Status    |
+|:----------|:-------------:|:-------------:|:----------|
+|Admin Page | When user click edit then enter the name and password, it will redirect to insert page instead of edit page   |https://stackoverflow.com/questions/36240145/how-to-use-serverhttp-referer-correctly-in-php https://www.youtube.com/watch?v=rMJgUQLikOE | IN-PROGRESS  |
+|Select option in edit page |When selecting a plant, select is not prepopulating    |https://stackoverflow.com/questions/2460243/using-php-to-populate-a-select-select  |IN-PROGRESS    |
